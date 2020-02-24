@@ -9,7 +9,8 @@ Sarà necessaria la scrittura di 3 pagine diverse, per poter visualizzare le div
 Per poter accedere alle diverse pagine sarà necessaria la creazione di una pagina dove si potrà accedere attraverso nome utente e password, che, in base al livello di privilegi, consentirà diverse azioni. Nel caso degli studenti sarà possibile solamente visualizzare gli oggetti registrati nel gestionale, poi per gli assistenti di laboratorio sarà possibile aggiornare le quantità, registrare le date delle riparazioni e le date delle manutenzioni.
 Infine l'ultimo livello sarà garantito solamente agli insegnanti, che avranno quindi i privilegi di poter aggiungere nuovi record, oltre a tutti i privilegi dei livelli inferiori.
 
+## Work Breakdown Structure
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQwMjA1ODY0NV19
+eyJoaXN0b3J5IjpbMTcxMDY4OTQyNiwtNDAyMDU4NjQ1XX0=
 -->
