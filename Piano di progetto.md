@@ -12,7 +12,37 @@ Infine l'ultimo livello sarà garantito solamente agli insegnanti, che avranno q
 ## Work Breakdown Structure
 <a href="https://ibb.co/0G5XK0T"><img src="https://i.ibb.co/JsZdqYV/Albero-Attivitav3.png" alt="Albero-Attivitav3" border="0"></a>
 
+## Pianificazione Temporale
+<a href="https://ibb.co/bdF26Ld"><img src="https://i.ibb.co/tCzxHcC/gestione.png" alt="gestione" border="0"></a>
 
+<a href="https://ibb.co/4YDsZLY"><img src="https://i.ibb.co/3M8fybM/GANTT.png" alt="GANTT" border="0"></a>
+
+## Tecnologie utilizzate
+
+Lista delle tecnologie utili al progetto Chimica:
+
+## [](https://github.com/MilaniFrancesco7/Progetto-Chimica/blob/master/Tecnologie.md#testing-e-supporto-per-luploading-dei-files)Testing e supporto per l'uploading dei files
+
+-   Server Scolastico D'appoggio: Supporto inter-strutturale per l'insediazione del software
+-   Vpn: Utilizzata per caricare e testare le pagine
+-   Vps: Utilizzata anch'essa per il testing
+
+## Organizzazione delle tempistiche e gestione delle risorse
+
+-   Project Libre: Utilizzato per la gestione delle tempistiche e delle risorse
+
+## Organizzazione e allo scambio dei file
+
+-   Github: Utilizzato per la gestione delle versioni e lo scambio dei file
+-   Google Drive: Utilizzato anch'esso per lo scambio dei file
+
+## Manipolazione della pagina
+
+-   Atom: Editor utilizzato per la scrittura del codice
+-   Html5: Utilizzato per creazione della pagina
+-   CSS: Linguaggio Utilizzato per gestire la formattazione
+-   Javascript: Utilizzato per la creazione della pagina
+-   Bootstrap: Utilizzato come supporto nella creazione della pagina
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg4NDg5NTM2MSwtNDAyMDU4NjQ1XX0=
+eyJoaXN0b3J5IjpbMTQ4MTUwODIzOSwtNDAyMDU4NjQ1XX0=
 -->
