@@ -19,30 +19,29 @@ Infine l'ultimo livello sarà garantito solamente agli insegnanti, che avranno q
 
 ## Tecnologie utilizzate
 
-Lista delle tecnologie utili al progetto Chimica:
+Descrizione delle diverse tecnologie utilizzate nel progetto:
 
-## [](https://github.com/MilaniFrancesco7/Progetto-Chimica/blob/master/Tecnologie.md#testing-e-supporto-per-luploading-dei-files)Testing e supporto per l'uploading dei files
+### Testing e supporto per l'uploading dei files
 
 -   Server Scolastico D'appoggio: Supporto inter-strutturale per l'insediazione del software
--   Vpn: Utilizzata per caricare e testare le pagine
--   Vps: Utilizzata anch'essa per il testing
+-   Vps: Utilizzata per caricare e testare le pagine
 
-## Organizzazione delle tempistiche e gestione delle risorse
+### Organizzazione delle tempistiche e gestione delle risorse
 
 -   Project Libre: Utilizzato per la gestione delle tempistiche e delle risorse
 
-## Organizzazione e allo scambio dei file
+### Organizzazione e allo scambio dei file
 
--   Github: Utilizzato per la gestione delle versioni e lo scambio dei file
+-   GitHub: Utilizzato per la gestione delle versioni e lo scambio dei file
 -   Google Drive: Utilizzato anch'esso per lo scambio dei file
 
-## Manipolazione della pagina
+### Manipolazione della pagina
 
 -   Atom: Editor utilizzato per la scrittura del codice
 -   Html5: Utilizzato per creazione della pagina
 -   CSS: Linguaggio Utilizzato per gestire la formattazione
--   Javascript: Utilizzato per la creazione della pagina
+-   JavaScript: Utilizzato per la creazione della pagina
 -   Bootstrap: Utilizzato come supporto nella creazione della pagina
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ4MTUwODIzOSwtNDAyMDU4NjQ1XX0=
+eyJoaXN0b3J5IjpbLTE1NjMzMzE0NjMsLTQwMjA1ODY0NV19
 -->
