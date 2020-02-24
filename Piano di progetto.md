@@ -10,7 +10,9 @@ Per poter accedere alle diverse pagine sarà necessaria la creazione di una pagi
 Infine l'ultimo livello sarà garantito solamente agli insegnanti, che avranno quindi i privilegi di poter aggiungere nuovi record, oltre a tutti i privilegi dei livelli inferiori.
 
 ## Work Breakdown Structure
+<a href="https://ibb.co/0G5XK0T"><img src="https://i.ibb.co/JsZdqYV/Albero-Attivitav3.png" alt="Albero-Attivitav3" border="0"></a>
+
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcxMDY4OTQyNiwtNDAyMDU4NjQ1XX0=
+eyJoaXN0b3J5IjpbLTg4NDg5NTM2MSwtNDAyMDU4NjQ1XX0=
 -->
