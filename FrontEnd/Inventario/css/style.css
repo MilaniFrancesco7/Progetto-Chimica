@@ -10,6 +10,7 @@ h3{
   font-weight: bold;
 }
 
+
 a{
   color: #25b1d8;
 }
@@ -46,6 +47,13 @@ a{
   font-weight: bold;
 }
 
+#IconaNavbar{
+  padding-bottom: 0px;
+  padding-right: 15px;
+  height: 60px;
+  width: 80px;
+}
+
 #showcase p{
   font-size:20px;
 }
@@ -57,6 +65,7 @@ a{
 .btn-outline-success {
     color: #25b1d8;
     border-color: #25b1d8;
+    font-size: 1.340rem;
 }
 
 .btn-outline-success:hover {
@@ -67,5 +76,39 @@ a{
 
 #BrandTitle{
   color: #25b1d8;
-  font-weight: bolder;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+#BottoneAccesso{
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+.nav-link{
+  font-size: x-large;
+}
+
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 2.5em;
+    height: 2.5em;
+    vertical-align: middle;
+    content: "";
+    background: no-repeat center center;
+        background-image: none;
+        background-size: auto;
+    background-size: 100% 100%;
+}
+
+#PillBox{
+  max-width: 500px;
+  padding-right: 5px;
+  border-style: groove;
+}
+
+#PillBox h1{
+  margin-top: 10px;
+  color: #f8a018;
+  font-weight: bold;
 }
