@@ -28,7 +28,7 @@
 
 ***Reagente_Esperienza***(<ins>ID_Reagente (FK), ID_Esperienza (FK), (PK)</ins>)
 
-***Manuale***(ID_Man
+***Manuale***(<ins>ID_Manuale</ins>)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMDQwODAwNjYsMTgwNzc0NjE1MF19
+eyJoaXN0b3J5IjpbMTA5NzI5OTM4MSwxODA3NzQ2MTUwXX0=
 -->
