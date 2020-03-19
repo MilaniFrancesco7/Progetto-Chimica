@@ -4,7 +4,7 @@
 
 ## Diagramma E-R
 
-<a href="https://ibb.co/Fq3W4zw"><img src="https://i.ibb.co/XkL4xts/MODELLOERPROGEGTTO.png" alt="MODELLOERPROGEGTTO" border="0"></a>
+<a href="https://ibb.co/KL4Znrq"><img src="https://i.ibb.co/Yyn9gLk/MODELLOERPROGEGTTO-1.png" alt="MODELLOERPROGEGTTO-1" border="0"></a>
 
 ## Schema logico
 
@@ -30,5 +30,6 @@
 
 ***Manuale***(<ins>ID_Manuale</ins>)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA5NzI5OTM4MSwxODA3NzQ2MTUwXX0=
+eyJoaXN0b3J5IjpbLTIwMTA4MTAwODgsMTA5NzI5OTM4MSwxOD
+A3NzQ2MTUwXX0=
 -->
