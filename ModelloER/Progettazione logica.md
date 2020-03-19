@@ -18,7 +18,7 @@
 
 ***Vetreria_Attrezzatura***(<ins>ID_Attrezzo (PK)</ins>, Tipo, ID_Quantita (FK), ID_Collocazione (FK))
 
-***S
+***Strumentazione_Apparecchiatura***(<ins>ID_Strumento (PK)</ins>, Tipo, Caratteristiche_Tecniche, Numero_inventario, ID_Quantita (FK), ID_Collocazione (FK), ID_Manuale (FK), ID_Manutenzione (FK), ID_Riparazione(FK)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY2MDU3MDkxM119
+eyJoaXN0b3J5IjpbNTU3NDQwNDM0XX0=
 -->
