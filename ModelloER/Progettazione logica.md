@@ -8,9 +8,9 @@
 
 ## Schema logico
 
-***Reagente***(<ins>ID_Reagente (PK)</ins>, Nome, Formula, Stato, Ditta, Pittogramma, Frase, ID_Scheda_Sicurezza (FK), ID_Collocazione (FK), ID_Quantita (FK), Data_Scadenza)
+***Reagente***(<ins>ID_Reagente (PK)</ins>, Nome, Formula, Stato, Ditta, Pittogramma, Frase, ID_Scheda_Sicurezza (FK), ID_Quantita (FK), Data_Scadenza)
 
-***Collocazione***(<ins>ID_Collocazione (PK)</ins>, Tipo, Armadio, Stanza)
+***Collocazione***(<ins>ID_Collocazione (PK)</ins>, Tipo, Armadio, Stanza, ID_Oggetto (FK))
 
 ***Quantita***(<ins>ID_Quantita</ins>, Quantita_presente, Quantita_totale, Data_aggiornamento)
 
@@ -28,5 +28,5 @@
 
 ***Reagente_Esperienza***(<ins>ID_Reagente (FK), ID_Esperienza (FK), (PK)</ins>)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgwNzc0NjE1MF19
+eyJoaXN0b3J5IjpbOTI2OTg3MTM3LDE4MDc3NDYxNTBdfQ==
 -->
