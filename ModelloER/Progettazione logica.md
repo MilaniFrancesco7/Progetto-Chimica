@@ -18,15 +18,15 @@
 
 ***Vetreria_Attrezzatura***(<ins>ID_Attrezzo (PK)</ins>, Tipo, ID_Quantita (FK), ID_Collocazione (FK))
 
-***Strumentazione_Apparecchiatura***(<ins>ID_Strumento (PK)</ins>, Tipo, Caratteristiche_Tecniche, Numero_inventario, ID_Quantita (FK), ID_Collocazione (FK), ID_Manuale (FK), , ID_Riparazione(FK))
+***Strumentazione_Apparecchiatura***(<ins>ID_Strumento (PK)</ins>, Tipo, Caratteristiche_Tecniche, Numero_inventario, ID_Quantita (FK), ID_Collocazione (FK), ID_Manuale (FK))
 
 ***Scheda_Sicurezza***(<ins>ID_Scheda (PK)</ins>, ID_Collocazione (FK), Data_Rilascio)
 
 ***Manutenzione***(<ins>ID_Manutenzione (PK)</ins>, Data, Tipo, Cognome_Tecnico, ID_Strumento (FK))
 
-***Riparazione***(<ins>ID_Riparazione (PK)</ins>, Motivo, Data_uscita, Data_rientro, Ditta_riparatrice)
+***Riparazione***(<ins>ID_Riparazione (PK)</ins>, Motivo, Data_uscita, Data_rientro, Ditta_riparatrice, ID_Strumento (FK))
 
 ***Reagente_Esperienza***(<ins>ID_Reagente (FK), ID_Esperienza (FK), (PK)</ins>)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExODAxNjExMzldfQ==
+eyJoaXN0b3J5IjpbMTgwNzc0NjE1MF19
 -->
