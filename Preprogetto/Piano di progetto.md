@@ -36,14 +36,14 @@ Descrizione delle diverse tecnologie utilizzate nel progetto:
 -   Google Drive: Utilizzato anch'esso per lo scambio dei file
 
 ### Manipolazione della pagina
--  Html5: Utilizzato per creazione della pagina
--  CSS: Utilizzato per gestire la formattazione
--  JavaScript: Utilizzato per la creazione della pagina
--  Bootstrap: Utilizzato come supporto nella creazione della pagina
+- Html5: Utilizzato per creazione della pagina
+- CSS: Utilizzato per gestire la formattazione
+- JavaScript: Utilizzato per la creazione della pagina
+- Bootstrap: Utilizzato come supporto nella creazione della pagina
 - PHP: Utilizzato per la creazione della pagina
 - SQL: Utilizzato per la creazione del database
 - PHPMyAdmin: Utilizzato per la creazione del database
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY4MTA3MTMzLC0xNTYzMzMxNDYzLC00MD
-IwNTg2NDVdfQ==
+eyJoaXN0b3J5IjpbLTk3NzU4MjI5MywtMTU2MzMzMTQ2MywtND
+AyMDU4NjQ1XX0=
 -->
