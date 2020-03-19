@@ -22,7 +22,11 @@
 
 ***Scheda_Sicurezza***(<ins>ID_Scheda (PK)</ins>, ID_Collocazione (FK), Data_Rilascio)
 
-***Manutenzione***(<ins>ID_Manutenzione (PK)</ins>, Data, T
+***Manutenzione***(<ins>ID_Manutenzione (PK)</ins>, Data, Tipo, Cognome_Tecnico)
+
+***Riparazione***(<ins>ID_Riparazione (PK)</ins>, Motivo, Data_uscita, Data_rientro, Ditta_riparatrice)
+
+***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjMzNDY3ODUwXX0=
+eyJoaXN0b3J5IjpbMTMyNDY4MDk1Nl19
 -->
