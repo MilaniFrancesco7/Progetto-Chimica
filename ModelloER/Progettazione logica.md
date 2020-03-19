@@ -16,17 +16,19 @@
 
 ***Esperienza***(<ins>ID_Esperienza</ins>, Nome_Insegnante, Testo_docente)
 
-***Vetreria_Attrezzatura***(<ins>ID_Attrezzo (PK)</ins>, Tipo, ID_Quantita (FK), ID_Collocazione (FK))
+***Vetreria_Attrezzatura***(<ins>ID_Attrezzo (PK)</ins>, Tipo, ID_Quantita (FK))
 
-***Strumentazione_Apparecchiatura***(<ins>ID_Strumento (PK)</ins>, Tipo, Caratteristiche_Tecniche, Numero_inventario, ID_Quantita (FK), ID_Collocazione (FK), ID_Manuale (FK))
+***Strumentazione_Apparecchiatura***(<ins>ID_Strumento (PK)</ins>, Tipo, Caratteristiche_Tecniche, Numero_inventario, ID_Quantita (FK), ID_Manuale (FK))
 
-***Scheda_Sicurezza***(<ins>ID_Scheda (PK)</ins>, ID_Collocazione (FK), Data_Rilascio)
+***Scheda_Sicurezza***(<ins>ID_Scheda (PK)</ins>, Data_Rilascio)
 
 ***Manutenzione***(<ins>ID_Manutenzione (PK)</ins>, Data, Tipo, Cognome_Tecnico, ID_Strumento (FK))
 
 ***Riparazione***(<ins>ID_Riparazione (PK)</ins>, Motivo, Data_uscita, Data_rientro, Ditta_riparatrice, ID_Strumento (FK))
 
 ***Reagente_Esperienza***(<ins>ID_Reagente (FK), ID_Esperienza (FK), (PK)</ins>)
+
+***Manuale***(ID_Man
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTI2OTg3MTM3LDE4MDc3NDYxNTBdfQ==
+eyJoaXN0b3J5IjpbLTEzMDQwODAwNjYsMTgwNzc0NjE1MF19
 -->
