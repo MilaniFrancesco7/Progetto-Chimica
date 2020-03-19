@@ -8,7 +8,9 @@
 
 ## Schema logico
 
-Reagente( <insA>ID_Reagente (PK)
+Reagente(<ins>ID_Reagente (PK)</ins>, Nome, Formula, Stato, Ditta, Pittogramma, Frase, ID_Scheda_Sicurezza (FK), ID_Collocazione (FK), ID_Quantita (FK), Data_Scadenza)
+
+Collocazione(<ins
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NjgwMDc4Nl19
+eyJoaXN0b3J5IjpbMTcwOTQ0Mzc4NV19
 -->
