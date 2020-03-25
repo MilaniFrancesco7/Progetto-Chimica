@@ -15,6 +15,11 @@ a{
   color: #25b1d8;
 }
 
+div{
+  padding-bottom: 10px;
+  text-align: center;
+}
+
 #divisorio{
   padding-top: 30px;
   padding-bottom: 30px;
