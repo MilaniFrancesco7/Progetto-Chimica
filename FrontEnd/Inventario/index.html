@@ -10,49 +10,51 @@
 
     <!-- Barra Navigazione-->
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-          <img src="./img/MiniIconaNavbar.png" alt="#" id="IconaNavbar">
-          <a class="navbar-brand" href="#" id="BrandTitle">Programma Inventario</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <img src="./img/MiniIconaNavbar.png" alt="#" id="IconaNavbar">
+        <img src="./img/LogoItisBianco.png" alt="#" id="LogoItis">
+        <a class="navbar-brand" href="#" id="BrandTitle">Programma Inventario</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto" id="NavbarList">
 
-              <!--Item dropdown - Menù a tendina-->
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Lista Inventario
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Lista Reagenti</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Lista Apparecchiatura</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Lista Vetreria</a>
-                </div>
-              </li>
-              <!-- Link Sezione manutenzione-->
-              <li class="nav-item">
-                <a class="nav-link" href="#">Sezione Manutenzione</a>
-              </li>
+            <!--Item dropdown - Menù a tendina-->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Lista Inventario
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="Reagenti.html">Lista Reagenti</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="Attrezzatura.html">Lista Apparecchiatura</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="Vetreria.html">Lista Vetreria</a>
+              </div>
+            </li>
+            <!-- Link Sezione manutenzione-->
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sezione Manutenzione</a>
+            </li>
 
-              <!-- Link Sezione Riparazioni-->
-              <li class="nav-item">
-                <a class="nav-link" href="#">Sezione Riparazioni</a>
-              </li>
-            </ul>
+            <!-- Link Sezione Riparazioni-->
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sezione Riparazioni</a>
+            </li>
+          </ul>
 
-            <hr>
+          <hr>
 
-            <!-- Link Per l'accesso-->
-            <form class="form-inline" action="SingIn.html" id="FormBottoneAccesso">
-              <button class="btn btn-outline-success" type="submit" id="BottoneAccesso">Accedi</button>
-            </form>
-          </div>
+          <!-- Link Per l'accesso-->
+
+          <form class="form-inline" action="SingIn.html" id="FormBottoneAccesso">
+            <button class="btn btn-outline-success" type="submit" id="BottoneAccesso">Accedi</button>
+          </form>
         </div>
-      </nav>
+      </div>
+    </nav>
 
 
     <!-- Main Body-->
@@ -70,21 +72,21 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-4 ">
-            <img src="./img/Reagenti.png" alt="Reagenti">
+            <img src="./img/Reagenti.png" alt="Reagenti" id="ImgReagenti">
             <a href="#"><h3>REAGENTI</h3></a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Sezione dove si potranno vedere tutti i reagenti presenti nei vari laboratori con annessa qualità</p>
           </div>
           <hr>
           <div class="col-md-4 ">
-            <img src="./img/Vetreria.png" alt="Vetreria">
+            <img src="./img/Vetreria.png" alt="Vetreria" id ="ImgVetreria">
             <a href="https://google.com"><h3>VETRERIA</h3></a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Sezione Dove potrà essere consultato l'inventario della Vetreria</p>
           </div>
           <hr>
           <div class="col-md-4  ">
-            <img src="./img/Attrezzatura.png" alt="Attrezzatura" style="padding-bottom:35px">
+            <img src="./img/Attrezzatura.png" alt="Attrezzatura" id="ImgAttrezzatura">
             <a href="#"><h3>ATTREZZATURA</h3></a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.è</p>
+            <p>Sezione dove potrà essere consultato l'inventario dell'attrezzatura</p>
           </div>
           <hr>
         </div>
