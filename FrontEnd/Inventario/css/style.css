@@ -93,6 +93,7 @@ div{
   padding-right: 12px;
   padding-left: 12px;
   align-items: center;
+  text-align: center;
 }
 
 
@@ -141,6 +142,10 @@ ul#services h3{
   padding-top: 20px;
 }
 
+#InserisciElemento{
+  padding-top: 100px;
+}
+
 .nav-link{
   font-size: x-large;
 }
@@ -180,4 +185,7 @@ ul#services h3{
     color: #fff;
     background-color: #25b1d8;
     border-color: #25b1d8;
+}
+
+.row{
 }
