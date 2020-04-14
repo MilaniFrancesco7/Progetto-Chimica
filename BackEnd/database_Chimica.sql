@@ -103,3 +103,19 @@ CREATE TABLE reagente_esperienza( /* Tabella di relazione NM */
     FOREIGN KEY (id_reagente) REFERENCES reagente(id_reagente),  /*Chiave esterna per reagente*/
     FOREIGN KEY (id_esperienza) REFERENCES esperienza(id_esperienza) /*Chiave esterna per esperienza*/
 );
+
+CREATE TABLE ruolo (
+  id int(2) NOT NULL,
+  descrizione varchar(250) DEFAULT NULL,
+  alias varchar(20) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE utente (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  email varchar(40) NOT NULL,
+  password varchar(20) NOT NULL,
+  ruolo int(2) DEFAULT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (ruolo) REFERENCES ruolo(id)
+);
