@@ -24,10 +24,10 @@ CREATE TABLE quantita(
 CREATE TABLE vetreria_attrezzatura(
     id_attrezzo int(10) NOT NULL AUTO_INCREMENT,
     tipo varchar(20) NOT NULL, /*descrizione*/
-    quantita int(10) NOT NULL,
+    id_quantita int(10) NOT NULL,
     id_collocazione int(10) NOT NULL,
     PRIMARY KEY (id_attrezzo), /*Chiave primaria*/
-    FOREIGN KEY (quantita) REFERENCES quantita(id_quantita), /*Chiave esterna per quantità*/
+    FOREIGN KEY (id_quantita) REFERENCES quantita(id_quantita), /*Chiave esterna per quantità*/
     FOREIGN KEY (id_collocazione) REFERENCES collocazione(id_collocazione) /*Chiave esterna per collocazione*/
 );
 
@@ -47,7 +47,7 @@ CREATE TABLE manuale(
 CREATE TABLE strumentazione_apparecchiatura(
     id_strumento int(10) NOT NULL AUTO_INCREMENT,
     tipo varchar(20) NOT NULL, /*descrizione*/
-    caratteritsiche_tecniche tinytext NOT NULL, /*testo del docente*/
+    caratteristiche_tecniche tinytext NOT NULL, /*testo del docente*/
     numero_inventario int(10) NOT NULL,
     id_quantita int(10) NOT NULL,
     id_manuale int(10) NOT NULL,
@@ -119,3 +119,84 @@ CREATE TABLE utente (
   PRIMARY KEY (id),
   FOREIGN KEY (ruolo) REFERENCES ruolo(id)
 );
+
+
+
+---- INSERT
+
+INSERT INTO collocazione(tipo, armadio, stanza) VALUES
+("Consumo", 1, 1),
+("Magazzino", 2, 5),
+("Magazzino", 3, 2),
+("Consumo", 4, 3),
+("Magazzino", 4, 1),
+("Consumo", 5, 3),
+("Magazzino", 2, 5),
+("Magazzino", 6, 2),
+("Consumo", 3, 3),
+("Magazzino", 1, 4);
+
+INSERT INTO esperienza(nome_insegnante,testo_docente) VALUES
+("Milani", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie vulputate sapien, in venenatis tellus pretium a. Nunc rutrum lacinia tincidunt. Donec vulputate fermentum ante, lobortis mattis magna consectetur aliquet. Morbi dapibus libero rhoncus, sodales odio semper, feugiat ligula."),
+("Zen", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie vulputate sapien, in venenatis tellus pretium a. Nunc rutrum lacinia tincidunt. Donec vulputate fermentum ante, lobortis mattis magna consectetur aliquet. Morbi dapibus libero rhoncus, sodales odio semper, feugiat ligula."),
+("Rigoni", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie vulputate sapien, in venenatis tellus pretium a. Nunc rutrum lacinia tincidunt. Donec vulputate fermentum ante, lobortis mattis magna consectetur aliquet. Morbi dapibus libero rhoncus, sodales odio semper, feugiat ligula."),
+("De Nadai", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie vulputate sapien, in venenatis tellus pretium a. Nunc rutrum lacinia tincidunt. Donec vulputate fermentum ante, lobortis mattis magna consectetur aliquet. Morbi dapibus libero rhoncus, sodales odio semper, feugiat ligula.");
+
+INSERT INTO quantita(quantita_presente, quantita_totale, data_aggiornamento) VALUES
+(10,10,'2020-01-10'),
+(20,30,'2019-05-9'),
+(10,40,'2020-02-4'),
+(29,70,'2020-01-10'),
+(26,70,'2020-02-30'),
+(25,70,'2020-03-21'),
+(24,70,'2020-04-25'),
+(20,70,'2020-05-22'),
+(35,90,'2020-03-8');
+
+INSERT INTO vetreria_attrezzatura(tipo, quantita, id_collocazione) VALUES
+("Beuta",1,1),
+("Becher",2,2),
+("Matraccio",3,3),
+("Vetrino",4,4);
+
+INSERT INTO scheda_sicurezza(data_rilascio) VALUES
+('2020-01-10'),
+('2020-03-5'),
+('2020-02-17'),
+('2020-04-9');
+
+INSERT INTO manuale(id_collocazione) VALUES
+(1),
+(2),
+(3);
+
+INSERT INTO strumentazione_apparecchiatura(tipo, caratteristiche_tecniche, numero_inventario, id_quantita, id_manuale, id_collocazione) VALUES
+("Cilindro graduato", "Lorem ipsum dolor sit amet, consectetur adipiscing elit", 1, 5, 1, 5),
+("Cuvetta", "Lorem ipsum dolor sit amet, consectetur adipiscing elit", 2, 6, 2, 6);
+
+INSERT INTO manutenzione(data_manutenzione, tipo, cognome_tecnico, id_strumento) VALUES
+('2020-03-21', "consectetur adipiscing elit", "Milani", 1),
+('2020-02-11', "consectetur adipiscing", "Zen", 2);
+
+INSERT INTO riparazione(motivo, data_uscita, data_rientro, ditta_riparatrice, id_strumento) VALUES
+("Mauris molestie vulputate sapi", '2020-03-21', '2020-03-23', "Milani src", 1),
+("Mauris vulputate sapi", '2020-04-21', '2020-04-24', "Milani src", 2);
+
+INSERT INTO reagente(nome, formula, stato, ditta, pittogramma, frase, id_scheda_sicurezza, id_quantita, data_scadenza, id_collocazione) VALUES
+("Acido cloridrico", "HCl", "Liquido", "Milani srl", "Pericolo", "Contiene liquido sotto pressione", 1, 6, '2020-04-21', 7),
+("Acido fluoridrico", "HF", "Solido", "Rigoni srl", "Pericolo", "Contiene solido sotto pressione", 2, 7, '2020-02-21', 8);
+
+INSERT INTO reagente_esperienza(id_reagente, id_esperienza) VALUES
+(1,1),
+(2,2);
+
+INSERT INTO ruolo(id, descrizione, alias) VALUES
+(1, "Solo consultazione", "Base"),
+(2, "Aggiornamento", "Intermedio"),
+(3, "Aggiunta record", "Elevato"),
+(4, "Aggiunta utenti", "Admin");
+
+INSERT INTO utente(email, password, ruolo) VALUES
+("milaniwork@gmail.com", "francescomilani", 4),
+("marcozen00@gmail.com", "marcozen", 1),
+("superfrancy@gmail.com", "francescorigoni", 3);
