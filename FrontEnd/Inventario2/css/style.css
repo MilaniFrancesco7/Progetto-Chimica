@@ -132,8 +132,21 @@ ul#services h3{
 }
 
 
+<<<<<<< HEAD
 #AttrezzaturaMain{
   padding-top: 80px;
+=======
+#VetreriaMain{
+  padding-top: 100px;
+}
+
+#ReagenteMain{
+  padding-top: 100px;
+}
+
+#StrumentazioneMain{
+  padding-top: 100px;
+>>>>>>> 8a4219acd39c76f7959d6696e343de0fc4f7cbf3
 }
 
 #Inserimento{
