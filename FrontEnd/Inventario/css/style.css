@@ -1,5 +1,5 @@
 body{
-  padding-top: 70px;
+  padding-top: 30px;
   font: 20px/1.5 Arial, Helvetica,sans-serif;
 }
 
@@ -11,14 +11,13 @@ h3{
   font-weight: bold;
 }
 
-
 a{
   color: #25b1d8;
 }
 
 div{
   padding-bottom: 10px;
-  text-align: center;
+  text-align: left;
 }
 
 #divisorio{
@@ -117,6 +116,7 @@ div{
 }
 
 ul#services li{
+  font-size: 12px;
   text-align: left;
   list-style: none;
   padding:20px;
@@ -128,24 +128,58 @@ ul#services li{
 ul#services h3{
   color: #25b1d8;
   text-align: left;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 }
 
 
 #AttrezzaturaMain{
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 #Inserimento{
+  font-size: 12px;
   background-color: #e6e6e6;
   padding: 5px;
   padding-top: 20px;
 }
 
 #InserisciElemento{
+  font-size: 12px;
   padding-top: 100px;
 }
 
+ul#services li{
+  list-style: none;
+  padding:20px;
+  border: #cccccc solid 1px;
+  margin-bottom:5px;
+  background:#e6e6e6;
+}
+/*Nuove cose per la sidebar*/
+aside#sidebar{
+  float:right;
+  width:30%;
+  margin-top:10px;7
+  padding-top: 1800px;
+}
+
+aside#sidebar .quote input, aside#sidebar .quote textarea{
+  width:90%;
+  padding:5px;
+}
+
+.dark{
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+  padding:15px;
+  background:#35424a;
+  color:#ffffff;
+  margin-top:80px;
+  margin-bottom:10px;
+  margin-left: 15px;
+}
+/* fine cose per la sidebar*/
 .nav-link{
   font-size: x-large;
 }
