@@ -41,6 +41,38 @@ div{
   font-weight: bold;
 }
 
+/*CSS schermata manutenzione*/
+
+#showcase_man{
+  min-height: 200px;
+  background: url('../img/wallpaper1.jpg');
+  background-size:cover;
+  text-align: center;
+  color: #ffffff;
+  font: 20px,Montserrat, Helvetica;
+}
+
+#showcase_man h1{
+  margin-top:70px;
+  font-size:55px;
+  font-weight: bold;
+}
+
+ul#services_man li{
+  list-style: none;
+  padding:20px;
+  border: #cccccc solid 1px;
+  margin-bottom:5px;
+  background:#e6e6e6;
+}
+
+ul#services_man td
+{
+	width:300px;
+}
+
+/*Fine schermata manutenzione*/
+
 #ImgReagenti{
   padding-bottom: 40px;
 }
