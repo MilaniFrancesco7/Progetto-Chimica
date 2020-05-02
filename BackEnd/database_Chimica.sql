@@ -153,7 +153,7 @@ INSERT INTO quantita(quantita_presente, quantita_totale, data_aggiornamento) VAL
 (20,70,'2020-05-22'),
 (35,90,'2020-03-8');
 
-INSERT INTO vetreria_attrezzatura(tipo, quantita, id_collocazione) VALUES
+INSERT INTO vetreria_attrezzatura(tipo, id_quantita, id_collocazione) VALUES
 ("Beuta",1,1),
 ("Becher",2,2),
 ("Matraccio",3,3),
