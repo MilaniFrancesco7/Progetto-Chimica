@@ -30,7 +30,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="Reagenti.html">Lista Reagenti</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="Strumentazione.html">Lista Apparecchiatura</a>
+                <a class="dropdown-item" href="Strumentazione.html">Lista Strumentazione</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="Vetreria.html">Lista Vetreria</a>
               </div>
@@ -50,86 +50,51 @@
     </nav>
 
 
-    <!--SEZIONE PER LA RICERCA DI UN REAGENTE-->
+    <!--SEZIONE PER LA RICERCA DI UN ELEMENTO DI VETRERIA-->
         <section id="main">
           <div class="row">
             <div class="col-sm-12" id="SezioneRicerca">
               <div class="dark flex">
-                <h3>Ricerca Reagente</h3>
+                <h3>Ricerca Vetreria</h3>
                 <hr>
                 <form>
                   <div class="form-group">
-                    <label for="inputNomeReagente">Inserisci Parola Chiave</label>
+                    <label for="inputNomeVetreria">Inserisci Parola Chiave</label>
                     <input type="text" class="form-control" id="inputNome" placeholder="Parola Chiave...">
                   </div>
 
                   <hr>
-                  <button type="submit" class="btn btn-primary">Cerca Reagente</button>
+                  <button type="submit" class="btn btn-primary">Cerca Vetreria</button>
                 </form>
               </div>
             </div>
     <!--SEZIONE RELATIVA ALL'INSERIMENTO DI NUOVI REAGENTI-->
             <div class="col-sm-10" id="SezioneInserimento">
               <div class="dark">
-                <h3>Inserisci Nuovo Reagente</h3>
+                <h3>Inserisci Nuova Vetreria</h3>
                 <hr>
                 <form>
                   <div class="form-row">
                     <div class="form-group col-md-6">
-                      <label>Nome Reagente</label>
-                      <input type="text" class="form-control"  id="NomeReagente" placeholder="NomeReagente">
+                      <label>Nome Vetreria</label>
+                      <input type="text" class="form-control"  id="NomeVetreria" placeholder="Nome Vetreria">
                     </div>
-                    <div class="form-group col-md-4">
-                      <label>Formula</label>
-                      <input type="text" class="form-control" id="NomeReagente" placeholder="NomeReagente">
+                    <div class="form-group col-md-6">
+                      <label>Tipo Vetreria</label>
+                      <input type="text" class="form-control" id="TipoVetreria" placeholder="Tipo Vetreria">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-2">
                       <label>Quantita'</label>
-                      <input type="text" class="form-control" id="NomeReagente" placeholder="NomeReagente">
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label>Ditta Produttrice</label>
-                      <input type="text" class="form-control" id="NomeReagente" placeholder="NomeReagente">
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label>Data Scadenza</label>
-                      <input type="date" class="form-control" id="NomeReagente" placeholder="NomeReagente">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Stato Reagente</label>
-                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                      <option selected>Scegli...</option>
-                      <option value="Solido">Solido</option>
-                      <option value="Liquido">Liquido</option>
-                      <option value="Gassoso">Gassoso</option>
-                    </select>
-                  </div>
-
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label>Pittogramma</label>
-                      <input type="file" id="NomeReagente" placeholder="NomeReagente">
+                      <input type="text" class="form-control" id="QuantiàVetreria" placeholder="Quantità Vetreria">
                     </div>
                     <div class="form-group col-md-6">
-                      <label>Scheda Sicurezza</label>
-                      <input type="file" id="NomeReagente" placeholder="NomeReagente">
-                    </div>
-                  </div>
-
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label>Frase Sicurezza</label>
-                      <input type="text" class="form-control"id="NomeReagente" placeholder="NomeReagente">
-                    </div>
-                    <div class="form-group col-md-4">
                       <label>Collocazione</label>
-                      <input type="text" class="form-control" id="NomeReagente" placeholder="NomeReagente">
+                      <input type="text" class="form-control" id="CollocazioneVetreria" placeholder="Collocazione Vetreria">
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary">Aggiungi Reagente</button>
+                  <button type="submit" class="btn btn-primary">Aggiungi Vetreria</button>
                 </form>
               </div>
             </div>
