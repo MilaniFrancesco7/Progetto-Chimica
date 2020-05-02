@@ -49,14 +49,117 @@
       </div>
     </nav>
 
-    <!--Esempio Blocco Strumentazione-->
-
-    <section id="main">
+    <!--SEZIONE PER LA RICERCA DI UN REAGENTE-->
+        <section id="main">
           <div class="row">
+            <div class="col-sm-6" id="SezioneRicerca">
+              <div class="dark flex">
+                <h3>Ricerca Reagente</h3>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label for="inputNomeReagente">Nome Reagente</label>
+                    <input type="text" class="form-control" id="inputNome" placeholder="Nome Reagente">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputFormulaReagente">Formula</label>
+                    <input type="text" class="form-control" id="inputNome" placeholder="Formula Reagente">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputAddress">Stato Reagente</label>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                      <option selected>Scegli...</option>
+                      <option value="Solido">Solido</option>
+                      <option value="Liquido">Liquido</option>
+                      <option value="Gassoso">Gassoso</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputAddress2">Ditta Reagente</label>
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Ditta">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputAddress2">Frase Reagente</label>
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Frase">
+                  </div>
+                  <hr>
+                  <button type="submit" class="btn btn-primary">Cerca Reagente</button>
+                </form>
+              </div>
+            </div>
+    <!--SEZIONE RELATIVA ALL'INSERIMENTO DI NUOVI REAGENTI-->
+            <div class="col-sm-6" id="SezioneInserimento">
+              <div class="dark">
+                <h3>Inserisci Nuovo Reagente</h3>
+                <hr>
+                <form>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Nome Reagente</label>
+                      <input type="text" class="form-control"  id="NomeReagente" placeholder="NomeReagente">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>Formula</label>
+                      <input type="text" class="form-control" id="NomeReagente" placeholder="NomeReagente">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-2">
+                      <label>Quantita'</label>
+                      <input type="text" class="form-control" id="NomeReagente" placeholder="NomeReagente">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>Ditta Produttrice</label>
+                      <input type="text" class="form-control" id="NomeReagente" placeholder="NomeReagente">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>Data Scadenza</label>
+                      <input type="date" class="form-control" id="NomeReagente" placeholder="NomeReagente">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Stato Reagente</label>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                      <option selected>Scegli...</option>
+                      <option value="Solido">Solido</option>
+                      <option value="Liquido">Liquido</option>
+                      <option value="Gassoso">Gassoso</option>
+                    </select>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Pittogramma</label>
+                      <input type="file" id="NomeReagente" placeholder="NomeReagente">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Scheda Sicurezza</label>
+                      <input type="file" id="NomeReagente" placeholder="NomeReagente">
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Frase Sicurezza</label>
+                      <input type="text" class="form-control"id="NomeReagente" placeholder="NomeReagente">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>Collocazione</label>
+                      <input type="text" class="form-control" id="NomeReagente" placeholder="NomeReagente">
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Aggiungi Reagente</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+          <!--/*Lista dei reagenti*/-->
             <div class="col-sm-6" id="AttrezzaturaMain">
                 <ul id="services">
                   <li>
-                    <h3>Attrezzo</h3>
+                    <h3>Reagente</h3>
                     <p>Formula:</p>
                     <p>Quantità:</p>
                     <p>Stato:</p>
@@ -67,8 +170,9 @@
                     <p>Data Scadenza:</p>
                     <p>Scheda Sicurezza:</p>
                     <p>Collocazione:</p>
-                  </li><li>
-                    <h3>Attrezzo</h3>
+                  </li>
+                  <li>
+                    <h3>Reagente</h3>
                     <p>Formula:</p>
                     <p>Quantità:</p>
                     <p>Stato:</p>
@@ -79,8 +183,22 @@
                     <p>Data Scadenza:</p>
                     <p>Scheda Sicurezza:</p>
                     <p>Collocazione:</p>
-                  </li><li>
-                    <h3>Attrezzo</h3>
+                  </li>
+                  <li>
+                    <h3>Reagente</h3>
+                    <p>Formula:</p>
+                    <p>Quantità:</p>
+                    <p>Stato:</p>
+                    <p>Ditta:</p>
+                    <p>Pittogramma:</p>
+                    <p><img src="" alt="">Scheda Sicurezza:</p>
+                    <p>Frase:</p>
+                    <p>Data Scadenza:</p>
+                    <p>Scheda Sicurezza:</p>
+                    <p>Collocazione:</p>
+                  </li>
+                  <li>
+                    <h3>Reagente</h3>
                     <p>Formula:</p>
                     <p>Quantità:</p>
                     <p>Stato:</p>
@@ -94,59 +212,7 @@
                   </li>
                 </ul>
             </div>
-
-            <aside class="sidebar">
-              <div class="dark">
-                <h3>Inserisci Nuova Attrezzatura</h3>
-                <form>
-                  <div>
-                    <label>Nome Attrezzo</label>
-                    <input type="text" id="NomeReagente" placeholder="NomeReagente">
-                  </div>
-                  <div>
-                    <label>Formula</label>
-                    <input type="text" id="NomeReagente" placeholder="NomeReagente">
-                  </div>
-                  <div>
-                    <label>Quantita'</label>
-                    <input type="text" id="NomeReagente" placeholder="NomeReagente">
-                  </div>
-                  <div>
-                    <label>Stato Reagente</label>
-                    <input type="text" id="NomeReagente" placeholder="NomeReagente">
-                  </div>
-                  <div>
-                    <label>Ditta Produttrice</label>
-                    <input type="text" id="NomeReagente" placeholder="NomeReagente">
-                  </div>
-                  <div>
-                    <label>Pittogramma</label>
-                    <input type="file" id="NomeReagente" placeholder="NomeReagente">
-                  </div>
-                  <div>
-                    <label>Frase Sicurezza</label>
-                    <input type="text" id="NomeReagente" placeholder="NomeReagente">
-                  </div>
-                  <div>
-                    <label>Data Scadenza</label>
-                    <input type="date" id="NomeReagente" placeholder="NomeReagente">
-                  </div>
-                  <div>
-                    <label>Scheda Sicurezza</label>
-                    <input type="file" id="NomeReagente" placeholder="NomeReagente">
-                  </div>
-                  <div>
-                    <label>Collocazione</label>
-                    <input type="text" id="NomeReagente" placeholder="NomeReagente">
-                  </div>
-                </form>
-              </div>
-            </aside>
-          </div>
         </section>
-
-      </div>
-    </section>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
