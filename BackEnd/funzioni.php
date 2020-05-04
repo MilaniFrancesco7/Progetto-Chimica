@@ -109,29 +109,14 @@
     $connect = mysqli_connect("localhost", "root", "", "progetto-chimica");
 
     $query =   "SELECT * FROM reagente WHERE 
-                nome LIKE $ricerca+\"%\" OR 
-                formula LIKE $ricerca+\"%\" OR
-                stato LIKE $ricerca+\"%\"  OR
-                ditta LIKE $ricerca+\"%\"  OR
-                frase LIKE $ricerca+\"%\"";
+                nome LIKE '".$ricerca."' OR 
+                formula LIKE '".$ricerca."' OR
+                stato LIKE '".$ricerca."'  OR
+                ditta LIKE '".$ricerca."'  OR
+                frase LIKE '".$ricerca."' ";
 
     $result = mysqli_query($connect, $query) or die ("Errore nella query: ".mysqli_error($conn));
 
-/*<table>
-        <tr>
-			<th>ID Reagente</th>
-			<th>Nome</th>
-			<th>Formula</th>
-			<th>Stato</th>
-            <th>Ditta</th>
-            <th>Pittogramma</th>
-            <th>Frase</th>
-            <th>ID Scheda di sicurezza</th>
-            <th>ID Quantità</th>
-            <th>Data di scadenza</th>
-            <th>ID Collocazione</th>
-		</tr>
-*/
     while($search = mysqli_fetch_array($result))
     {
         echo "<tr>\n\t\t\t";

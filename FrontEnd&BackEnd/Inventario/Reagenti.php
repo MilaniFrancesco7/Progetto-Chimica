@@ -68,14 +68,14 @@
           <div class="dark flex">
             <h3>Ricerca Reagente</h3>
             <hr>
-            <form>
+            <form method="post">
               <div class="form-group">
                 <label for="inputNomeReagente">Inserisci Parola Chiave</label>
-                <input type="text" class="form-control" id="inputNome" placeholder="Parola Chiave...">
+                <input type="text" name="ricerca" class="form-control" id="inputNome" placeholder="Parola Chiave...">
               </div>
 
               <hr>
-              <button type="submit" class="btn btn-primary">Cerca Reagente</button>
+              <input type="submit" name="ricercareagente" class="btn btn-primary" value="Cerca reagente">
             </form>
           </div>
         </div>
@@ -196,6 +196,59 @@
           }
         }
       ?>
+
+<?php
+        if(array_key_exists('ricercareagente', $_POST))
+        {
+          ricerca();
+        }
+        function ricerca()
+        {
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $ricerca = $_POST['ricerca'];
+
+          $ricerca .="%";
+
+          $ricerca = $connect -> real_escape_string($ricerca);
+
+          $query =  "SELECT * FROM reagente WHERE 
+                      nome LIKE '".$ricerca."' OR 
+                      formula LIKE '".$ricerca."' OR
+                      stato LIKE '".$ricerca."'  OR
+                      ditta LIKE '".$ricerca."'  OR
+                      frase LIKE '".$ricerca."' ";
+
+          $result = mysqli_query($connect, $query);
+
+          $count = mysqli_num_rows($result);
+
+          if($count != 0)
+          {
+            echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
+            echo "<ul id='services'>";
+
+            while($search = mysqli_fetch_array($result))
+            {
+              echo "<li>";
+              echo "<h3>$search[nome]</h3>";
+              echo "<p>Formula: $search[formula]</p>";
+              echo "<p>Quantità: $search[id_quantita]</p>";
+              echo "<p>Stato: $search[stato]</p>";
+              echo "<p>Ditta: $search[ditta]</p>";
+              echo "<p>Frase: $search[frase]</p>";
+              echo "<p>Data Scadenza: $search[data_scadenza]</p>";
+              echo "<p>Collocazione: $search[id_collocazione]</p>";
+              echo "</li>";
+            }
+            
+            echo "</ul>";
+            echo "</div>";
+          }
+        }
+      ?>
+
+
 
       <!--/*Lista dei reagenti*/
         <div class="col-sm-6" id="AttrezzaturaMain">
