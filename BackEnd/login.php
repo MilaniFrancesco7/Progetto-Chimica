@@ -1,9 +1,11 @@
 <?php
 
+	session_start();
+
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+    $connect = mysqli_connect("localhost", "root", "Marco0424", "Progetto_Chimica");
 
     $query = "SELECT * FROM utente WHERE email = '$email' AND password = '$password'";
 
@@ -13,11 +15,13 @@
 
     if($count == 0)
 	{
-		header("location: ../FrontEnd/Inventario/SignIn.html");
+		$_SESSION["Error"] = "Email o Password errate !";
+		header("location: ../FrontEnd&BackEnd/Inventario/SignIn.php");
 	}
 	else
 	{
-		header("location: ../FrontEnd/Inventario/index.html");
+		$_SESSION["User"] = "$email";
+		header("location: ../FrontEnd&BackEnd/Inventario/index.php");
 	}
 
 ?>
