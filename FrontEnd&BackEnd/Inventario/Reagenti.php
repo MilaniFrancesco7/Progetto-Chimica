@@ -163,7 +163,7 @@
         }
         function showall()
         {
-          $connect = mysqli_connect("localhost", "root", "Marco0424", "Progetto_Chimica");
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
           $query = "SELECT * FROM reagente";
 
