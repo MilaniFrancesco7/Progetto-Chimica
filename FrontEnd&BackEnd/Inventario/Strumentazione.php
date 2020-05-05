@@ -59,7 +59,7 @@
       </div>
     </nav>
 
-    <!--SEZIONE PER LA RICERCA DI UNO STRUMENTO-->
+<!--SEZIONE PER LA RICERCA DI UNO STRUMENTO-->
         <section id="main">
           <div class="row">
             <div class="col-sm-5" id="SezioneRicerca">
@@ -77,7 +77,7 @@
                 </form>
               </div>
             </div>
-
+<!-- SEZIONE PER LA STAMPA DI TUTTI GLI OGGETTI -->
         <div class="col-sm-5" id="SezioneRicerca">
           <div class="dark flex">
             <h3>Mostra Strumentazione</h3>
@@ -87,145 +87,141 @@
             </form>
           </div>
         </div>
-    <!--SEZIONE RELATIVA ALL'INSERIMENTO DI NUOVI STRUMENTI-->
-            <div class="col-sm-10" id="SezioneInserimento">
-              <div class="dark">
-                <h3>Inserisci Nuova Strumentazione</h3>
-                <hr>
-                <form>
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label>Nome Strumentazione</label>
-                      <input type="text" class="form-control"  id="NomeStrumentazione" placeholder="NomeStrumentazione">
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label>Tipo Strumentazione</label>
-                      <input type="text" class="form-control" id="TipoStrumentazione" placeholder="TipoStrumentazione">
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-2">
-                      <label>Numero Inventario</label>
-                      <input type="text" class="form-control" id="NumStrumentazione" placeholder="NumStrumentazione">
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label>Quantita'</label>
-                      <input type="text" class="form-control" id="QuantitaStrumentazione" placeholder="QuantitaStrumentazione">
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label>Manuale</label>
-                      <input type="file" id="pdfManuale" placeholder="pdfManuale">
-                    </div>
-                  </div>
-
-                  <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label>Collocazione</label>
-                      <input type="text" class="form-control" id="Collocazione" placeholder="Collocazione">
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Aggiungi Strumentazione</button>
-                </form>
+<!--SEZIONE RELATIVA ALL'INSERIMENTO DI NUOVI STRUMENTI-->
+        <div class="col-sm-10" id="SezioneInserimento">
+          <div class="dark">
+            <h3>Inserisci Nuova Strumentazione</h3>
+            <hr>
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Nome Strumentazione</label>
+                  <input type="text" class="form-control"  id="NomeStrumentazione" placeholder="NomeStrumentazione">
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Tipo Strumentazione</label>
+                  <input type="text" class="form-control" id="TipoStrumentazione" placeholder="TipoStrumentazione">
+                </div>
               </div>
-            </div>
-          </div>  
+              <div class="form-row">
+                <div class="form-group col-md-2">
+                  <label>Numero Inventario</label>
+                  <input type="text" class="form-control" id="NumStrumentazione" placeholder="NumStrumentazione">
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Quantita'</label>
+                  <input type="text" class="form-control" id="QuantitaStrumentazione" placeholder="QuantitaStrumentazione">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Manuale</label>
+                  <input type="file" id="pdfManuale" placeholder="pdfManuale">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label>Collocazione</label>
+                  <input type="text" class="form-control" id="Collocazione" placeholder="Collocazione">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Aggiungi Strumentazione</button>
+            </form>
+          </div>
+        </div> 
+        </div>
 
-          <?php
-        if(array_key_exists('showall', $_POST))
-        {
-          showall();
-        }
-        function showall()
-        {
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
-
-          $query = "SELECT * FROM strumentazione_apparecchiatura";
-
-          $result = mysqli_query($connect, $query);
-
-          $count = mysqli_num_rows($result);
-
-          if($count != 0)
+<!-- Funzione per la stampa di tutti gli oggetti -->
+        <?php
+          if(array_key_exists('showall', $_POST))
           {
-            echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
-            echo "<ul id='services'>";
-
-            while($search = mysqli_fetch_array($result))
-            {
-              echo "<li>";
-              echo "<h3>$search[tipo]</h3>";
-              echo "<p>Caratteristiche tecniche: $search[caratteristiche_tecniche]</p>";
-              echo "<p>Quantità: $search[id_quantita]</p>";
-              echo "<p>Manuale: $search[id_manuale]</p>";
-              echo "<p>Collocazione: $search[id_collocazione]</p>";
-              echo "</li>";
-            }
-            
-            echo "</ul>";
-            echo "</div>";
-
+            showall();
           }
-        }
-      ?>
-
-
-  <?php
-
-    //RICERCA STRUMENTAZIONE
-
-        if(array_key_exists('ricercastrumenti', $_POST))
-        {
-          ricerca();
-        }
-        function ricerca()
-        {
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
-
-          $ricerca = $_POST['ricerca'];
-
-          $ricerca .="%";
-
-          $ricerca = $connect -> real_escape_string($ricerca);
-
-          $query =   "SELECT * FROM strumentazione_apparecchiatura WHERE 
-          id_strumento LIKE '".$ricerca."' OR 
-          tipo LIKE '".$ricerca."' OR
-          caratteristiche_tecniche LIKE '".$ricerca."'  OR
-          id_quantita LIKE '".$ricerca."'  OR
-          id_manuale LIKE '".$ricerca."'  OR
-          id_collocazione LIKE '".$ricerca."' ";
-
-          $result = mysqli_query($connect, $query);
-
-          $count = mysqli_num_rows($result);
-
-          if($count != 0)
+          function showall()
           {
-            echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
-            echo "<ul id='services'>";
+            $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-            while($search = mysqli_fetch_array($result))
+            $query = "SELECT * FROM strumentazione_apparecchiatura";
+
+            $result = mysqli_query($connect, $query);
+
+            $count = mysqli_num_rows($result);
+
+            if($count != 0)
             {
-              echo "<li>";
-              echo "<h3>$search[tipo]</h3>";
-              echo "<p>Caratteristiche tecniche: $search[caratteristiche_tecniche]</p>";
-              echo "<p>Quantità: $search[id_quantita]</p>";
-              echo "<p>Manuale: $search[id_manuale]</p>";
-              echo "<p>Collocazione: $search[id_collocazione]</p>";
-              echo "</li>";
+              echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
+              echo "<ul id='services'>";
+
+              while($search = mysqli_fetch_array($result))
+              {
+                echo "<li>";
+                echo "<h3>$search[tipo]</h3>";
+                echo "<p>Caratteristiche tecniche: $search[caratteristiche_tecniche]</p>";
+                echo "<p>Quantità: $search[id_quantita]</p>";
+                echo "<p>Manuale: $search[id_manuale]</p>";
+                echo "<p>Collocazione: $search[id_collocazione]</p>";
+                echo "</li>";
+              }
+              
+              echo "</ul>";
+              echo "</div>";
+
             }
-            
-            echo "</ul>";
-            echo "</div>";
           }
-          mysqli_free_result($result);
-          mysqli_close($connect);
-        }
-    
-  ?>         
-        </section>
+        ?>
+
+<!-- Funzione per la ricerca -->
+        <?php
+          if(array_key_exists('ricercastrumenti', $_POST))
+          {
+            ricerca();
+          }
+          function ricerca()
+          {
+            $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+            $ricerca = $_POST['ricerca'];
+
+            $ricerca .="%";
+
+            $ricerca = $connect -> real_escape_string($ricerca);
+
+            $query =   "SELECT * FROM strumentazione_apparecchiatura WHERE 
+            id_strumento LIKE '".$ricerca."' OR 
+            tipo LIKE '".$ricerca."' OR
+            caratteristiche_tecniche LIKE '".$ricerca."'  OR
+            id_quantita LIKE '".$ricerca."'  OR
+            id_manuale LIKE '".$ricerca."'  OR
+            id_collocazione LIKE '".$ricerca."' ";
+
+            $result = mysqli_query($connect, $query);
+
+            $count = mysqli_num_rows($result);
+
+            if($count != 0)
+            {
+              echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
+              echo "<ul id='services'>";
+
+              while($search = mysqli_fetch_array($result))
+              {
+                echo "<li>";
+                echo "<h3>$search[tipo]</h3>";
+                echo "<p>Caratteristiche tecniche: $search[caratteristiche_tecniche]</p>";
+                echo "<p>Quantità: $search[id_quantita]</p>";
+                echo "<p>Manuale: $search[id_manuale]</p>";
+                echo "<p>Collocazione: $search[id_collocazione]</p>";
+                echo "</li>";
+              }
+              
+              echo "</ul>";
+              echo "</div>";
+            }
+            mysqli_free_result($result);
+            mysqli_close($connect);
+          }
+        ?>         
+      </section>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>

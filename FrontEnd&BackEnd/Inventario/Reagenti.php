@@ -64,7 +64,7 @@
 <!--SEZIONE PER LA RICERCA DI UN REAGENTE-->
     <section id="main">
       <div class="row">
-        <div class="col-sm-5" id="SezioneRicerca">
+        <div class="col-sm-5" id="SezioneRicerca1">
           <div class="dark flex">
             <h3>Ricerca Reagente</h3>
             <hr>
@@ -73,13 +73,12 @@
                 <label for="inputNomeReagente">Inserisci Parola Chiave</label>
                 <input type="text" name="ricerca" class="form-control" id="inputNome" placeholder="Parola Chiave...">
               </div>
-
-              <hr>
+               <hr>
               <input type="submit" name="ricercareagente" class="btn btn-primary" value="Cerca reagente">
             </form>
           </div>
         </div>
-
+<!-- SEZIONE PER LA STAMPA DI TUTTI GLI OGGETTI -->
         <div class="col-sm-5" id="SezioneRicerca">
           <div class="dark flex">
             <h3>Mostra Reagenti</h3>
@@ -156,6 +155,7 @@
         </div>
       </div>
 
+<!-- Funzione per la stampa di tutti gli oggetti -->
       <?php
         if(array_key_exists('showall', $_POST))
         {
@@ -197,7 +197,8 @@
         }
       ?>
 
-<?php
+<!-- Funzione per la ricerca -->
+      <?php
         if(array_key_exists('ricercareagente', $_POST))
         {
           ricerca();
@@ -253,48 +254,9 @@
 
 
 
-      <!--/*Lista dei reagenti*/
+      <!-- Tabella per reagenti
         <div class="col-sm-6" id="AttrezzaturaMain">
             <ul id="services">
-              <li>
-                <h3>Reagente</h3>
-                <p>Formula:</p>
-                <p>Quantità:</p>
-                <p>Stato:</p>
-                <p>Ditta:</p>
-                <p>Pittogramma:</p>
-                <p><img src="" alt="">Scheda Sicurezza:</p>
-                <p>Frase:</p>
-                <p>Data Scadenza:</p>
-                <p>Scheda Sicurezza:</p>
-                <p>Collocazione:</p>
-              </li>
-              <li>
-                <h3>Reagente</h3>
-                <p>Formula:</p>
-                <p>Quantità:</p>
-                <p>Stato:</p>
-                <p>Ditta:</p>
-                <p>Pittogramma:</p>
-                <p><img src="" alt="">Scheda Sicurezza:</p>
-                <p>Frase:</p>
-                <p>Data Scadenza:</p>
-                <p>Scheda Sicurezza:</p>
-                <p>Collocazione:</p>
-              </li>
-              <li>
-                <h3>Reagente</h3>
-                <p>Formula:</p>
-                <p>Quantità:</p>
-                <p>Stato:</p>
-                <p>Ditta:</p>
-                <p>Pittogramma:</p>
-                <p><img src="" alt="">Scheda Sicurezza:</p>
-                <p>Frase:</p>
-                <p>Data Scadenza:</p>
-                <p>Scheda Sicurezza:</p>
-                <p>Collocazione:</p>
-              </li>
               <li>
                 <h3>Reagente</h3>
                 <p>Formula:</p>
@@ -311,6 +273,8 @@
             </ul>
         </div>
         -->
+
+
     </section>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

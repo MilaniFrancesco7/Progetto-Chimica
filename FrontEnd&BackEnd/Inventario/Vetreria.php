@@ -59,8 +59,7 @@
       </div>
     </nav>
 
-
-    <!--SEZIONE PER LA RICERCA DI UN ELEMENTO DI VETRERIA-->
+<!--SEZIONE PER LA RICERCA DI UN ELEMENTO DI VETRERIA-->
         <section id="main">
           <div class="row">
             <div class="col-sm-5" id="SezioneRicerca">
@@ -78,7 +77,7 @@
                 </form>
               </div>
             </div>
-
+<!-- SEZIONE PER LA STAMPA DI TUTTI GLI OGGETTI -->
         <div class="col-sm-5" id="SezioneRicerca">
           <div class="dark flex">
             <h3>Mostra Vetreria</h3>
@@ -90,127 +89,123 @@
         </div>
 
     <!--SEZIONE RELATIVA ALL'INSERIMENTO DI NUOVI REAGENTI-->
-            <div class="col-sm-10" id="SezioneInserimento">
-              <div class="dark">
-                <h3>Inserisci Nuova Vetreria</h3>
-                <hr>
-                <form>
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label>Nome Vetreria</label>
-                      <input type="text" class="form-control"  id="NomeVetreria" placeholder="Nome Vetreria">
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label>Tipo Vetreria</label>
-                      <input type="text" class="form-control" id="TipoVetreria" placeholder="Tipo Vetreria">
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-2">
-                      <label>Quantita'</label>
-                      <input type="text" class="form-control" id="QuantiàVetreria" placeholder="Quantità Vetreria">
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label>Collocazione</label>
-                      <input type="text" class="form-control" id="CollocazioneVetreria" placeholder="Collocazione Vetreria">
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Aggiungi Vetreria</button>
-                </form>
+        <div class="col-sm-10" id="SezioneInserimento">
+          <div class="dark">
+            <h3>Inserisci Nuova Vetreria</h3>
+            <hr>
+            <form>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Nome Vetreria</label>
+                <input type="text" class="form-control"  id="NomeVetreria" placeholder="Nome Vetreria">
+              </div>
+              <div class="form-group col-md-6">
+                <label>Tipo Vetreria</label>
+                <input type="text" class="form-control" id="TipoVetreria" placeholder="Tipo Vetreria">
               </div>
             </div>
+            <div class="form-row">
+              <div class="form-group col-md-2">
+                <label>Quantita'</label>
+                <input type="text" class="form-control" id="QuantiàVetreria" placeholder="Quantità Vetreria">
+              </div>
+              <div class="form-group col-md-6">
+                <label>Collocazione</label>
+                <input type="text" class="form-control" id="CollocazioneVetreria" placeholder="Collocazione Vetreria">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Aggiungi Vetreria</button>
+            </form>
           </div>
+        </div>
+  </div>
 
-          <?php
-        if(array_key_exists('showall', $_POST))
-        {
-          showall();
-        }
-        function showall()
-        {
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
-
-          $query = "SELECT * FROM vetreria_attrezzatura";
-
-          $result = mysqli_query($connect, $query);
-
-          $count = mysqli_num_rows($result);
-
-          if($count != 0)
+<!-- Funzione per la stampa di tutti gli oggetti -->
+        <?php
+          if(array_key_exists('showall', $_POST))
           {
-            echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
-            echo "<ul id='services'>";
-
-            while($search = mysqli_fetch_array($result))
-            {
-              echo "<li>";
-              echo "<h3>$search[tipo]</h3>";
-              echo "<p>Quantità: $search[id_quantita]</p>";
-              echo "<p>Collocazione: $search[id_collocazione]</p>";
-              echo "</li>";
-            }
-            
-            echo "</ul>";
-            echo "</div>";
-
+            showall();
           }
-        }
-      ?>
+          function showall()
+          {
+            $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
+            $query = "SELECT * FROM vetreria_attrezzatura";
 
-          <?php
+            $result = mysqli_query($connect, $query);
 
-//RICERCA VETRERIA
+            $count = mysqli_num_rows($result);
 
-    if(array_key_exists('ricercavetreria', $_POST))
-    {
-    ricerca();
-    }
-    function ricerca()
-    {
-        $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
-
-        $ricerca = $_POST['ricerca'];
-
-        $ricerca .="%";
-
-        $ricerca = $connect -> real_escape_string($ricerca);
-
-        $query =   "SELECT * FROM vetreria_attrezzatura WHERE 
-        id_attrezzo LIKE '".$ricerca."' OR 
-        tipo LIKE '".$ricerca."' OR
-        id_quantita LIKE '".$ricerca."'  OR
-        id_collocazione LIKE '".$ricerca."' ";
-
-        $result = mysqli_query($connect, $query);
-
-        $count = mysqli_num_rows($result);
-
-        if($count != 0)
-        {
-            echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
-            echo "<ul id='services'>";
-
-            while($search = mysqli_fetch_array($result))
+            if($count != 0)
             {
-            echo "<li>";
-            echo "<h3>$search[tipo]</h3>";
-            echo "<p>Quantità: $search[id_quantita]</p>";
-            echo "<p>Collocazione: $search[id_collocazione]</p>";
-            echo "</li>";
+              echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
+              echo "<ul id='services'>";
+
+              while($search = mysqli_fetch_array($result))
+              {
+                echo "<li>";
+                echo "<h3>$search[tipo]</h3>";
+                echo "<p>Quantità: $search[id_quantita]</p>";
+                echo "<p>Collocazione: $search[id_collocazione]</p>";
+                echo "</li>";
+              }
+              
+              echo "</ul>";
+              echo "</div>";
+
             }
-            
-            echo "</ul>";
-            echo "</div>";
-        }
+          }
+        ?>
 
-        mysqli_free_result($result);
-        mysqli_close($connect);
-    }
+<!-- Funzione per la ricerca -->
+        <?php
+          if(array_key_exists('ricercavetreria', $_POST))
+          {
+          ricerca();
+          }
+          function ricerca()
+          {
+              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-?>
-        
-        </section>
+              $ricerca = $_POST['ricerca'];
+
+              $ricerca .="%";
+
+              $ricerca = $connect -> real_escape_string($ricerca);
+
+              $query =   "SELECT * FROM vetreria_attrezzatura WHERE 
+              id_attrezzo LIKE '".$ricerca."' OR 
+              tipo LIKE '".$ricerca."' OR
+              id_quantita LIKE '".$ricerca."'  OR
+              id_collocazione LIKE '".$ricerca."' ";
+
+              $result = mysqli_query($connect, $query);
+
+              $count = mysqli_num_rows($result);
+
+              if($count != 0)
+              {
+                  echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
+                  echo "<ul id='services'>";
+
+                  while($search = mysqli_fetch_array($result))
+                  {
+                  echo "<li>";
+                  echo "<h3>$search[tipo]</h3>";
+                  echo "<p>Quantità: $search[id_quantita]</p>";
+                  echo "<p>Collocazione: $search[id_collocazione]</p>";
+                  echo "</li>";
+                  }
+                  
+                  echo "</ul>";
+                  echo "</div>";
+              }
+
+              mysqli_free_result($result);
+              mysqli_close($connect);
+          }
+        ?>
+      </section>
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
