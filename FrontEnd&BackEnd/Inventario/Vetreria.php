@@ -63,7 +63,7 @@
     <!--SEZIONE PER LA RICERCA DI UN ELEMENTO DI VETRERIA-->
         <section id="main">
           <div class="row">
-            <div class="col-sm-10" id="SezioneRicerca">
+            <div class="col-sm-5" id="SezioneRicerca">
               <div class="dark flex">
                 <h3>Ricerca Vetreria</h3>
                 <hr>
@@ -78,6 +78,17 @@
                 </form>
               </div>
             </div>
+
+        <div class="col-sm-5" id="SezioneRicerca">
+          <div class="dark flex">
+            <h3>Mostra Vetreria</h3>
+            <hr id="SpaziaturaLarga">
+            <form method="post">
+              <input type="submit" name="showall" class="btn btn-primary" value="Mostra tutti i Reagenti">
+            </form>
+          </div>
+        </div>
+
     <!--SEZIONE RELATIVA ALL'INSERIMENTO DI NUOVI REAGENTI-->
             <div class="col-sm-10" id="SezioneInserimento">
               <div class="dark">
@@ -109,6 +120,43 @@
               </div>
             </div>
           </div>
+
+          <?php
+        if(array_key_exists('showall', $_POST))
+        {
+          showall();
+        }
+        function showall()
+        {
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $query = "SELECT * FROM vetreria_attrezzatura";
+
+          $result = mysqli_query($connect, $query);
+
+          $count = mysqli_num_rows($result);
+
+          if($count != 0)
+          {
+            echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
+            echo "<ul id='services'>";
+
+            while($search = mysqli_fetch_array($result))
+            {
+              echo "<li>";
+              echo "<h3>$search[tipo]</h3>";
+              echo "<p>Quantità: $search[id_quantita]</p>";
+              echo "<p>Collocazione: $search[id_collocazione]</p>";
+              echo "</li>";
+            }
+            
+            echo "</ul>";
+            echo "</div>";
+
+          }
+        }
+      ?>
+
 
           <?php
 
