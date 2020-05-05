@@ -1,23 +1,29 @@
 <?php
+    // FUNZIONE PER IL LOGIN
 
-    // LOGIN FUNCTION
-    $username = $_POST["username"];
+	session_start();
+
+    $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $connect = mysqli_connect("localhost", "root", "XXXX", "Scuola");
+    $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-    $query = "SELECT * FROM utente WHERE email = '$username' AND password = '$password'";
+    $query = "SELECT * FROM utente WHERE email = '$email' AND password = '$password'";
 
     $result = mysqli_query($connect, $query);
+	
+	$count = mysqli_num_rows($result);
 
-    if (mysql_num_rows($result) != 0)
-    {
-        header("location: index.php");
-    }
-    else
-    {
-        header("location: login.php"); //Va aggiunto il controllo della variabile di sessione
-    }
+    if($count == 0)
+	{
+		$_SESSION["Error"] = "Email o Password errate !";
+		header("location: ../FrontEnd&BackEnd/Inventario/SignIn.php");
+	}
+	else
+	{
+		$_SESSION["User"] = "$email";
+		header("location: ../FrontEnd&BackEnd/Inventario/index.php");
+	}
 
 ?>
 
@@ -100,6 +106,8 @@
 
 ?>
 
+<!-- Funzione per la ricerca di reagenti -->
+
 <?php
         if(array_key_exists('ricercareagente', $_POST))
         {
@@ -152,14 +160,11 @@
           mysqli_free_result($result);
           mysqli_close($connect);
         }
-      ?>
+?>
 
-
+<!-- Funzione per la ricerca di strumentazione -->
 
 <?php
-
-    //RICERCA STRUMENTAZIONE
-
         if(array_key_exists('ricercastrumenti', $_POST))
         {
           ricerca();
@@ -212,12 +217,11 @@
         }
 
        
-      ?>
+?>
+
+<!-- Funzione per la ricerca di vetreria -->
 
 <?php
-
-    //RICERCA VETRERIA
-
         if(array_key_exists('ricercavetreria', $_POST))
         {
         ricerca();
@@ -263,5 +267,4 @@
             mysqli_free_result($result);
         mysqli_close($connect);
         }
-
- ?>
+?>
