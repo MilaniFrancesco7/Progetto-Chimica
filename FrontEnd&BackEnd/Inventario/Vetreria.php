@@ -67,14 +67,14 @@
               <div class="dark flex">
                 <h3>Ricerca Vetreria</h3>
                 <hr>
-                <form>
+                <form method="post">
                   <div class="form-group">
                     <label for="inputNomeVetreria">Inserisci Parola Chiave</label>
-                    <input type="text" class="form-control" id="inputNome" placeholder="Parola Chiave...">
+                    <input type="text" name="ricerca" class="form-control" id="inputNome" placeholder="Parola Chiave...">
                   </div>
 
                   <hr>
-                  <button type="submit" class="btn btn-primary">Cerca Vetreria</button>
+                  <input type="submit" name="ricercavetreria" class="btn btn-primary" value="Cerca Vetreria">
                 </form>
               </div>
             </div>
@@ -110,64 +110,58 @@
             </div>
           </div>
 
+          <?php
 
-          <!--/*Lista dei reagenti*/-->
-            <div class="col-sm-6" id="AttrezzaturaMain">
-                <ul id="services">
-                  <li>
-                    <h3>Reagente</h3>
-                    <p>Formula:</p>
-                    <p>Quantità:</p>
-                    <p>Stato:</p>
-                    <p>Ditta:</p>
-                    <p>Pittogramma:</p>
-                    <p><img src="" alt="">Scheda Sicurezza:</p>
-                    <p>Frase:</p>
-                    <p>Data Scadenza:</p>
-                    <p>Scheda Sicurezza:</p>
-                    <p>Collocazione:</p>
-                  </li>
-                  <li>
-                    <h3>Reagente</h3>
-                    <p>Formula:</p>
-                    <p>Quantità:</p>
-                    <p>Stato:</p>
-                    <p>Ditta:</p>
-                    <p>Pittogramma:</p>
-                    <p><img src="" alt="">Scheda Sicurezza:</p>
-                    <p>Frase:</p>
-                    <p>Data Scadenza:</p>
-                    <p>Scheda Sicurezza:</p>
-                    <p>Collocazione:</p>
-                  </li>
-                  <li>
-                    <h3>Reagente</h3>
-                    <p>Formula:</p>
-                    <p>Quantità:</p>
-                    <p>Stato:</p>
-                    <p>Ditta:</p>
-                    <p>Pittogramma:</p>
-                    <p><img src="" alt="">Scheda Sicurezza:</p>
-                    <p>Frase:</p>
-                    <p>Data Scadenza:</p>
-                    <p>Scheda Sicurezza:</p>
-                    <p>Collocazione:</p>
-                  </li>
-                  <li>
-                    <h3>Reagente</h3>
-                    <p>Formula:</p>
-                    <p>Quantità:</p>
-                    <p>Stato:</p>
-                    <p>Ditta:</p>
-                    <p>Pittogramma:</p>
-                    <p><img src="" alt="">Scheda Sicurezza:</p>
-                    <p>Frase:</p>
-                    <p>Data Scadenza:</p>
-                    <p>Scheda Sicurezza:</p>
-                    <p>Collocazione:</p>
-                  </li>
-                </ul>
-            </div>
+//RICERCA VETRERIA
+
+    if(array_key_exists('ricercavetreria', $_POST))
+    {
+    ricerca();
+    }
+    function ricerca()
+    {
+        $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+        $ricerca = $_POST['ricerca'];
+
+        $ricerca .="%";
+
+        $ricerca = $connect -> real_escape_string($ricerca);
+
+        $query =   "SELECT * FROM vetreria_attrezzatura WHERE 
+        id_attrezzo LIKE '".$ricerca."' OR 
+        tipo LIKE '".$ricerca."' OR
+        id_quantita LIKE '".$ricerca."'  OR
+        id_collocazione LIKE '".$ricerca."' ";
+
+        $result = mysqli_query($connect, $query);
+
+        $count = mysqli_num_rows($result);
+
+        if($count != 0)
+        {
+            echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
+            echo "<ul id='services'>";
+
+            while($search = mysqli_fetch_array($result))
+            {
+            echo "<li>";
+            echo "<h3>$search[tipo]</h3>";
+            echo "<p>Quantità: $search[id_quantita]</p>";
+            echo "<p>Collocazione: $search[id_collocazione]</p>";
+            echo "</li>";
+            }
+            
+            echo "</ul>";
+            echo "</div>";
+        }
+
+        mysqli_free_result($result);
+        mysqli_close($connect);
+    }
+
+?>
+        
         </section>
 
 

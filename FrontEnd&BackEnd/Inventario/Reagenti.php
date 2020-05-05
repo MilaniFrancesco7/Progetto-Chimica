@@ -245,6 +245,9 @@
             echo "</ul>";
             echo "</div>";
           }
+
+          mysqli_free_result($result);
+          mysqli_close($connect);
         }
       ?>
 
