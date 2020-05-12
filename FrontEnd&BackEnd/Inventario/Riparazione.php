@@ -54,14 +54,30 @@
 
             <!-- Link Sezione Riparazioni-->
             <li class="nav-item">
-              <a class="nav-link" href="#">Sezione Riparazioni</a>
+              <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
             </li>
           </ul>
           <!-- Link Per l'accesso-->
 
-          <form class="form-inline" action="SingIn.php" id="FormBottoneAccesso">
-            <button class="btn btn-outline-success" type="submit" id="BottoneAccesso">Accedi</button>
-          </form>
+          <?php
+
+            //Se non loggato mostra il comando per entrare
+            if(!isset($_SESSION["User"]))
+            {
+              echo "<form class='form-inline' action='SignIn.php' id='FormBottoneAccesso'>";
+              echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Accedi</button>";
+              echo "</form>";
+            }
+            else
+            {
+              echo "<form class='form-inline' action='Logout.php' id='FormBottoneAccesso'>";
+              echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Logout</button>";
+              echo "</form>";
+            }
+            
+
+          ?>
+          
         </div>
       </div>
     </nav>

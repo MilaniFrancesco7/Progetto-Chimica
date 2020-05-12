@@ -52,9 +52,29 @@
 
             <!-- Link Sezione Riparazioni-->
             <li class="nav-item">
-              <a class="nav-link" href="#">Sezione Riparazioni</a>
+              <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
             </li>
           </ul>
+
+          <!-- Link per l'accesso -->
+          <?php
+
+            //Se non loggato mostra il comando per entrare
+            if(!isset($_SESSION["User"]))
+            {
+              echo "<form class='form-inline' action='SignIn.php' id='FormBottoneAccesso'>";
+              echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Accedi</button>";
+              echo "</form>";
+            }
+            else
+            {
+              echo "<form class='form-inline' action='Logout.php' id='FormBottoneAccesso'>";
+              echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Logout</button>";
+              echo "</form>";
+            }
+            
+
+          ?>
         </div>
       </div>
     </nav>
@@ -170,17 +190,27 @@
                 </div>
                 <div class="form-group col-md-2">
                   <label>Stanza</label>
-                  <input type="text" name="stanza" class="form-control" id="Stanza" placeholder="Quantità">
+                  <input type="text" name="stanza" class="form-control" id="Stanza" placeholder="Stanza">
                 </div>
                 <div class="form-group col-md-2">
                   <label>Armadio</label>
-                  <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Quantità">
+                  <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Armadio">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>Frase Sicurezza</label>
                   <input type="text" class="form-control" name="frase" id="FraseSicurezza" placeholder="Frase Sicurezza">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-2">
+                  <label> Testo Esperienza</label>
+                  <input type="text" name="testo_esperienza" class="form-control" id="TestoEsperienza" placeholder="Testo Esperienza">
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Nome Insegnante</label>
+                  <input type="text" name="nome_insegnante" class="form-control" id="NomeInsegnante" placeholder="Nome Insegnante">
                 </div>
               </div>
               <input type="submit" name="inserisci" class="btn btn-primary" value="Aggiungi Reagente">
@@ -197,7 +227,7 @@
         }
         function inserisci()
         {
-          $tipo_collocazione = $_POST["tipo_collocazione"];
+          $tipo_collocazione = $_POST["tipo_collocazione"];       //Inserimento collocazione
           $stanza = $_POST["stanza"];
           $armadio = $_POST["armadio"];
 
@@ -212,8 +242,27 @@
           }
 
           mysqli_close($connect);
+          
+          $nome_insegnante = $_POST["nome_insegnante"];        //Inserimento esperienza
+          $testo_esperienza = $_POST["testo_esperienza"];
+          
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-          $nome = $_POST["nome"];
+          $query = "INSERT INTO esperienza(nome_insegnante, testo_esperienza)
+                    VALUES ('$nome_insegnante', '$testo_esperienza')";
+
+          if(mysqli_query($connect,$query))
+          {
+            $id_esperienza = mysqli_insert_id($connect);
+          }
+          else
+          {
+            echo "va che non l'ho fatto";
+          }
+
+          mysqli_close($connect);
+
+          $nome = $_POST["nome"];             //Inserimento reagente
           $formula = $_POST["formula"];
           $stato = $_POST["stato"];
           $ditta = $_POST["ditta"];
@@ -230,6 +279,18 @@
 
           if (mysqli_query($connect, $query))
           {
+            $id_reagente = mysqli_insert_id($connect);
+          }
+
+          mysqli_close($connect);
+
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");     //Inserimento Esperienza + Reagente
+
+          $query = "INSERT INTO reagente_esperienza(id_reagente, id_esperienza)
+                    VALUES ('$id_reagente', '$id_esperienza')";
+          
+          if (mysqli_query($connect, $query))
+          {
             $message = "Elemento inserito con successo!";
             echo "<script>alert('$message');</script>";
           }
@@ -240,6 +301,7 @@
           }
 
           mysqli_close($connect);
+
         }
       ?>
 
