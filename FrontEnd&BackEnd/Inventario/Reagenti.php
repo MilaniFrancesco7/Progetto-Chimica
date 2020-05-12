@@ -123,24 +123,28 @@
                   <input type="date" name="data_scadenza" class="form-control" id="DataScadenza" placeholder="Data Scadenza">
                 </div>
               </div>
-              <div class="form-group">
-                <label>Stato Reagente</label>
-                <select class="custom-select mr-sm-2" name="stato" id="inlineFormCustomSelect">
-                  <option selected>Scegli...</option>
-                  <option value="Solido">Solido</option>
-                  <option value="Liquido">Liquido</option>
-                  <option value="Gassoso">Gassoso</option>
-                </select>
-              </div>
-
+              
               <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-2">
+                  <label>Stato Reagente</label>
+                  <select class="custom-select mr-sm-2" name="stato" id="inlineFormCustomSelect">
+                    <option selected>Scegli...</option>
+                    <option value="Solido">Solido</option>
+                    <option value="Liquido">Liquido</option>
+                    <option value="Gassoso">Gassoso</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-2">
                   <label>Pittogramma</label>
                   <input type="file" id="Pittogramma" name="pittogramma" placeholder="Pittogramma">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-2">
                   <label>Scheda Sicurezza</label>
                   <input type="file" id="SchedaSicurezza" name="id_scheda_sicurezza" placeholder="Scheda Sicurezza">
+                </div>
+                <div class="form-group col-md-4">
+                  <label>Collocazione</label>
+                  <input type="text" class="form-control" name="id_collocazione" id="Collocazione" placeholder="Collocazione">
                 </div>
               </div>
 
@@ -148,10 +152,6 @@
                 <div class="form-group col-md-6">
                   <label>Frase Sicurezza</label>
                   <input type="text" class="form-control" name="frase" id="FraseSicurezza" placeholder="Frase Sicurezza">
-                </div>
-                <div class="form-group col-md-4">
-                  <label>Collocazione</label>
-                  <input type="text" class="form-control" name="id_collocazione" id="Collocazione" placeholder="Collocazione">
                 </div>
               </div>
               <input type="submit" name="inserisci" class="btn btn-primary" value="Aggiungi Reagente">

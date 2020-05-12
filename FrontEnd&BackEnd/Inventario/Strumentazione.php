@@ -63,7 +63,7 @@
 <section id="main">
   <div class="row">
 
-<!-- SEZIONE PER LA STAMPA DI TUTTI GLI OGGETTI -->
+<!-- Stampa di tutti gli oggetti -->
     <div class="col-lg-3" id="SezioneRicerca">
       <div class="dark flex" id="DivStampaTutto">
         <h3>Mostra Strumentazione</h3>
@@ -74,7 +74,7 @@
       </div>
     </div>
 
-<!--SEZIONE PER LA RICERCA DI UNO STRUMENTO-->
+<!-- Ricerca di uno strumento -->
 
     <div class="col-lg-7" id="SezioneRicerca">
       <div class="dark flex">
@@ -92,7 +92,7 @@
       </div>
     </div>
 
-<!--SEZIONE RELATIVA ALL'INSERIMENTO DI NUOVI STRUMENTI-->
+<!-- Inserimento di nuovi strumenti -->
     <div class="col-md-10" id="SezioneInserimento">
       <div class="dark">
         <h3>Inserisci Nuova Strumentazione</h3>
@@ -119,12 +119,10 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-2">
               <label>Manuale</label>
               <input type="file" id="pdfManuale" placeholder="pdfManuale">
             </div>
-          </div>
-          <div class="form-row">
             <div class="form-group col-md-4">
               <label>Collocazione</label>
               <input type="text" class="form-control" name="id_collocazione" id="Collocazione" placeholder="Collocazione">
