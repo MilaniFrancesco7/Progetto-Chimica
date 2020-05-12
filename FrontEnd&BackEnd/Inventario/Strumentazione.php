@@ -40,7 +40,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="Reagenti.php">Lista Reagenti</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="Strumentazione.php">Lista Apparecchiatura</a>
+                <a class="dropdown-item" href="Strumentazione.php">Lista Strumentazione</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="Vetreria.php">Lista Vetreria</a>
               </div>
@@ -69,7 +69,7 @@
         <h3>Mostra Strumentazione</h3>
         <img src="./img/Strumentazione.png" alt="" id="LogoStrumentazione">
         <form method="post">
-          <input type="submit" name="showall" class="btn btn-primary" value="Mostra tutti i Reagenti">
+          <input type="submit" name="showall" class="btn btn-primary" value="Mostra la Strumentazione">
         </form>
       </div>
     </div>
@@ -97,25 +97,25 @@
       <div class="dark">
         <h3>Inserisci Nuova Strumentazione</h3>
         <hr>
-        <form>
+        <form method="post">
           <div class="form-row">
-            <div class="form-group col-md-6">
-              <label>Nome Strumentazione</label>
-              <input type="text" class="form-control"  id="NomeStrumentazione" placeholder="NomeStrumentazione">
-            </div>
             <div class="form-group col-md-4">
               <label>Tipo Strumentazione</label>
-              <input type="text" class="form-control" id="TipoStrumentazione" placeholder="TipoStrumentazione">
+              <input type="text" class="form-control" name="tipo" id="TipoStrumentazione" placeholder="Tipo Strumentazione">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Caratteristiche Tecniche</label>
+              <input type="text" class="form-control" name="caratteristiche_tecniche" id="CaratteristicheTecniche" placeholder="Caratteristiche Tecniche">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-2">
               <label>Numero Inventario</label>
-              <input type="text" class="form-control" id="NumStrumentazione" placeholder="NumStrumentazione">
+              <input type="text" class="form-control" name="numero_inventario" id="NumeroInventario" placeholder="Numero Inventario">
             </div>
             <div class="form-group col-md-4">
               <label>Quantita'</label>
-              <input type="text" class="form-control" id="QuantitaStrumentazione" placeholder="QuantitaStrumentazione">
+              <input type="text" class="form-control" name="id_quantita" id="QuantitaStrumentazione" placeholder="QuantitaStrumentazione">
             </div>
           </div>
           <div class="form-row">
@@ -127,14 +127,49 @@
           <div class="form-row">
             <div class="form-group col-md-4">
               <label>Collocazione</label>
-              <input type="text" class="form-control" id="Collocazione" placeholder="Collocazione">
+              <input type="text" class="form-control" name="id_collocazione" id="Collocazione" placeholder="Collocazione">
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Aggiungi Strumentazione</button>
+          <input type="submit" name="inserisci" class="btn btn-primary" value="Aggiungi Strumentazione">
         </form>
       </div>
     </div>
     </div>
+
+<!-- Funzione per l'inserimento di un'apparecchiatura -->
+        <?php
+
+            if(array_key_exists('inserisci', $_POST))
+            {
+              inserisci();
+            }
+            function inserisci()
+            {
+              $tipo = $_POST["tipo"];
+              $caratteristiche_tecniche = $_POST["caratteristiche_tecniche"];
+              $numero_inventario = $_POST["numero_inventario"];
+              $id_quantita = $_POST["id_quantita"];
+              $id_manuale = "1";
+              $id_collocazione = $_POST["id_collocazione"];
+
+              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+              $query = "INSERT INTO strumentazione_apparecchiatura (tipo, caratteristiche_tecniche, numero_inventario, id_quantita, id_manuale, id_collocazione)
+                        VALUES ('$tipo', '$caratteristiche_tecniche', '$numero_inventario', '$id_quantita', '$id_manuale', '$id_collocazione')";
+
+              if (mysqli_query($connect, $query))
+              {
+                $message = "Elemento inserito con successo!";
+                echo "<script>alert('$message');</script>";
+              }
+              else
+              {
+                $message = "Elemento non inserito";
+                echo "<script>alert('$message');</script>";
+              }
+            }
+
+        ?>
 
 <!-- Funzione per la stampa di tutti gli oggetti -->
         <?php
@@ -162,6 +197,7 @@
                 echo "<li>";
                 echo "<h3>$search[tipo]</h3>";
                 echo "<p>Caratteristiche tecniche: $search[caratteristiche_tecniche]</p>";
+                echo "<p>Numero inventario: $search[numero_inventario]</p>";
                 echo "<p>Quantità: $search[id_quantita]</p>";
                 echo "<p>Manuale: $search[id_manuale]</p>";
                 echo "<p>Collocazione: $search[id_collocazione]</p>";
@@ -195,6 +231,7 @@
             id_strumento LIKE '".$ricerca."' OR
             tipo LIKE '".$ricerca."' OR
             caratteristiche_tecniche LIKE '".$ricerca."'  OR
+            numero_inventario LIKE '".$ricerca."' OR
             id_quantita LIKE '".$ricerca."'  OR
             id_manuale LIKE '".$ricerca."'  OR
             id_collocazione LIKE '".$ricerca."' ";
@@ -213,6 +250,7 @@
                 echo "<li>";
                 echo "<h3>$search[tipo]</h3>";
                 echo "<p>Caratteristiche tecniche: $search[caratteristiche_tecniche]</p>";
+                echo "<p>Numero inventario: $search[numero_inventario]</p>";
                 echo "<p>Quantità: $search[id_quantita]</p>";
                 echo "<p>Manuale: $search[id_manuale]</p>";
                 echo "<p>Collocazione: $search[id_collocazione]</p>";

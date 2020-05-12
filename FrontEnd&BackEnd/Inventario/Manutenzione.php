@@ -39,7 +39,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="Reagenti.php">Lista Reagenti</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="Strumentazione.php">Lista Apparecchiatura</a>
+                <a class="dropdown-item" href="Strumentazione.php">Lista Strumentazione</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="Vetreria.php">Lista Vetreria</a>
               </div>

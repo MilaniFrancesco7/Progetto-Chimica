@@ -40,7 +40,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="Reagenti.php">Lista Reagenti</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="Strumentazione.php">Lista Apparecchiatura</a>
+                <a class="dropdown-item" href="Strumentazione.php">Lista Strumentazione</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="Vetreria.php">Lista Vetreria</a>
               </div>
@@ -65,7 +65,7 @@
 <section id="main">
   <div class="row">
 
-<!-- SEZIONE PER LA STAMPA DI TUTTI GLI OGGETTI -->
+<!-- Stampa di tutti gli oggetti -->
         <div class="col-lg-3" id="SezioneRicerca">
           <div class="dark flex" id="DivStampaTutto">
             <h3>Mostra Reagenti</h3>
@@ -76,7 +76,7 @@
           </div>
         </div>
 
-<!--SEZIONE PER LA RICERCA DI UN REAGENTE-->
+<!-- Ricerca di un reagente -->
 
         <div class="col-lg-7" id="SezioneRicerca">
           <div class="dark flex">
@@ -93,39 +93,39 @@
           </div>
         </div>
 
-<!--SEZIONE RELATIVA ALL'INSERIMENTO DI NUOVI REAGENTI-->
+<!-- Inserimento di un nuovo reagente -->
         <div class="col-lg-10" id="SezioneInserimento">
           <div class="dark">
             <h3>Inserisci Nuovo Reagente</h3>
             <hr>
-            <form>
+            <form method="post">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>Nome Reagente</label>
-                  <input type="text" class="form-control"  id="NomeReagente" placeholder="NomeReagente">
+                  <input type="text" name="nome" class="form-control"  id="NomeReagente" placeholder="Nome Reagente">
                 </div>
                 <div class="form-group col-md-4">
                   <label>Formula</label>
-                  <input type="text" class="form-control" id="NomeReagente" placeholder="NomeReagente">
+                  <input type="text" name="formula" class="form-control" id="Formula" placeholder="Formula">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-2">
                   <label>Quantita'</label>
-                  <input type="text" class="form-control" id="NomeReagente" placeholder="NomeReagente">
+                  <input type="text" name="id_quantita" class="form-control" id="Quantita" placeholder="Quantità">
                 </div>
                 <div class="form-group col-md-4">
                   <label>Ditta Produttrice</label>
-                  <input type="text" class="form-control" id="NomeReagente" placeholder="NomeReagente">
+                  <input type="text" name="ditta" class="form-control" id="DittaProduttrice" placeholder="Ditta Produttrice">
                 </div>
                 <div class="form-group col-md-4">
                   <label>Data Scadenza</label>
-                  <input type="date" class="form-control" id="NomeReagente" placeholder="NomeReagente">
+                  <input type="date" name="data_scadenza" class="form-control" id="DataScadenza" placeholder="Data Scadenza">
                 </div>
               </div>
               <div class="form-group">
                 <label>Stato Reagente</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" name="stato" id="inlineFormCustomSelect">
                   <option selected>Scegli...</option>
                   <option value="Solido">Solido</option>
                   <option value="Liquido">Liquido</option>
@@ -136,29 +136,68 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>Pittogramma</label>
-                  <input type="file" id="NomeReagente" placeholder="Nome Reagente">
+                  <input type="file" id="Pittogramma" name="pittogramma" placeholder="Pittogramma">
                 </div>
                 <div class="form-group col-md-6">
                   <label>Scheda Sicurezza</label>
-                  <input type="file" id="SchedaSicurezza" placeholder="Scheda Sicurezza">
+                  <input type="file" id="SchedaSicurezza" name="id_scheda_sicurezza" placeholder="Scheda Sicurezza">
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>Frase Sicurezza</label>
-                  <input type="text" class="form-control"id="FraseSicurezza" placeholder="Frase Sicurezza">
+                  <input type="text" class="form-control" name="frase" id="FraseSicurezza" placeholder="Frase Sicurezza">
                 </div>
                 <div class="form-group col-md-4">
                   <label>Collocazione</label>
-                  <input type="text" class="form-control" id="Collocazione" placeholder="Collocazione">
+                  <input type="text" class="form-control" name="id_collocazione" id="Collocazione" placeholder="Collocazione">
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary">Aggiungi Reagente</button>
+              <input type="submit" name="inserisci" class="btn btn-primary" value="Aggiungi Reagente">
             </form>
           </div>
         </div>
       </div>
+
+<!-- Funzione per l'inserimento di un reagente -->
+      <?php
+        if(array_key_exists('inserisci', $_POST))
+        {
+          inserisci();
+        }
+        function inserisci()
+        {
+          $nome = $_POST["nome"];
+          $formula = $_POST["formula"];
+          $stato = $_POST["stato"];
+          $ditta = $_POST["ditta"];
+          $pittogramma = "1";
+          $frase = $_POST["frase"];
+          $id_scheda_sicurezza = "3";
+          $id_quantita = $_POST["id_quantita"];
+          $data_scadenza = $_POST["data_scadenza"];
+          $id_collocazione = $_POST["id_collocazione"];
+
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $query = "INSERT INTO reagente (nome, formula, stato, ditta, pittogramma, frase, id_scheda_sicurezza, id_quantita, data_scadenza, id_collocazione)
+                    VALUES ('$nome', '$formula', '$stato', '$ditta', '$pittogramma', '$frase', '$id_scheda_sicurezza', '$id_quantita', '$data_scadenza', '$id_collocazione')";
+
+          if (mysqli_query($connect, $query))
+          {
+            $message = "Elemento inserito con successo!";
+            echo "<script>alert('$message');</script>";
+          }
+          else
+          {
+            $message = "Elemento non inserito";
+            echo "<script>alert('$message');</script>";
+          }
+        }
+
+      ?>
+
 
 <!-- Funzione per la stampa di tutti gli oggetti -->
       <?php
@@ -256,30 +295,6 @@
           mysqli_close($connect);
         }
       ?>
-
-
-
-      <!-- Tabella per reagenti
-        <div class="col-sm-6" id="AttrezzaturaMain">
-            <ul id="services">
-              <li>
-                <h3>Reagente</h3>
-                <p>Formula:</p>
-                <p>Quantità:</p>
-                <p>Stato:</p>
-                <p>Ditta:</p>
-                <p>Pittogramma:</p>
-                <p><img src="" alt="">Scheda Sicurezza:</p>
-                <p>Frase:</p>
-                <p>Data Scadenza:</p>
-                <p>Scheda Sicurezza:</p>
-                <p>Collocazione:</p>
-              </li>
-            </ul>
-        </div>
-        -->
-
-
     </section>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

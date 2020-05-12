@@ -27,83 +27,106 @@
 
 ?>
 
+<!-- Funzione per l'inserimento di un reagente -->
 <?php
+        if(array_key_exists('inserisci', $_POST))
+        {
+          inserisci();
+        }
+        function inserisci()
+        {
+          $nome = $_POST["nome"];
+          $formula = $_POST["formula"];
+          $stato = $_POST["stato"];
+          $ditta = $_POST["ditta"];
+          $pittogramma = "1";
+          $frase = $_POST["frase"];
+          $id_scheda_sicurezza = "3";
+          $id_quantita = $_POST["id_quantita"];
+          $data_scadenza = $_POST["data_scadenza"];
+          $id_collocazione = $_POST["id_collocazione"];
 
-    // INSERIMENTO REAGENTE
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-    $nome = $_POST["nome_reagente"];
-    $formula = $_POST["formula"];
-    $stato = $_POST["stato"];
-    $ditta = $_POST["ditta"];
-    $pittogramma = $_POST["pittogramma"];
-    $frase = $_POST["frase"];
-    $id_scheda_sicurezza = $_POST["scheda"];
-    $id_quantita = $_POST["quantita"];
-    $data_scadenza = $_POST["data_scadenza"];
-    $id_collocazione = $_POST["collocazione"];
+          $query = "INSERT INTO reagente (nome, formula, stato, ditta, pittogramma, frase, id_scheda_sicurezza, id_quantita, data_scadenza, id_collocazione)
+                    VALUES ('$nome', '$formula', '$stato', '$ditta', '$pittogramma', '$frase', '$id_scheda_sicurezza', '$id_quantita', '$data_scadenza', '$id_collocazione')";
 
-    $connect = mysqli_connect("localhost", "root", "XXXX", "Scuola");
-
-    $query = "INSERT INTO reagente (nome, formula, stato, ditta, pittogramma, frase, id_scheda_sicurezza, id_quantita, data_scadenza, id_collocazione)
-              VALUES ('$nome', '$formula', '$stato', '$ditta', '$pittogramma', '$frase', '$id_scheda_sicurezza', '$id_quantita', '$data_scadenza', '$id_collocazione')";
-
-    $result = mysqli_query($connect, $query);
-
-    if (mysql_num_rows($result) != 0)
-    {
-        echo "Elemento inserito con successo !";
-        header("location: index.php");
-    }
+          if (mysqli_query($connect, $query))
+          {
+            $message = "Elemento inserito con successo!";
+            echo "<script>alert('$message');</script>";
+          }
+          else
+          {
+            $message = "Elemento non inserito";
+            echo "<script>alert('$message');</script>";
+          }
+        }
 
 ?>
 
+<!-- Funzione per l'inserimento di un'apparecchiatura -->
 <?php
 
-    // INSERIMENTO APPARECCHIATURA
-
-    $tipo = $_POST["tipo"];
-    $caratteristiche = $_POST["caratteristiche"];
-    $numero_inventario = $_POST["numero"];
-    $quantita = $_POST["quantita"];
-    $manuale = $_POST["manuale"];
-    $collocazione = $_POST["collocazione"];
-
-    $connect = mysqli_connect("localhost", "root", "XXXX", "Scuola");
-
-    $query = "INSERT INTO strumentaqzione_apparecchiatura (tipo, caratteristiche_tecniche, numero_inventario, id_quantita, id_manuale, id_collocazione)
-              VALUES ('$tipo', '$caratteristiche', '$numero_inventario', '$quantita', '$manuale', '$collocazione')";
-
-    $result = mysqli_query($connect, $query);
-
-    if (mysql_num_rows($result) != 0)
+    if(array_key_exists('inserisci', $_POST))
     {
-        echo "Elemento inserito con successo !";
-        header("location: index.php");
+      inserisci();
     }
+    function inserisci()
+    {
+      $tipo = $_POST["tipo"];
+      $caratteristiche_tecniche = $_POST["caratteristiche_tecniche"];
+      $numero_inventario = $_POST["numero_inventario"];
+      $id_quantita = $_POST["id_quantita"];
+      $id_manuale = "1";
+      $id_collocazione = $_POST["id_collocazione"];
 
+      $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+      $query = "INSERT INTO strumentazione_apparecchiatura (tipo, caratteristiche_tecniche, numero_inventario, id_quantita, id_manuale, id_collocazione)
+                VALUES ('$tipo', '$caratteristiche_tecniche', '$numero_inventario', '$id_quantita', '$id_manuale', '$id_collocazione')";
+
+      if (mysqli_query($connect, $query))
+      {
+        $message = "Elemento inserito con successo!";
+        echo "<script>alert('$message');</script>";
+      }
+      else
+      {
+        $message = "Elemento non inserito";
+        echo "<script>alert('$message');</script>";
+      }
+    }
 ?>
 
+<!-- Funzione per l'inserimento di un attrezzo di vetreria -->      
 <?php
+        if(array_key_exists('inserisci', $_POST))
+        {
+          inserisci();
+        }
+        function inserisci()
+        {
+          $tipo = $_POST["tipo"];
+          $id_quantita = $_POST["id_quantita"];
+          $id_collocazione = $_POST["id_collocazione"];
 
-    // INSERIMENTO VETRERIA
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-    $tipo = $_POST["tipo"];
-    $quantita = $_POST["quantita"];
-    $collocazione = $_POST["collocazione"];
+          $query = "INSERT INTO vetreria_attrezzatura (tipo, id_quantita, id_collocazione)
+                    VALUES ('$tipo', '$id_quantita', '$id_collocazione')";
 
-    $connect = mysqli_connect("localhost", "root", "XXXX", "Scuola");
-
-    $query = "INSERT INTO strumentaqzione_apparecchiatura (tipo, quantita, id_collocazione)
-              VALUES ('$tipo', '$quantita', '$collocazione')";
-
-    $result = mysqli_query($connect, $query);
-
-    if (mysql_num_rows($result) != 0)
-    {
-        echo "Elemento inserito con successo !";
-        header("location: index.php");
-    }
-
+          if (mysqli_query($connect, $query))
+          {
+            $message = "Elemento inserito con successo!";
+            echo "<script>alert('$message');</script>";
+          }
+          else
+          {
+            $message = "Elemento non inserito";
+            echo "<script>alert('$message');</script>";
+          }
+        }
 ?>
 
 <!-- Funzione per la ricerca di reagenti -->

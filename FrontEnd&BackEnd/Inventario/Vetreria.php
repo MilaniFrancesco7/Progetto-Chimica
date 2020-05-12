@@ -62,7 +62,8 @@
 <!-- SEZIONE PRINCIPALE -->
     <section id="main">
     <div class="row">
-<!-- SEZIONE PER LA STAMPA DI TUTTI GLI OGGETTI -->
+
+<!-- Stampa di tutti gli oggetti -->
       <div class="col-lg-3" id="SezioneRicerca">
         <div class="dark flex" id="DivStampaTutto">
           <h3>Mostra Vetreria</h3>
@@ -73,9 +74,7 @@
         </div>
       </div>
 
-<!--SEZIONE PER LA RICERCA DI UN ELEMENTO DI VETRERIA-->
-
-
+<!--Ricerca di un elemento di vetreria-->
         <div class="col-sm-7" id="SezioneRicerca">
           <div class="dark flex">
             <h3>Ricerca Vetreria</h3>
@@ -93,38 +92,64 @@
         </div>
 
 
-<!--SEZIONE RELATIVA ALL'INSERIMENTO DI NUOVI REAGENTI-->
+<!--Inserimento di nuovi oggetti di vetreria-->
         <div class="col-md-10" id="SezioneInserimento">
           <div class="dark">
             <h3>Inserisci Nuova Vetreria</h3>
             <hr>
-            <form>
+            <form method="post">
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label>Nome Vetreria</label>
-                <input type="text" class="form-control"  id="NomeVetreria" placeholder="Nome Vetreria">
-              </div>
-              <div class="form-group col-md-6">
                 <label>Tipo Vetreria</label>
-                <input type="text" class="form-control" id="TipoVetreria" placeholder="Tipo Vetreria">
+                <input type="text" class="form-control" name="tipo" id="TipoVetreria" placeholder="Tipo Vetreria">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-2">
                 <label>Quantita'</label>
-                <input type="text" class="form-control" id="QuantiàVetreria" placeholder="Quantità Vetreria">
+                <input type="text" class="form-control" name="id_quantita" id="QuantiàVetreria" placeholder="Quantità Vetreria">
               </div>
               <div class="form-group col-md-6">
                 <label>Collocazione</label>
-                <input type="text" class="form-control" id="CollocazioneVetreria" placeholder="Collocazione Vetreria">
+                <input type="text" class="form-control" name="id_collocazione" id="CollocazioneVetreria" placeholder="Collocazione Vetreria">
               </div>
             </div>
-            <button type="submit" class="btn btn-primary">Aggiungi Vetreria</button>
+            <input type="submit" name="inserisci" class="btn btn-primary" value="Aggiungi Vetreria">
             </form>
           </div>
         </div>
       </div>
 
+<!-- Funzione per l'inserimento di un attrezzo di vetreria -->      
+      <?php
+        if(array_key_exists('inserisci', $_POST))
+        {
+          inserisci();
+        }
+        function inserisci()
+        {
+          $tipo = $_POST["tipo"];
+          $id_quantita = $_POST["id_quantita"];
+          $id_collocazione = $_POST["id_collocazione"];
+
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $query = "INSERT INTO vetreria_attrezzatura (tipo, id_quantita, id_collocazione)
+                    VALUES ('$tipo', '$id_quantita', '$id_collocazione')";
+
+          if (mysqli_query($connect, $query))
+          {
+            $message = "Elemento inserito con successo!";
+            echo "<script>alert('$message');</script>";
+          }
+          else
+          {
+            $message = "Elemento non inserito";
+            echo "<script>alert('$message');</script>";
+          }
+        }
+      ?>
+      
 <!-- Funzione per la stampa di tutti gli oggetti -->
         <?php
           if(array_key_exists('showall', $_POST))
