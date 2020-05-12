@@ -154,7 +154,7 @@
             </div>
             <div class="form-group col-md-4">
               <label>Quantita'</label>
-              <input type="text" class="form-control" name="id_quantita" id="QuantitaStrumentazione" placeholder="QuantitaStrumentazione">
+              <input type="text" class="form-control" name="id_quantita" id="QuantitaStrumentazione" placeholder="Quantità">
             </div>
             <div class="form-group col-md-2">
               <label>Manuale</label>
@@ -172,11 +172,11 @@
              </div>
             <div class="form-group col-md-2">
               <label>Stanza</label>
-              <input type="text" name="stanza" class="form-control" id="Stanza" placeholder="Quantità">
+              <input type="text" name="stanza" class="form-control" id="Stanza" placeholder="Stanza">
             </div>
             <div class="form-group col-md-2">
               <label>Armadio</label>
-              <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Quantità">
+              <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Armadio">
             </div>
           </div>
           <input type="submit" name="inserisci" class="btn btn-primary" value="Aggiungi Strumentazione">
