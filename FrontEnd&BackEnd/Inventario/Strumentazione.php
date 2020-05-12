@@ -74,9 +74,27 @@
       </div>
     </div>
 
+    <!-- Elimina un reagente -->
+<div class="col-lg-3" id="SezioneRicerca">
+          <div class="dark flex" id="DivStampaTutto">
+            <h3>Elimina un Reagente</h3>
+            <img src="./img/NoStrumentazione.png" alt="" id="LogoNoStrumentazione">
+            <form method="post">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="text" name="id_strumento" class="form-control" id="IdStrumento" placeholder="ID Strumento">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
 <!-- Ricerca di uno strumento -->
 
-    <div class="col-lg-7" id="SezioneRicerca">
+    <div class="col-lg-3" id="SezioneRicerca">
       <div class="dark flex">
         <h3>Ricerca Strumentazione</h3>
         <hr id="SpaziaturaLarga">
@@ -196,6 +214,34 @@
               mysqli_close($connect);
             }
         ?>
+
+<!-- Funzione per l'eliminazione di un oggetto -->
+<?php
+        if(array_key_exists('delete', $_POST))
+        {
+          delete();
+        }
+        function delete()
+        {
+          $id_strumento = $_POST["id_strumento"];
+
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $query = "DELETE FROM strumentazione_apparecchiatura WHERE strumentazione_apparecchiatura.id_strumento = $id_strumento";
+
+          if(mysqli_query($connect, $query))
+          {
+            $message = "Elemento eliminato con successo!";
+            echo "<script>alert('$message');</script>";
+          }
+          else
+          {
+            $message = "Elemento non eliminato";
+            echo "<script>alert('$message');</script>";
+          }
+          mysqli_close($connect); 
+        }
+      ?>
 
 <!-- Funzione per la stampa di tutti gli oggetti -->
         <?php

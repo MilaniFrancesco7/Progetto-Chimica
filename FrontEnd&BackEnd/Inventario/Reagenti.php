@@ -77,7 +77,7 @@
         </div>
 
 <!-- Elimina un reagente -->
-<div class="col-lg-3" id="SezioneRicerca">
+        <div class="col-lg-3" id="SezioneRicerca">
           <div class="dark flex" id="DivStampaTutto">
             <h3>Elimina un Reagente</h3>
             <img src="./img/NoReagenti.png" alt="" id="LogoReagenti">

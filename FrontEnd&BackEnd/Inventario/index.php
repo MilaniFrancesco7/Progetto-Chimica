@@ -46,7 +46,7 @@
 
             <!-- Link Sezione Riparazioni-->
             <li class="nav-item">
-              <a class="nav-link" href="#">Sezione Riparazioni</a>
+              <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
             </li>
           </ul>
 

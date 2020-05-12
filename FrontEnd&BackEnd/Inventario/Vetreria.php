@@ -69,13 +69,31 @@
           <h3>Mostra Vetreria</h3>
           <img src="./img/Vetreria2.png" alt="" id="LogoVetreria">
           <form method="post">
-            <input type="submit" name="showall" class="btn btn-primary" value="Mostra tutti i Reagenti">
+            <input type="submit" name="showall" class="btn btn-primary" value="Mostra tutti gli attrezzi">
           </form>
         </div>
       </div>
 
+<!-- Elimina un elemento di vetreria -->
+        <div class="col-lg-3" id="SezioneRicerca">
+          <div class="dark flex" id="DivStampaTutto">
+            <h3>Elimina un Attrezzo</h3>
+            <img src="./img/NoVetreria.png" alt="" id="LogoNoVetreria">
+            <form method="post">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="text" name="id_attrezzo" class="form-control" id="IdAttrezzo" placeholder="ID Attrezzo">
+                </div>
+                  <div class="form-group col-md-6">
+                    <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
 <!--Ricerca di un elemento di vetreria-->
-        <div class="col-sm-7" id="SezioneRicerca">
+        <div class="col-sm-3" id="SezioneRicerca">
           <div class="dark flex">
             <h3>Ricerca Vetreria</h3>
             <hr id="SpaziaturaLarga">
@@ -179,6 +197,34 @@
         }
       ?>
       
+<!-- Funzione per l'eliminazione di un oggetto -->
+      <?php
+        if(array_key_exists('delete', $_POST))
+        {
+          delete();
+        }
+        function delete()
+        {
+          $id_attrezzo = $_POST["id_attrezzo"];
+
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $query = "DELETE FROM vetreria_attrezzatura WHERE vetreria_attrezzatura.id_attrezzo = $id_attrezzo";
+
+          if(mysqli_query($connect, $query))
+          {
+            $message = "Elemento eliminato con successo!";
+            echo "<script>alert('$message');</script>";
+          }
+          else
+          {
+            $message = "Elemento non eliminato";
+            echo "<script>alert('$message');</script>";
+          }
+          mysqli_close($connect); 
+        }
+      ?>
+
 <!-- Funzione per la stampa di tutti gli oggetti -->
         <?php
           if(array_key_exists('showall', $_POST))
