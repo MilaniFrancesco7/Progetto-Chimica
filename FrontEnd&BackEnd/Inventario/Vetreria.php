@@ -109,9 +109,23 @@
                 <label>Quantita'</label>
                 <input type="text" class="form-control" name="id_quantita" id="QuantiàVetreria" placeholder="Quantità Vetreria">
               </div>
-              <div class="form-group col-md-6">
-                <label>Collocazione</label>
-                <input type="text" class="form-control" name="id_collocazione" id="CollocazioneVetreria" placeholder="Collocazione Vetreria">
+            </div>
+            <div class="form-row">
+            <div class="form-group col-md-2">
+              <label>Tipo di collocazione</label>
+              <select class="custom-select mr-sm-2" name="tipo_collocazione" id="inlineFormCustomSelect">
+                <option selected>Scegli...</option>
+                <option value="Solido">Consumo</option>
+                <option value="Liquido">Magazzino</option>
+              </select>
+             </div>
+              <div class="form-group col-md-2">
+                <label>Stanza</label>
+                <input type="text" name="stanza" class="form-control" id="Stanza" placeholder="Quantità">
+              </div>
+              <div class="form-group col-md-2">
+                <label>Armadio</label>
+                <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Quantità">
               </div>
             </div>
             <input type="submit" name="inserisci" class="btn btn-primary" value="Aggiungi Vetreria">
@@ -128,9 +142,24 @@
         }
         function inserisci()
         {
+          $tipo_collocazione = $_POST["tipo_collocazione"];
+          $stanza = $_POST["stanza"];
+          $armadio = $_POST["armadio"];
+
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $query = "INSERT INTO collocazione(tipo_collocazione, armadio, stanza)
+                    VALUES ('$tipo_collocazione', '$stanza', '$armadio')";
+          
+          if(mysqli_query($connect,$query))
+          {
+            $id_collocazione = mysqli_insert_id($connect);
+          }
+
+          mysqli_close($connect);
+
           $tipo = $_POST["tipo"];
           $id_quantita = $_POST["id_quantita"];
-          $id_collocazione = $_POST["id_collocazione"];
 
           $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 

@@ -122,8 +122,7 @@
                   <label>Data Scadenza</label>
                   <input type="date" name="data_scadenza" class="form-control" id="DataScadenza" placeholder="Data Scadenza">
                 </div>
-              </div>
-              
+              </div>              
               <div class="form-row">
                 <div class="form-group col-md-2">
                   <label>Stato Reagente</label>
@@ -142,12 +141,25 @@
                   <label>Scheda Sicurezza</label>
                   <input type="file" id="SchedaSicurezza" name="id_scheda_sicurezza" placeholder="Scheda Sicurezza">
                 </div>
-                <div class="form-group col-md-4">
-                  <label>Collocazione</label>
-                  <input type="text" class="form-control" name="id_collocazione" id="Collocazione" placeholder="Collocazione">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-2">
+                  <label>Tipo di collocazione</label>
+                  <select class="custom-select mr-sm-2" name="tipo_collocazione" id="inlineFormCustomSelect">
+                    <option selected>Scegli...</option>
+                    <option value="Solido">Consumo</option>
+                    <option value="Liquido">Magazzino</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Stanza</label>
+                  <input type="text" name="stanza" class="form-control" id="Stanza" placeholder="Quantità">
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Armadio</label>
+                  <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Quantità">
                 </div>
               </div>
-
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label>Frase Sicurezza</label>
@@ -168,6 +180,22 @@
         }
         function inserisci()
         {
+          $tipo_collocazione = $_POST["tipo_collocazione"];
+          $stanza = $_POST["stanza"];
+          $armadio = $_POST["armadio"];
+
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $query = "INSERT INTO collocazione(tipo_collocazione, armadio, stanza)
+                    VALUES ('$tipo_collocazione', '$stanza', '$armadio')";
+          
+          if(mysqli_query($connect,$query))
+          {
+            $id_collocazione = mysqli_insert_id($connect);
+          }
+
+          mysqli_close($connect);
+
           $nome = $_POST["nome"];
           $formula = $_POST["formula"];
           $stato = $_POST["stato"];
@@ -177,7 +205,6 @@
           $id_scheda_sicurezza = "3";
           $id_quantita = $_POST["id_quantita"];
           $data_scadenza = $_POST["data_scadenza"];
-          $id_collocazione = $_POST["id_collocazione"];
 
           $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
@@ -194,8 +221,9 @@
             $message = "Elemento non inserito";
             echo "<script>alert('$message');</script>";
           }
-        }
 
+          mysqli_close($connect);
+        }
       ?>
 
 
@@ -238,6 +266,8 @@
             echo "</div>";
 
           }
+          mysqli_free_result($result);
+          mysqli_close($connect);
         }
       ?>
 

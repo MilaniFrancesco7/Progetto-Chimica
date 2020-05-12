@@ -1,6 +1,6 @@
 CREATE TABLE collocazione(
     id_collocazione int(10) NOT NULL AUTO_INCREMENT,
-    tipo varchar(20) NOT NULL, /*Consumo/Magazzino*/
+    tipo_collocazione varchar(20) NOT NULL, /*Consumo/Magazzino*/
     armadio varchar(10) NOT NULL,
     stanza varchar(10) NOT NULL,
     PRIMARY KEY (id_collocazione) /*Chiave primaria*/
