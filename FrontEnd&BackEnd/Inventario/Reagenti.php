@@ -1,12 +1,12 @@
 <?php
 
   session_start();
-/*
+
   if(!isset($_SESSION["User"]))
   {
     header("location: SignIn.php");
   }
-*/
+
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
