@@ -221,7 +221,7 @@
               while($search = mysqli_fetch_array($result))
               {
                 echo "<li>";
-                echo "<h3>$search[tipo]</h3>";
+                echo "<h3>$search[id_strumento] $search[tipo]</h3>";
                 echo "<p>Caratteristiche tecniche: $search[caratteristiche_tecniche]</p>";
                 echo "<p>Numero inventario: $search[numero_inventario]</p>";
                 echo "<p>Quantità: $search[id_quantita]</p>";

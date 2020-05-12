@@ -76,9 +76,26 @@
           </div>
         </div>
 
-<!-- Ricerca di un reagente -->
+<!-- Elimina un reagente -->
+<div class="col-lg-3" id="SezioneRicerca">
+          <div class="dark flex" id="DivStampaTutto">
+            <h3>Elimina un Reagente</h3>
+            <img src="./img/NoReagenti.png" alt="" id="LogoReagenti">
+            <form method="post">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="text" name="id_reagente" class="form-control" id="IdReagente" placeholder="ID Reagente">
+                </div>
+                  <div class="form-group col-md-6">
+                    <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
 
-        <div class="col-lg-7" id="SezioneRicerca">
+<!-- Ricerca di un reagente -->
+<div class="col-lg-4" id="SezioneRicerca">
           <div class="dark flex">
             <h3>Ricerca Reagente</h3>
             <hr id="SpaziaturaLarga">
@@ -226,6 +243,33 @@
         }
       ?>
 
+<!-- Funzione per l'eliminazione di un oggetto -->
+      <?php
+        if(array_key_exists('delete', $_POST))
+        {
+          delete();
+        }
+        function delete()
+        {
+          $id_reagente = $_POST["id_reagente"];
+
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $query = "DELETE FROM reagente WHERE reagente.id_reagente = $id_reagente";
+
+          if(mysqli_query($connect, $query))
+          {
+            $message = "Elemento eliminato con successo!";
+            echo "<script>alert('$message');</script>";
+          }
+          else
+          {
+            $message = "Elemento non eliminato";
+            echo "<script>alert('$message');</script>";
+          }
+          mysqli_close($connect); 
+        }
+      ?>
 
 <!-- Funzione per la stampa di tutti gli oggetti -->
       <?php
@@ -251,7 +295,7 @@
             while($search = mysqli_fetch_array($result))
             {
               echo "<li>";
-              echo "<h3>$search[nome]</h3>";
+              echo "<h3>$search[id_reagente] $search[nome]</h3>";
               echo "<p>Formula: $search[formula]</p>";
               echo "<p>Quantità: $search[id_quantita]</p>";
               echo "<p>Stato: $search[stato]</p>";
