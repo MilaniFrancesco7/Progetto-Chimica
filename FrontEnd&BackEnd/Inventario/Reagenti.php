@@ -115,7 +115,7 @@
         </div>
 
 <!-- Ricerca di un reagente -->
-<div class="col-lg-4" id="SezioneRicerca">
+        <div class="col-lg-4" id="SezioneRicerca">
           <div class="dark flex">
             <h3>Ricerca Reagente</h3>
             <hr id="SpaziaturaLarga">
@@ -259,10 +259,6 @@
           if(mysqli_query($connect,$query))
           {
             $id_esperienza = mysqli_insert_id($connect);
-          }
-          else
-          {
-            echo "va che non l'ho fatto";
           }
 
           mysqli_close($connect);

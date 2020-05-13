@@ -90,115 +90,193 @@
         <h1>Sezione Manutenzione</h1>
       </div>
     </section>
+      <div class="row">
 
-    <!-- <hr id="divisorio"> -->
-    <!-- Sezione con le relative parti del programma-->
-    <section id="boxes">
-        <div class="row">
-          <div class="col-sm-6" id="AttrezzaturaMain">
-              <ul id="services_man">
-                <li>
-				<table>
-				<h3>Attrezzo</h3>
-				<tr><td>
-                  <p>Formula:</p>
-                  <p>Quantità:</p>
-                  <p>Stato:</p>
-                  <p>Ditta:</p>
-                  <p>Pittogramma:</p>
-                  <p><img src="" alt="">Scheda Sicurezza:</p>
-                  <p>Frase:</p>
-                  <p>Data Scadenza:</p>
-                  <p>Scheda Sicurezza:</p>
-                  <p>Collocazione:</p>
-                </td>
-                <td valign="top">
-                  <p>Data di uscita: </p>
-                  <p>Data di rientro: </p>
-                  <p>Tecnici esterni: </p>
-                </td>
-                </tr>
-                </table>
-                </li><li>
-                  <h3>Attrezzo</h3>
-                  <p>Formula:</p>
-                  <p>Quantità:</p>
-                  <p>Stato:</p>
-                  <p>Ditta:</p>
-                  <p>Pittogramma:</p>
-                  <p><img src="" alt="">Scheda Sicurezza:</p>
-                  <p>Frase:</p>
-                  <p>Data Scadenza:</p>
-                  <p>Scheda Sicurezza:</p>
-                  <p>Collocazione:</p>
-                  <br><br>
-                  <p>Data di uscita:	Data di rientro:	Tecnici esterni: </p>
-                </li><li>
-                  <h3>Attrezzo</h3>
-                  <p>Formula:</p>
-                  <p>Quantità:</p>
-                  <p>Stato:</p>
-                  <p>Ditta:</p>
-                  <p>Pittogramma:</p>
-                  <p><img src="" alt="">Scheda Sicurezza:</p>
-                  <p>Frase:</p>
-                  <p>Data Scadenza:</p>
-                  <p>Scheda Sicurezza:</p>
-                  <p>Collocazione:</p>
-                  <br><br>
-                  <p>Data di uscita:	Data di rientro:	Tecnici esterni: </p>
-                </li>
-              </ul>
+<!-- Stampa di tutti gli oggetti -->
+          <div class="col-lg-3" id="SezioneRicerca">
+            <div class="dark flex" id="DivStampaTutto">
+              <h3>Mostra Storico Generale Manutenzione</h3>
+              <img src="./img/Reagenti.png" alt="" id="LogoReagenti">
+              <form method="post">
+                <input type="submit" name="showall" class="btn btn-primary" value="Mostra Storico">
+              </form>
+            </div>
           </div>
 
-          <aside class="sidebar">
-            <div class="dark">
-              <h3>Manda un oggetto in manutenzione</h3>
-              <form>
-                <div>
-                  <label>Oggetto</label>
-                  <input type="text" id="NomeReagente" placeholder="NomeReagente">
+<!-- Ricerca di un oggetto -->
+          <div class="col-lg-4" id="SezioneRicerca">
+            <div class="dark flex">
+              <h3>Ricerca Storico Strumento</h3>
+              <hr id="SpaziaturaLarga">
+              <form method="post">
+                <div class="form-group">
+                  <label for="inputStrumento">Inserisci ID Strumento</label>
+                  <input type="text" name="id_strumento" class="form-control" id="IDStrumento" placeholder="ID Strumento">
                 </div>
-                <div>
-                  <label>Formula</label>
-                  <input type="text" id="NomeReagente" placeholder="NomeReagente">
+                <hr>
+                <input type="submit" name="ricercamanutenzione" class="btn btn-primary" value="Cerca Storico">
+              </form>
+            </div>
+          </div>
+      </div>
+
+<!-- Registrazione di una manutenzione -->
+          <div class="col-lg-7" id="SezioneInserimento">
+          <div class="dark">
+            <h3>Registra la manutenzione di uno strumento</h3>
+              <hr>
+              <form method="post">
+                <div class="form-row">
+                  <div class="form-group col-md-2">
+                    <label>ID Strumento</label>
+                    <input type="text" name="id_strumento" class="form-control" id="IDStrumento" placeholder="ID Strumento">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label>Data Manutenzione</label>
+                    <input type="date" name="data_manutenzione" class="form-control" id="DataManutenzione" placeholder="Data Manutenzione">
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label>Tipo di manutenzione</label>
+                    <select class="custom-select mr-sm-2" name="tipo_manutenzione" id="inlineFormCustomSelect">
+                      <option selected>Scegli...</option>
+                      <option value="Ordinaria">Ordinaria</option>
+                      <option value="Straordinaria">Straordinaria</option>
+                    </select>
+                  </div>
                 </div>
-                <div>
-                  <label>Quantita'</label>
-                  <input type="text" id="NomeReagente" placeholder="NomeReagente">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label>Cognome Tecnico</label>
+                    <input type="text" name="cognome_tecnico" class="form-control" id="cognometecnico" placeholder="Cognome Tecnico">
+                  </div>
                 </div>
-                <div>
-                  <label>Stato Reagente</label>
-                  <input type="text" id="NomeReagente" placeholder="NomeReagente">
-                </div>
-                <div>
-                  <label>Ditta Produttrice</label>
-                  <input type="text" id="NomeReagente" placeholder="NomeReagente">
-                </div>
-                <div>
-                  <label>Pittogramma</label>
-                  <input type="file" id="NomeReagente" placeholder="NomeReagente">
-                </div>
-                <div>
-                  <label>Frase Sicurezza</label>
-                  <input type="text" id="NomeReagente" placeholder="NomeReagente">
-                </div>
-                <div>
-                  <label>Data Scadenza</label>
-                  <input type="date" id="NomeReagente" placeholder="NomeReagente">
-                </div>
-                <div>
-                  <label>Scheda Sicurezza</label>
-                  <input type="file" id="NomeReagente" placeholder="NomeReagente">
-                </div>
-                <div>
-                  <label>Collocazione</label>
-                  <input type="text" id="NomeReagente" placeholder="NomeReagente">
-                </div>
-                <button type="submit" name="InviaForm">Aggiungi Elemento</button>
+                <input type="submit" class="btn btn-primary" name="manutenziona" value="Registra la manutenzione">
               </form>
             </div>
           </aside>
+
+<!-- Funzione per la registrazione di una manutenzione -->
+          <?php
+            if(array_key_exists('manutenziona', $_POST))
+            {
+              manutenziona();
+            }
+            function manutenziona()
+            {
+              $id_strumento = $_POST["id_strumento"];
+              $data_manutenzione = $_POST["data_manutenzione"];
+              $tipo_manutenzione = $_POST["tipo_manutenzione"];
+              $cognome_tecnico = $_POST["cognome_tecnico"];
+
+              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+              $query = "INSERT INTO manutenzione(id_strumento, data_manutenzione, tipo_manutenzione, cognome_tecnico)
+                        VALUES ('$id_strumento', '$data_manutenzione', '$tipo_manutenzione', '$cognome_tecnico')";
+              
+              if (mysqli_query($connect, $query))
+              {
+                $message = "Manutenzione registrata con successo!";
+                echo "<script>alert('$message');</script>";
+              }
+              else
+              {
+                $message = "Manutenzione non registrata";
+                echo "<script>alert('$message');</script>";
+              }
+                }
+          ?>
+
+          <?php
+            if(array_key_exists('ricercamanutenzione', $_POST))
+            {
+              ricerca();
+            }
+            function ricerca()
+            { 
+              $id_strumento = $_POST["id_strumento"];
+
+              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+              $query = "SELECT id_manutenzione, data_manutenzione, tipo_manutenzione, cognome_tecnico, tipo 
+                        FROM manutenzione, strumentazione_apparecchiatura 
+                        WHERE manutenzione.id_strumento=$id_strumento
+                        AND strumentazione_apparecchiatura.id_strumento=$id_strumento";
+              
+              $result = mysqli_query($connect, $query);
+
+              $count = mysqli_num_rows($result);
+
+              if($count != 0)
+              {
+                echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
+                echo "<ul id='services'>";
+    
+                while($search = mysqli_fetch_array($result))
+                {
+                  echo "<li>";
+                  echo "<h3>$search[id_manutenzione] $search[tipo]</h3>";
+                  echo "<p>Data Manutenzione: $search[data_manutenzione]</p>";
+                  echo "<p>Tipo Manutenzione: $search[tipo_manutenzione]</p>";
+                  echo "<p>Cognome Tecnico: $search[cognome_tecnico]</p>";
+                  echo "</li>";
+                }
+    
+                echo "</ul>";
+                echo "</div>";
+              }
+              else
+              {
+                $message ="Non esistono manutenzioni registrate per questo oggetto";
+                echo "<script>alert('$message');</script>";
+              }
+
+            }
+          ?>
+
+<!-- Funzione per la stampa di tutti gli oggetti -->
+          <?php
+            
+            if(array_key_exists('showall', $_POST))
+            {
+              showall();
+            }
+            function showall()
+            {    
+              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+              $query = "SELECT id_manutenzione, data_manutenzione, tipo_manutenzione, cognome_tecnico, tipo 
+                        FROM manutenzione, strumentazione_apparecchiatura 
+                        WHERE manutenzione.id_strumento=strumentazione_apparecchiatura.id_strumento";
+              
+              $result = mysqli_query($connect, $query);
+
+              $count = mysqli_num_rows($result);
+
+              if($count != 0)
+              {
+                echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
+                echo "<ul id='services'>";
+    
+                while($search = mysqli_fetch_array($result))
+                {
+                  echo "<li>";
+                  echo "<h3>$search[id_manutenzione] $search[tipo]</h3>";
+                  echo "<p>Data Manutenzione: $search[data_manutenzione]</p>";
+                  echo "<p>Tipo Manutenzione: $search[tipo_manutenzione]</p>";
+                  echo "<p>Cognome Tecnico: $search[cognome_tecnico]</p>";
+                  echo "</li>";
+                }
+    
+                echo "</ul>";
+                echo "</div>";
+    
+              }
+              mysqli_free_result($result);
+              mysqli_close($connect);
+              }
+          ?>
+
+
     </section>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
