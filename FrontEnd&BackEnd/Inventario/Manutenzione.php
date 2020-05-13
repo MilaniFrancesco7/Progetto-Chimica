@@ -74,10 +74,10 @@
               echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Logout</button>";
               echo "</form>";
             }
-            
+
 
           ?>
-          
+
         </div>
       </div>
     </nav>
@@ -90,13 +90,13 @@
         <h1>Sezione Manutenzione</h1>
       </div>
     </section>
-      <div class="row">
+      <div class="row" id="MainPage">
 
 <!-- Stampa di tutti gli oggetti -->
           <div class="col-lg-3" id="SezioneRicerca">
             <div class="dark flex" id="DivStampaTutto">
               <h3>Mostra Storico Generale Manutenzione</h3>
-              <img src="./img/Reagenti.png" alt="" id="LogoReagenti">
+              <img src="./img/Manutenzione.png" alt="" id="LogoReagenti">
               <form method="post">
                 <input type="submit" name="showall" class="btn btn-primary" value="Mostra Storico">
               </form>
@@ -123,39 +123,40 @@
           <div class="col-lg-3" id="SezioneRicerca">
             <div class="dark flex" id="DivStampaTutto">
               <h3>Elimina una manutenzione</h3>
-              <img src="./img/NoReagenti.png" alt="" id="LogoReagenti">
-              <form method="post">
+              <img src="./img/NoManutenzione.png" alt="" id="LogoReagenti">
+              <form method="post" id="EliminaElemento">
                 <div class="form-row">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-lg-8" id="FormEliminazione">
+                    <label> Inserisci Id manutenzione</label>
                     <input type="text" name="id_manutenzione" class="form-control" id="IDManutenzione" placeholder="ID Manutenzione">
                   </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-3" id="FormEliminazione">
+                      <br id="SpazioLarghetto">
                       <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
                   </div>
                 </div>
               </form>
             </div>
           </div>
-        </div>
 
-<!-- Registrazione di una manutenzione -->
-          <div class="col-lg-7" id="SezioneInserimento">
+          <!-- REGISTRAZIONE DI UNA MANUTENZIONE-->
+          <div class="col-lg-10" id="SezioneInserimento">
           <div class="dark">
             <h3>Registra la manutenzione di uno strumento</h3>
               <hr>
               <form method="post">
                 <div class="form-row">
-                  <div class="form-group col-md-2">
+                  <div class="form-group col-md-3">
                     <label>ID Strumento</label>
                     <input type="text" name="id_strumento" class="form-control" id="IDStrumento" placeholder="ID Strumento">
                   </div>
-                  <div class="form-group col-md-3">
+                  <div class="form-group col-md-4">
                     <label>Data Manutenzione</label>
                     <input type="date" name="data_manutenzione" class="form-control" id="DataManutenzione" placeholder="Data Manutenzione">
                   </div>
-                  <div class="form-group col-md-2">
+                  <div class="form-group col-md-4">
                     <label>Tipo di manutenzione</label>
-                    <select class="custom-select mr-sm-2" name="tipo_manutenzione" id="inlineFormCustomSelect">
+                    <select class="custom-select mr-sm-3" name="tipo_manutenzione" id="inlineFormCustomSelect">
                       <option selected>Scegli...</option>
                       <option value="Ordinaria">Ordinaria</option>
                       <option value="Straordinaria">Straordinaria</option>
@@ -163,7 +164,7 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-5">
                     <label>Cognome Tecnico</label>
                     <input type="text" name="cognome_tecnico" class="form-control" id="cognometecnico" placeholder="Cognome Tecnico">
                   </div>
@@ -171,7 +172,9 @@
                 <input type="submit" class="btn btn-primary" name="manutenziona" value="Registra la manutenzione">
               </form>
             </div>
-          </aside>
+            </div>
+        </div>
+
 
 <!-- Funzione per la registrazione di una manutenzione -->
           <?php
@@ -190,7 +193,7 @@
 
               $query = "INSERT INTO manutenzione(id_strumento, data_manutenzione, tipo_manutenzione, cognome_tecnico)
                         VALUES ('$id_strumento', '$data_manutenzione', '$tipo_manutenzione', '$cognome_tecnico')";
-              
+
               if (mysqli_query($connect, $query))
               {
                 $message = "Manutenzione registrata con successo!";
@@ -210,16 +213,16 @@
               ricerca();
             }
             function ricerca()
-            { 
+            {
               $id_strumento = $_POST["id_strumento"];
 
               $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-              $query = "SELECT id_manutenzione, data_manutenzione, tipo_manutenzione, cognome_tecnico, tipo 
-                        FROM manutenzione, strumentazione_apparecchiatura 
+              $query = "SELECT id_manutenzione, data_manutenzione, tipo_manutenzione, cognome_tecnico, tipo
+                        FROM manutenzione, strumentazione_apparecchiatura
                         WHERE manutenzione.id_strumento=$id_strumento
                         AND strumentazione_apparecchiatura.id_strumento=$id_strumento";
-              
+
               $result = mysqli_query($connect, $query);
 
               $count = mysqli_num_rows($result);
@@ -228,7 +231,7 @@
               {
                 echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
                 echo "<ul id='services'>";
-    
+
                 while($search = mysqli_fetch_array($result))
                 {
                   echo "<li>";
@@ -238,7 +241,7 @@
                   echo "<p>Cognome Tecnico: $search[cognome_tecnico]</p>";
                   echo "</li>";
                 }
-    
+
                 echo "</ul>";
                 echo "</div>";
               }
@@ -275,25 +278,25 @@
                 $message = "Manutenzione non eliminata";
                 echo "<script>alert('$message');</script>";
               }
-              mysqli_close($connect); 
+              mysqli_close($connect);
             }
           ?>
 
 <!-- Funzione per la stampa di tutti gli oggetti -->
           <?php
-            
+
             if(array_key_exists('showall', $_POST))
             {
               showall();
             }
             function showall()
-            {    
+            {
               $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-              $query = "SELECT id_manutenzione, data_manutenzione, tipo_manutenzione, cognome_tecnico, tipo 
-                        FROM manutenzione, strumentazione_apparecchiatura 
+              $query = "SELECT id_manutenzione, data_manutenzione, tipo_manutenzione, cognome_tecnico, tipo
+                        FROM manutenzione, strumentazione_apparecchiatura
                         WHERE manutenzione.id_strumento=strumentazione_apparecchiatura.id_strumento";
-              
+
               $result = mysqli_query($connect, $query);
 
               $count = mysqli_num_rows($result);
@@ -302,7 +305,7 @@
               {
                 echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
                 echo "<ul id='services'>";
-    
+
                 while($search = mysqli_fetch_array($result))
                 {
                   echo "<li>";
@@ -312,10 +315,10 @@
                   echo "<p>Cognome Tecnico: $search[cognome_tecnico]</p>";
                   echo "</li>";
                 }
-    
+
                 echo "</ul>";
                 echo "</div>";
-    
+
               }
               mysqli_free_result($result);
               mysqli_close($connect);

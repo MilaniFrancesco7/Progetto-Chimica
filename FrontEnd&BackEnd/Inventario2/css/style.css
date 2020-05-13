@@ -233,6 +233,7 @@ aside#sidebar .quote input, aside#sidebar .quote textarea{
   color:#ffffff;
   margin-top:10px;
   margin-bottom:10px;
+  margin-left: 15px;
 }
 
 /* fine cose per la sidebar*/
@@ -240,7 +241,7 @@ aside#sidebar .quote input, aside#sidebar .quote textarea{
 /* Stile per la barra di ricerca*/
 #SezioneRicerca{
   margin-left: inherit;
-  padding-left: 5px;
+  padding-left: 25px;
   padding-right: 10px;
   margin-top: 60px;
   width: inherit;
@@ -274,34 +275,6 @@ aside#sidebar .quote input, aside#sidebar .quote textarea{
 
 #LogoReagenti{
   width: 120px;
-}
-
-/* SEZIONE DEDICATA ALLE PROPRIETA' DELLA PAGINA REGAENTI*/
-
-#MainPage{
-  margin-left: 40px;
-}
-
-#SpazioLarghetto{
-  margin-top: 8px;
-}
-
-#EliminaElemento{
-  margin-bottom: -1rem;
-}
-
-#FormEliminazione{
-  margin-bottom: -0.7rem;
-}
-
-
-/* TESTING DEI PITTOGRAMMI */
-
-.check
-{
-    opacity:0.5;
-	color:#996;
-
 }
 
 /* Specializzazione delle classi*/

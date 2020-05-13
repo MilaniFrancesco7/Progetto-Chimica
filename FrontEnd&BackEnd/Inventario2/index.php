@@ -7,7 +7,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title>Pagina Di Prova</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
   </head>
@@ -34,7 +34,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="Reagenti.php">Lista Reagenti</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="Strumentazione.php">Lista Strumentazione</a>
+                <a class="dropdown-item" href="Strumentazione.php">Lista Apparecchiatura</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="Vetreria.php">Lista Vetreria</a>
               </div>
@@ -46,7 +46,7 @@
 
             <!-- Link Sezione Riparazioni-->
             <li class="nav-item">
-              <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
+              <a class="nav-link" href="#">Sezione Riparazioni</a>
             </li>
           </ul>
 
@@ -69,7 +69,7 @@
               echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Logout</button>";
               echo "</form>";
             }
-
+            
 
           ?>
         </div>

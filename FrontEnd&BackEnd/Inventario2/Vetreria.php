@@ -52,71 +52,31 @@
 
             <!-- Link Sezione Riparazioni-->
             <li class="nav-item">
-              <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
+              <a class="nav-link" href="#">Sezione Riparazioni</a>
             </li>
           </ul>
-
-          <!-- Link Per l'accesso-->
-
-          <?php
-
-            //Se non loggato mostra il comando per entrare
-            if(!isset($_SESSION["User"]))
-            {
-              echo "<form class='form-inline' action='SignIn.php' id='FormBottoneAccesso'>";
-              echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Accedi</button>";
-              echo "</form>";
-            }
-            else
-            {
-              echo "<form class='form-inline' action='Logout.php' id='FormBottoneAccesso'>";
-              echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Logout</button>";
-              echo "</form>";
-            }
-
-
-          ?>
         </div>
       </div>
     </nav>
 
 <!-- SEZIONE PRINCIPALE -->
     <section id="main">
-    <div class="row" id="MainPage">
-
-<!-- Stampa di tutti gli oggetti -->
+    <div class="row">
+<!-- SEZIONE PER LA STAMPA DI TUTTI GLI OGGETTI -->
       <div class="col-lg-3" id="SezioneRicerca">
         <div class="dark flex" id="DivStampaTutto">
           <h3>Mostra Vetreria</h3>
           <img src="./img/Vetreria2.png" alt="" id="LogoVetreria">
           <form method="post">
-            <input type="submit" name="showall" class="btn btn-primary" value="Mostra tutti gli attrezzi">
+            <input type="submit" name="showall" class="btn btn-primary" value="Mostra tutti i Reagenti">
           </form>
         </div>
       </div>
 
-<!-- Elimina un elemento di vetreria -->
-        <div class="col-lg-3" id="SezioneRicerca">
-          <div class="dark flex" id="DivStampaTutto">
-            <h3>Elimina un Attrezzo</h3>
-            <img src="./img/NoVetreria.png" alt="" id="LogoVetreria">
-            <form method="post">
-              <div class="form-row" id="EliminaElemento">
-                <div class="form-group col-lg-8" id="FormEliminazione">
-                  <label>Inserisci ID Attrezzo</label>
-                  <input type="text" name="id_attrezzo" class="form-control" id="IdAttrezzo" placeholder="ID Attrezzo">
-                </div>
-                  <div class="form-group col-lg-2" id="FormEliminazione">
-                    <br id="SpazioLarghetto">
-                    <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+<!--SEZIONE PER LA RICERCA DI UN ELEMENTO DI VETRERIA-->
 
-<!--Ricerca di un elemento di vetreria-->
-        <div class="col-sm-3" id="SezioneRicerca">
+
+        <div class="col-sm-7" id="SezioneRicerca">
           <div class="dark flex">
             <h3>Ricerca Vetreria</h3>
             <hr id="SpaziaturaLarga">
@@ -133,125 +93,37 @@
         </div>
 
 
-<!--Inserimento di nuovi oggetti di vetreria-->
+<!--SEZIONE RELATIVA ALL'INSERIMENTO DI NUOVI REAGENTI-->
         <div class="col-md-10" id="SezioneInserimento">
           <div class="dark">
             <h3>Inserisci Nuova Vetreria</h3>
             <hr>
-            <form method="post">
+            <form>
             <div class="form-row">
               <div class="form-group col-md-6">
+                <label>Nome Vetreria</label>
+                <input type="text" class="form-control"  id="NomeVetreria" placeholder="Nome Vetreria">
+              </div>
+              <div class="form-group col-md-6">
                 <label>Tipo Vetreria</label>
-                <input type="text" class="form-control" name="tipo" id="TipoVetreria" placeholder="Tipo Vetreria">
+                <input type="text" class="form-control" id="TipoVetreria" placeholder="Tipo Vetreria">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-2">
                 <label>Quantita'</label>
-                <input type="text" class="form-control" name="id_quantita" id="QuantiàVetreria" placeholder="Quantità">
+                <input type="text" class="form-control" id="QuantiàVetreria" placeholder="Quantità Vetreria">
+              </div>
+              <div class="form-group col-md-6">
+                <label>Collocazione</label>
+                <input type="text" class="form-control" id="CollocazioneVetreria" placeholder="Collocazione Vetreria">
               </div>
             </div>
-            <div class="form-row">
-            <div class="form-group col-md-2">
-              <label>Tipo di collocazione</label>
-              <select class="custom-select mr-sm-2" name="tipo_collocazione" id="inlineFormCustomSelect">
-                <option selected>Scegli...</option>
-                <option value="Solido">Consumo</option>
-                <option value="Liquido">Magazzino</option>
-              </select>
-             </div>
-              <div class="form-group col-md-2">
-                <label>Stanza</label>
-                <input type="text" name="stanza" class="form-control" id="Stanza" placeholder="Stanza">
-              </div>
-              <div class="form-group col-md-2">
-                <label>Armadio</label>
-                <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Armadio">
-              </div>
-              <div class="form-group col-md-2">
-                <label>Ripiano</label>
-                <input type="text" name="ripiano" class="form-control" id="Ripiano" placeholder="Ripiano">
-              </div>
-            </div>
-            <input type="submit" name="inserisci" class="btn btn-primary" value="Aggiungi Vetreria">
+            <button type="submit" class="btn btn-primary">Aggiungi Vetreria</button>
             </form>
           </div>
         </div>
       </div>
-
-<!-- Funzione per l'inserimento di un attrezzo di vetreria -->
-      <?php
-        if(array_key_exists('inserisci', $_POST))
-        {
-          inserisci();
-        }
-        function inserisci()
-        {
-          $tipo_collocazione = $_POST["tipo_collocazione"];
-          $stanza = $_POST["stanza"];
-          $armadio = $_POST["armadio"];
-          $ripiano = $_POST["ripiano"];
-
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
-
-          $query = "INSERT INTO collocazione(tipo_collocazione, armadio, stanza, ripiano)
-                    VALUES ('$tipo_collocazione', '$stanza', '$armadio', '$ripiano')";
-
-          if(mysqli_query($connect,$query))
-          {
-            $id_collocazione = mysqli_insert_id($connect);
-          }
-
-          mysqli_close($connect);
-
-          $tipo = $_POST["tipo"];
-          $id_quantita = $_POST["id_quantita"];
-
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
-
-          $query = "INSERT INTO vetreria_attrezzatura (tipo, id_quantita, id_collocazione)
-                    VALUES ('$tipo', '$id_quantita', '$id_collocazione')";
-
-          if (mysqli_query($connect, $query))
-          {
-            $message = "Elemento inserito con successo!";
-            echo "<script>alert('$message');</script>";
-          }
-          else
-          {
-            $message = "Elemento non inserito";
-            echo "<script>alert('$message');</script>";
-          }
-        }
-      ?>
-
-<!-- Funzione per l'eliminazione di un oggetto -->
-      <?php
-        if(array_key_exists('delete', $_POST))
-        {
-          delete();
-        }
-        function delete()
-        {
-          $id_attrezzo = $_POST["id_attrezzo"];
-
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
-
-          $query = "DELETE FROM vetreria_attrezzatura WHERE vetreria_attrezzatura.id_attrezzo = $id_attrezzo";
-
-          if(mysqli_query($connect, $query))
-          {
-            $message = "Elemento eliminato con successo!";
-            echo "<script>alert('$message');</script>";
-          }
-          else
-          {
-            $message = "Elemento non eliminato";
-            echo "<script>alert('$message');</script>";
-          }
-          mysqli_close($connect);
-        }
-      ?>
 
 <!-- Funzione per la stampa di tutti gli oggetti -->
         <?php
@@ -277,7 +149,7 @@
               while($search = mysqli_fetch_array($result))
               {
                 echo "<li>";
-                echo "<h3>$search[id_attrezzo] $search[tipo]</h3>";
+                echo "<h3>$search[tipo]</h3>";
                 echo "<p>Quantità: $search[id_quantita]</p>";
                 echo "<p>Collocazione: $search[id_collocazione]</p>";
                 echo "</li>";

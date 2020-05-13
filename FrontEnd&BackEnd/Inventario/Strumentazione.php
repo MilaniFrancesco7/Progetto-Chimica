@@ -73,7 +73,7 @@
               echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Logout</button>";
               echo "</form>";
             }
-            
+
 
           ?>
         </div>
@@ -82,13 +82,14 @@
 
 <!-- SEZIONE PRINCIPALE -->
 <section id="main">
-  <div class="row">
+  <div class="row" id="MainPage">
 
 <!-- Stampa di tutti gli oggetti -->
     <div class="col-lg-3" id="SezioneRicerca">
       <div class="dark flex" id="DivStampaTutto">
         <h3>Mostra Strumentazione</h3>
         <img src="./img/Strumentazione.png" alt="" id="LogoStrumentazione">
+        <hr>
         <form method="post">
           <input type="submit" name="showall" class="btn btn-primary" value="Mostra la Strumentazione">
         </form>
@@ -96,16 +97,18 @@
     </div>
 
     <!-- Elimina un reagente -->
-<div class="col-lg-3" id="SezioneRicerca">
+    <div class="col-lg-3" id="SezioneRicerca">
           <div class="dark flex" id="DivStampaTutto">
             <h3>Elimina un Reagente</h3>
-            <img src="./img/NoStrumentazione.png" alt="" id="LogoNoStrumentazione">
+            <img src="./img/NoStrumentazione.png" alt="" id="LogoStrumentazione">
             <form method="post">
-              <div class="form-row">
-                <div class="form-group col-md-6">
+              <div class="form-row" id="EliminaElemento">
+                <div class="form-group col-lg-8" id="FormEliminazione">
+                  <label> Inserisci Id Strumento</label>
                   <input type="text" name="id_strumento" class="form-control" id="IdStrumento" placeholder="ID Strumento">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-lg-2" id="FormEliminazione">
+                  <br id="SpazioLarghetto">
                   <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
                 </div>
               </div>
@@ -207,7 +210,7 @@
 
               $query = "INSERT INTO collocazione(tipo_collocazione, armadio, stanza, ripiano)
                         VALUES ('$tipo_collocazione', '$stanza', '$armadio', '$ripiano')";
-              
+
               if(mysqli_query($connect,$query))
               {
                 $id_collocazione = mysqli_insert_id($connect);
@@ -220,7 +223,7 @@
               $numero_inventario = $_POST["numero_inventario"];
               $id_quantita = $_POST["id_quantita"];
               $id_manuale = "1";
-              
+
 
               $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
@@ -265,7 +268,7 @@
             $message = "Elemento non eliminato";
             echo "<script>alert('$message');</script>";
           }
-          mysqli_close($connect); 
+          mysqli_close($connect);
         }
       ?>
 

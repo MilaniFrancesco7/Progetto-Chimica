@@ -72,7 +72,7 @@
               echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Logout</button>";
               echo "</form>";
             }
-            
+
 
           ?>
         </div>
@@ -83,12 +83,13 @@
 
 <!-- SEZIONE PRINCIPALE -->
 <section id="main">
-  <div class="row">
+  <div class="row" id="MainPage">
 
-<!-- Stampa di tutti gli oggetti -->
+<!-- Stampa di tutti gli oggetti ##-->
         <div class="col-lg-3" id="SezioneRicerca">
           <div class="dark flex" id="DivStampaTutto">
             <h3>Mostra Reagenti</h3>
+            <hr>
             <img src="./img/Reagenti.png" alt="" id="LogoReagenti">
             <form method="post">
               <input type="submit" name="showall" class="btn btn-primary" value="Mostra tutti i Reagenti">
@@ -99,18 +100,22 @@
 <!-- Elimina un reagente -->
         <div class="col-lg-3" id="SezioneRicerca">
           <div class="dark flex" id="DivStampaTutto">
+            <center>
             <h3>Elimina un Reagente</h3>
             <img src="./img/NoReagenti.png" alt="" id="LogoReagenti">
             <form method="post">
-              <div class="form-row">
-                <div class="form-group col-md-6">
+              <div class="form-row" id="EliminaElemento">
+                <div class="form-group col-lg-8" id="FormEliminazione">
+                  <label for="inputIdReagente">Inserisci Id Reagente</label>
                   <input type="text" name="id_reagente" class="form-control" id="IdReagente" placeholder="ID Reagente">
                 </div>
-                  <div class="form-group col-md-6">
-                    <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
+                <div class="form-group col-lg-2"id="FormEliminazione">
+                  <br id="SpazioLarghetto">
+                  <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
                 </div>
               </div>
             </form>
+          </center>
           </div>
         </div>
 
@@ -141,7 +146,7 @@
                   <label>Nome Reagente</label>
                   <input type="text" name="nome" class="form-control"  id="NomeReagente" placeholder="Nome Reagente">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                   <label>Formula</label>
                   <input type="text" name="formula" class="form-control" id="Formula" placeholder="Formula">
                 </div>
@@ -159,28 +164,10 @@
                   <label>Data Scadenza</label>
                   <input type="date" name="data_scadenza" class="form-control" id="DataScadenza" placeholder="Data Scadenza">
                 </div>
-              </div>              
-              <div class="form-row">
-                <div class="form-group col-md-2">
-                  <label>Stato Reagente</label>
-                  <select class="custom-select mr-sm-2" name="stato" id="inlineFormCustomSelect">
-                    <option selected>Scegli...</option>
-                    <option value="Solido">Solido</option>
-                    <option value="Liquido">Liquido</option>
-                    <option value="Gassoso">Gassoso</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-2">
-                  <label>Pittogramma</label>
-                  <input type="file" id="Pittogramma" name="pittogramma" placeholder="Pittogramma">
-                </div>
-                <div class="form-group col-md-2">
-                  <label>Scheda Sicurezza</label>
-                  <input type="file" id="SchedaSicurezza" name="id_scheda_sicurezza" placeholder="Scheda Sicurezza">
-                </div>
               </div>
+
               <div class="form-row">
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                   <label>Tipo di collocazione</label>
                   <select class="custom-select mr-sm-2" name="tipo_collocazione" id="inlineFormCustomSelect">
                     <option selected>Scegli...</option>
@@ -188,25 +175,48 @@
                     <option value="Liquido">Magazzino</option>
                   </select>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                   <label>Stanza</label>
                   <input type="text" name="stanza" class="form-control" id="Stanza" placeholder="Stanza">
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                   <label>Armadio</label>
                   <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Armadio">
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                   <label>Ripiano</label>
                   <input type="text" name="ripiano" class="form-control" id="Ripiano" placeholder="Ripiano">
                 </div>
               </div>
+
               <div class="form-row">
+
+                  <legend style="font-size:12px">Pittogramma</legend>
+                  <!--<input type="file" id="Pittogramma" name="pittogramma" placeholder="Pittogramma">-->
+                  <br>
+                <!-- AREA TESTING PITTOGRAMMI-->
+                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/comburente.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+            		<div class="col-md-1"><label class="btn btn-primary"><img src="./img/corrosivo.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/esplosivo.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/gas_pressurizzato.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/infiammabile.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/irritante.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/nocivo.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/tossico.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-2">
+                  <label>Scheda Sicurezza</label>
+                  <input type="file" id="SchedaSicurezza" name="id_scheda_sicurezza" placeholder="Scheda Sicurezza">
+                </div>
                 <div class="form-group col-md-6">
                   <label>Frase Sicurezza</label>
                   <input type="text" class="form-control" name="frase" id="FraseSicurezza" placeholder="Frase Sicurezza">
                 </div>
               </div>
+
               <div class="form-row">
                 <div class="form-group col-md-2">
                   <label> Testo Esperienza</label>
@@ -240,17 +250,17 @@
 
           $query = "INSERT INTO collocazione(tipo_collocazione, armadio, stanza, ripiano)
                     VALUES ('$tipo_collocazione', '$stanza', '$armadio', '$ripiano')";
-          
+
           if(mysqli_query($connect,$query))
           {
             $id_collocazione = mysqli_insert_id($connect);
           }
 
           mysqli_close($connect);
-          
+
           $nome_insegnante = $_POST["nome_insegnante"];        //Inserimento esperienza
           $testo_esperienza = $_POST["testo_esperienza"];
-          
+
           $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
           $query = "INSERT INTO esperienza(nome_insegnante, testo_esperienza)
@@ -289,7 +299,7 @@
 
           $query = "INSERT INTO reagente_esperienza(id_reagente, id_esperienza)
                     VALUES ('$id_reagente', '$id_esperienza')";
-          
+
           if (mysqli_query($connect, $query))
           {
             $message = "Elemento inserito con successo!";
@@ -330,7 +340,7 @@
             $message = "Elemento non eliminato";
             echo "<script>alert('$message');</script>";
           }
-          mysqli_close($connect); 
+          mysqli_close($connect);
         }
       ?>
 

@@ -74,10 +74,10 @@
               echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Logout</button>";
               echo "</form>";
             }
-            
+
 
           ?>
-          
+
         </div>
       </div>
     </nav>
@@ -90,13 +90,13 @@
         <h1>Sezione Riparazione</h1>
       </div>
     </section>
-    <div class="row">
-    
+    <div class="row" id="MainPage">
+
     <!-- Stampa di tutti gli oggetti -->
     <div class="col-lg-3" id="SezioneRicerca">
       <div class="dark flex" id="DivStampaTutto">
         <h3>Mostra Storico Generale Riparazioni</h3>
-        <img src="./img/Reagenti.png" alt="" id="LogoReagenti">
+        <img src="./img/CassettaAttrezzi.png" alt="" id="LogoReagenti">
         <form method="post">
           <input type="submit" name="showall" class="btn btn-primary" value="Mostra Storico">
         </form>
@@ -107,13 +107,15 @@
     <div class="col-lg-3" id="SezioneRicerca">
       <div class="dark flex" id="DivStampaTutto">
         <h3>Elimina una riparazione</h3>
-        <img src="./img/NoReagenti.png" alt="" id="LogoReagenti">
+        <img src="./img/NoCassettaAttrezzi.png" alt="" id="LogoReagenti">
         <form method="post">
-          <div class="form-row">
-            <div class="form-group col-md-6">
+          <div class="form-row" id="EliminaElemento">
+            <div class="form-group col-md-8" id="FormEliminazione">
+              <label> Inserisci Id Riparazione</label>
               <input type="text" name="id_riparazione" class="form-control" id="IDRiparazione" placeholder="ID Riparazione">
             </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-3" id="FormEliminazione">
+                <br id="SpazioLarghetto">
                 <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
             </div>
           </div>
@@ -188,23 +190,23 @@
           <input type="submit" name="rientro" class="btn btn-primary" value="Registra l'uscita">
         </form>
       </div>
-    </div>    
+    </div>
 
 <!-- Funzione per la stampa di tutti gli oggetti -->
     <?php
-                
+
       if(array_key_exists('showall', $_POST))
       {
         showall();
       }
       function showall()
-      {    
+      {
         $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-        $query = "SELECT id_riparazione, motivo, data_uscita, data_rientro, ditta_riparatrice, tipo 
-                  FROM riparazione, strumentazione_apparecchiatura 
+        $query = "SELECT id_riparazione, motivo, data_uscita, data_rientro, ditta_riparatrice, tipo
+                  FROM riparazione, strumentazione_apparecchiatura
                   WHERE riparazione.id_strumento=strumentazione_apparecchiatura.id_strumento";
-        
+
         $result = mysqli_query($connect, $query);
 
         $count = mysqli_num_rows($result);
@@ -273,9 +275,9 @@
           $message = "Riparazione non eliminata";
           echo "<script>alert('$message');</script>";
         }
-        mysqli_close($connect); 
+        mysqli_close($connect);
       }
-    ?>   
+    ?>
 <!-- Ricerca una manutenzione -->
     <?php
       if(array_key_exists('ricercariparazione', $_POST))
@@ -283,16 +285,16 @@
         ricerca();
       }
       function ricerca()
-      { 
+      {
         $id_strumento = $_POST["id_strumento"];
 
         $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-        $query = "SELECT id_riparazione, data_uscita, data_rientro, tipo, ditta_riparatrice, motivo 
-                  FROM riparazione, strumentazione_apparecchiatura 
+        $query = "SELECT id_riparazione, data_uscita, data_rientro, tipo, ditta_riparatrice, motivo
+                  FROM riparazione, strumentazione_apparecchiatura
                   WHERE riparazione.id_strumento=$id_strumento
                   AND strumentazione_apparecchiatura.id_strumento=$id_strumento";
-        
+
         $result = mysqli_query($connect, $query);
 
         $count = mysqli_num_rows($result);
@@ -364,7 +366,7 @@
           echo "<script>alert('$message');</script>";
         }
       }
-    ?>   
+    ?>
 
 <!--- Registrazione rientro da riparazione -->
     <?php
@@ -394,7 +396,7 @@
           echo "<script>alert('$message');</script>";
         }
       }
-    ?>   
+    ?>
 
   </section>
 
