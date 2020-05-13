@@ -118,7 +118,25 @@
               </form>
             </div>
           </div>
-      </div>
+
+<!-- Elimina un oggetto -->
+          <div class="col-lg-3" id="SezioneRicerca">
+            <div class="dark flex" id="DivStampaTutto">
+              <h3>Elimina una manutenzione</h3>
+              <img src="./img/NoReagenti.png" alt="" id="LogoReagenti">
+              <form method="post">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <input type="text" name="id_manutenzione" class="form-control" id="IDManutenzione" placeholder="ID Manutenzione">
+                  </div>
+                    <div class="form-group col-md-6">
+                      <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
 
 <!-- Registrazione di una manutenzione -->
           <div class="col-lg-7" id="SezioneInserimento">
@@ -230,6 +248,34 @@
                 echo "<script>alert('$message');</script>";
               }
 
+            }
+          ?>
+
+<!-- Funzione per l'eliminazione di un oggetto -->
+          <?php
+            if(array_key_exists('delete', $_POST))
+            {
+              delete();
+            }
+            function delete()
+            {
+              $id_manutenzione = $_POST["id_manutenzione"];
+
+              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+              $query = "DELETE FROM manutenzione WHERE manutenzione.id_manutenzione = $id_manutenzione";
+
+              if(mysqli_query($connect, $query))
+              {
+                $message = "Manutenzione eliminata con successo!";
+                echo "<script>alert('$message');</script>";
+              }
+              else
+              {
+                $message = "Manutenzione non eliminata";
+                echo "<script>alert('$message');</script>";
+              }
+              mysqli_close($connect); 
             }
           ?>
 
