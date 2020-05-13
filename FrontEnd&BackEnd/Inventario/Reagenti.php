@@ -196,6 +196,10 @@
                   <label>Armadio</label>
                   <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Armadio">
                 </div>
+                <div class="form-group col-md-2">
+                  <label>Ripiano</label>
+                  <input type="text" name="ripiano" class="form-control" id="Ripiano" placeholder="Ripiano">
+                </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
@@ -230,11 +234,12 @@
           $tipo_collocazione = $_POST["tipo_collocazione"];       //Inserimento collocazione
           $stanza = $_POST["stanza"];
           $armadio = $_POST["armadio"];
+          $ripiano = $_POST["ripiano"];
 
           $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-          $query = "INSERT INTO collocazione(tipo_collocazione, armadio, stanza)
-                    VALUES ('$tipo_collocazione', '$stanza', '$armadio')";
+          $query = "INSERT INTO collocazione(tipo_collocazione, armadio, stanza, ripiano)
+                    VALUES ('$tipo_collocazione', '$stanza', '$armadio', '$ripiano')";
           
           if(mysqli_query($connect,$query))
           {

@@ -12,7 +12,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Pagina Di Prova</title>
+    <title>Manutenzione</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
   </head>
