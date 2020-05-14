@@ -97,6 +97,22 @@
           </div>
         </div>
 
+<!-- Ricerca di un reagente -->
+        <div class="col-lg-4" id="SezioneRicerca">
+          <div class="dark flex">
+            <h3>Ricerca Reagente</h3>
+            <hr id="SpaziaturaLarga">
+            <form method="post">
+              <div class="form-group">
+                <label for="inputNomeReagente">Inserisci Parola Chiave</label>
+                <input type="text" name="ricerca" class="form-control" id="inputNome" placeholder="Parola Chiave...">
+              </div>
+               <hr>
+              <input type="submit" name="ricercareagente" class="btn btn-primary" value="Cerca reagente">
+            </form>
+          </div>
+        </div>
+
 <!-- Elimina un reagente -->
         <div class="col-lg-3" id="SezioneRicerca">
           <div class="dark flex" id="DivStampaTutto">
@@ -119,21 +135,7 @@
           </div>
         </div>
 
-<!-- Ricerca di un reagente -->
-        <div class="col-lg-4" id="SezioneRicerca">
-          <div class="dark flex">
-            <h3>Ricerca Reagente</h3>
-            <hr id="SpaziaturaLarga">
-            <form method="post">
-              <div class="form-group">
-                <label for="inputNomeReagente">Inserisci Parola Chiave</label>
-                <input type="text" name="ricerca" class="form-control" id="inputNome" placeholder="Parola Chiave...">
-              </div>
-               <hr>
-              <input type="submit" name="ricercareagente" class="btn btn-primary" value="Cerca reagente">
-            </form>
-          </div>
-        </div>
+
 
 <!-- Inserimento di un nuovo reagente -->
         <div class="col-lg-10" id="SezioneInserimento">
@@ -152,15 +154,28 @@
                 </div>
               </div>
               <div class="form-row">
-                <div class="form-group col-md-2">
-                  <label>Quantita'</label>
-                  <input type="text" name="id_quantita" class="form-control" id="Quantita" placeholder="Quantità">
+                <div class="form-group col-md-3">
+                  <label>Stato</label>
+                  <select class="custom-select mr-sm-2" name="stato" id="inlineFormCustomSelect">
+                    <option selected>Scegli...</option>
+                    <option value="Solido">Solido</option>
+                    <option value="Liquido">Liquido</option>
+                    <option value="Aeriforme">Aeriforme</option>
+                  </select>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-2">
+                  <label>Quantita' Presente</label>
+                  <input type="text" name="quantita_presente" class="form-control" id="QuantitaPresente" placeholder="Quantità Presente">
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Quantita' Totale</label>
+                  <input type="text" name="quantita_totale" class="form-control" id="QuantitaTotale" placeholder="Quantità Totale">
+                </div>
+                <div class="form-group col-md-2">
                   <label>Ditta Produttrice</label>
                   <input type="text" name="ditta" class="form-control" id="DittaProduttrice" placeholder="Ditta Produttrice">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-2">
                   <label>Data Scadenza</label>
                   <input type="date" name="data_scadenza" class="form-control" id="DataScadenza" placeholder="Data Scadenza">
                 </div>
@@ -171,8 +186,8 @@
                   <label>Tipo di collocazione</label>
                   <select class="custom-select mr-sm-2" name="tipo_collocazione" id="inlineFormCustomSelect">
                     <option selected>Scegli...</option>
-                    <option value="Solido">Consumo</option>
-                    <option value="Liquido">Magazzino</option>
+                    <option value="Consumo">Consumo</option>
+                    <option value="Magazzino">Magazzino</option>
                   </select>
                 </div>
                 <div class="form-group col-md-3">
@@ -190,20 +205,19 @@
               </div>
 
               <div class="form-row">
-
                   <legend style="font-size:12px">Pittogramma</legend>
-                  <!--<input type="file" id="Pittogramma" name="pittogramma" placeholder="Pittogramma">-->
                   <br>
-                <!-- AREA TESTING PITTOGRAMMI-->
-                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/comburente.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
-            		<div class="col-md-1"><label class="btn btn-primary"><img src="./img/corrosivo.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
-                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/esplosivo.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
-                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/gas_pressurizzato.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
-                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/infiammabile.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
-                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/irritante.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
-                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/nocivo.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
-                <div class="col-md-1"><label class="btn btn-primary"><img src="./img/tossico.svg" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off"></label></div>
+                <!-- AREA PITTOGRAMMI-->
+                <?php
+                  $array_pittogrammi = array("comburente","corrosivo","esplosivo","gas_pressurizzato","infiammabile","irritante","nocivo","tossico");
 
+                  foreach($array_pittogrammi as $pittogramma)
+                  {
+                    $immagine = $pittogramma;
+                    $immagine .=".svg";
+                    echo '<div class="col-md-1"><label class="btn btn-primary"><img src="./img/'.$immagine.'" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="pittogramma[]" id="pittogramma" value="'.$pittogramma.'" class="hidden" autocomplete="off"></label></div>';
+                  }
+                ?>
               </div>
 
               <div class="form-row">
@@ -231,7 +245,123 @@
             </form>
           </div>
         </div>
+
+<!-- Inserimento di un'esperienza -->         
+      <div class="col-lg-6" id="SezioneInserimento">
+        <div class="dark flex">
+          <h3>Inserisci un'esperienza</h3>
+          <hr id="SpaziaturaLarga">
+          <form method="post">
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="inputNomeReagente">Nome Insegnante</label>
+                <input type="text" name="nome_insegnante" class="form-control" id="NomeInsegnante" placeholder="Nome Insegnante">
+              </div>
+              <div class="form-group col-md-2">
+                <label for="inputNomeReagente">ID Reagente</label>
+                <input type="text" name="id_reagente" class="form-control" id="IDReagente" placeholder="ID Reagente">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-10">
+                <label for="inputNomeReagente">Testo Esperienza</label>
+                <input type="text" name="testo_esperienza" class="form-control" id="TestoEsperienza" placeholder="Testo Esperienza">
+              </div>
+            </div>
+            <input type="submit" name="inserisciesperienza" class="btn btn-primary" value="Inserisci esperienza">
+          </form>
+        </div>
       </div>
+
+<!-- Stampa di tutti gli oggetti ##-->
+<div class="col-lg-3" id="SezioneRicerca">
+          <div class="dark flex" id="DivStampaTutto">
+            <h3>Stampa Esperienze</h3>
+            <hr>
+            <img src="./img/Reagenti.png" alt="" id="LogoReagenti">
+            <form method="post">
+              <input type="submit" name="showallexperiences" class="btn btn-primary" value="Mostra tutti le Esperienze">
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+<!-- Stampa di tutte le esperienze -->
+      <?php
+        if(array_key_exists('showallexperiences', $_POST))
+        {
+          showallexperiences();
+        }
+        function showallexperiences()
+        {
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $query = "SELECT esperienza.*, reagente.nome 
+                    FROM esperienza INNER JOIN reagente_esperienza 
+                    ON esperienza.id_esperienza = reagente_esperienza.id_esperienza 
+                    INNER JOIN reagente 
+                    ON reagente_esperienza.id_reagente = reagente.id_reagente ";
+
+          $result = mysqli_query($connect, $query);
+
+          $count = mysqli_num_rows($result);
+
+          if($count != 0)
+          {
+            echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
+            echo "<ul id='services'>";
+
+            while($search = mysqli_fetch_array($result))
+            {
+              echo "<li>";
+              echo "<h3>$search[id_esperienza] $search[nome]</h3>";
+              echo "<p>Insegnante: $search[nome_insegnante]</p>";
+              echo "<p>$search[testo_esperienza]</p>";
+            }
+            echo "</ul>";
+            echo "</div>";
+          }
+        }
+      ?>
+
+<!-- Inserimento di un'esperienza -->
+      <?php
+        if(array_key_exists('inserisciesperienza', $_POST))
+        {
+          inserisciesperienza();
+        }
+        function inserisciesperienza()
+        {
+          $id_reagente = $_POST["id_reagente"];
+          $nome_insegnante = $_POST["nome_insegnante"];
+          $testo_esperienza = $_POST["testo_esperienza"];
+
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $query = "INSERT INTO esperienza(nome_insegnante, testo_esperienza)
+                    VALUES ('$nome_insegnante', '$testo_esperienza')";
+          
+          if(mysqli_query($connect,$query))
+          {
+            $id_esperienza = mysqli_insert_id($connect);
+          }
+
+          $query = "INSERT INTO reagente_esperienza(id_reagente,id_esperienza)
+                    VALUES ('$id_reagente','$id_esperienza')";
+
+          if (mysqli_query($connect, $query))
+          {
+            $message = "Esperienza inserita con successo!";
+            echo "<script>alert('$message');</script>";
+          }
+          else
+          {
+            $message = "Esperienza non inserita";
+            echo "<script>alert('$message');</script>";
+          }
+        }
+      ?>
 
 <!-- Funzione per l'inserimento di un reagente -->
       <?php
@@ -273,15 +403,36 @@
 
           mysqli_close($connect);
 
+          $quantita_presente = $_POST["quantita_presente"];   //Inserimento quantità
+          $quantita_totale = $_POST["quantita_totale"];
+          $data_aggiornamento = date("Y-m-d");
+
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $query = "INSERT INTO quantita(quantita_presente, quantita_totale, data_aggiornamento)
+                    VALUES ('$quantita_presente', '$quantita_totale', '$data_aggiornamento')";
+
+          if (mysqli_query($connect, $query))
+          {
+            $id_quantita = mysqli_insert_id($connect);
+          }
+
+          mysqli_close($connect);
+
           $nome = $_POST["nome"];             //Inserimento reagente
           $formula = $_POST["formula"];
           $stato = $_POST["stato"];
           $ditta = $_POST["ditta"];
-          $pittogramma = "1";
           $frase = $_POST["frase"];
           $id_scheda_sicurezza = "3";
-          $id_quantita = $_POST["id_quantita"];
           $data_scadenza = $_POST["data_scadenza"];
+          
+          echo "$stato";
+
+          if(!empty($_POST['pittogramma']))       // Inserimento dei pittogrammi
+          {
+            $pittogramma = implode(",",$_POST['pittogramma']);
+          }
 
           $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
@@ -328,9 +479,11 @@
 
           $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-          $query = "DELETE FROM reagente WHERE reagente.id_reagente = $id_reagente";
+          $query1 = "DELETE esperienza.* FROM esperienza INNER JOIN reagente_esperienza ON esperienza.id_esperienza = reagente_esperienza.id_esperienza WHERE id_reagente = $id_reagente";
 
-          if(mysqli_query($connect, $query))
+          $query2 = "DELETE FROM reagente WHERE reagente.id_reagente = $id_reagente";
+
+          if(mysqli_query($connect, $query1) AND mysqli_query($connect, $query2))
           {
             $message = "Elemento eliminato con successo!";
             echo "<script>alert('$message');</script>";
@@ -354,7 +507,11 @@
         {
           $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-          $query = "SELECT * FROM reagente";
+          $query = "SELECT reagente.*,quantita.*,collocazione.* 
+                    FROM reagente INNER JOIN quantita 
+                    ON reagente.id_quantita = quantita.id_quantita 
+                    INNER JOIN collocazione 
+                    ON reagente.id_collocazione = collocazione.id_collocazione ";
 
           $result = mysqli_query($connect, $query);
 
@@ -370,12 +527,24 @@
               echo "<li>";
               echo "<h3>$search[id_reagente] $search[nome]</h3>";
               echo "<p>Formula: $search[formula]</p>";
-              echo "<p>Quantità: $search[id_quantita]</p>";
+              echo "<p>Quantità: $search[quantita_presente]  /  $search[quantita_totale]</p>";
               echo "<p>Stato: $search[stato]</p>";
+
+              $pittogrammi = explode (",",$search["pittogramma"]);    // Stampa dei pittogrammi
+
+              echo "<p>Pittogramma/i:";
+              foreach($pittogrammi as $pittogramma)
+              {
+                $immagine = $pittogramma;
+                $immagine .=".svg";
+
+                 echo '<img src="./img/'.$immagine.'" alt="..." height="100" width="100">';
+              }
+              echo "</p>";
               echo "<p>Ditta: $search[ditta]</p>";
               echo "<p>Frase: $search[frase]</p>";
               echo "<p>Data Scadenza: $search[data_scadenza]</p>";
-              echo "<p>Collocazione: $search[id_collocazione]</p>";
+              echo "<p>Collocazione: $search[tipo_collocazione], Stanza $search[stanza], Armadio $search[armadio], Ripiano $search[ripiano]</p>";
               echo "</li>";
             }
 
@@ -408,6 +577,7 @@
                       nome LIKE '".$ricerca."' OR
                       formula LIKE '".$ricerca."' OR
                       stato LIKE '".$ricerca."'  OR
+                      pittogramma LIKE '".$ricerca."' OR
                       ditta LIKE '".$ricerca."'  OR
                       frase LIKE '".$ricerca."' ";
 
@@ -423,10 +593,22 @@
             while($search = mysqli_fetch_array($result))
             {
               echo "<li>";
-              echo "<h3>$search[nome]</h3>";
+              echo "<h3>$search[id_reagente] $search[nome]</h3>";
               echo "<p>Formula: $search[formula]</p>";
               echo "<p>Quantità: $search[id_quantita]</p>";
               echo "<p>Stato: $search[stato]</p>";
+
+              $pittogrammi = explode (",",$search["pittogramma"]);    // Stampa dei pittogrammi
+
+              echo "<p>Pittogramma/i:";
+              foreach($pittogrammi as $pittogramma)
+              {
+                $immagine = $pittogramma;
+                $immagine .=".svg";
+
+                 echo '<img src="./img/'.$immagine.'" alt="..." height="100" width="100">';
+              }
+              echo "</p>";
               echo "<p>Ditta: $search[ditta]</p>";
               echo "<p>Frase: $search[frase]</p>";
               echo "<p>Data Scadenza: $search[data_scadenza]</p>";
@@ -436,7 +618,7 @@
 
             echo "</ul>";
             echo "</div>";
-          }
+          } 
 
           mysqli_free_result($result);
           mysqli_close($connect);
