@@ -22,7 +22,7 @@
         </div>
 
         <div class="container border rounded border-info" id="PillBox">
-          <h1 class="h3 mb-3 font-weight-normal">Accedi all'inventario</h1>
+          <h1 class="h3 mb-3 font-weight-bolder">Accedi all'inventario</h1>
         </div>
 
         <?php

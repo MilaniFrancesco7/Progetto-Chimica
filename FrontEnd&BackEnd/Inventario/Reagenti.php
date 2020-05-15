@@ -88,7 +88,7 @@
   <div class="row" id="MainPage">
 
 <!-- Stampa di tutti gli oggetti ##-->
-        <div class="col-lg-3" id="SezioneRicerca">
+        <div class="col-md-3" id="SezioneRicerca">
           <div class="dark flex" id="DivStampaTutto">
             <h3>Mostra Reagenti</h3>
             <hr>
@@ -100,7 +100,7 @@
         </div>
 
 <!-- Ricerca di un reagente -->
-        <div class="col-lg-4" id="SezioneRicerca">
+        <div class="col-md-4" id="SezioneRicerca">
           <div class="dark flex">
             <h3>Ricerca Reagente</h3>
             <hr id="SpaziaturaLarga">
@@ -116,7 +116,7 @@
         </div>
 
 <!-- Elimina un reagente -->
-        <div class="col-lg-3" id="SezioneRicerca">
+        <div class="col-md-3" id="SezioneRicerca">
           <div class="dark flex" id="DivStampaTutto">
             <center>
             <h3>Elimina un Reagente</h3>
@@ -156,7 +156,7 @@
                 </div>
               </div>
               <div class="form-row">
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                   <label>Stato</label>
                   <select class="custom-select mr-sm-2" name="stato" id="inlineFormCustomSelect">
                     <option selected>Scegli...</option>
@@ -165,7 +165,7 @@
                     <option value="Aeriforme">Aeriforme</option>
                   </select>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                   <label>Metodologia di conservazione</label>
                   <select class="custom-select mr-sm-2" name="conservazione" id="inlineFormCustomSelect">
                     <option selected>Scegli...</option>
@@ -234,11 +234,11 @@
               </div>
 
               <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                   <label>Frase/i di Rischio</label>
                   <input type="text" class="form-control" name="frase" id="FraseSicurezza" placeholder="Frase Sicurezza">
                 </div>
-              </div>   
+              </div>
 
               <div class="form-row">
                 <div class="form-group col-md-2">
@@ -274,18 +274,18 @@
           </div>
         </div>
 
-<!-- Inserimento di un'esperienza -->         
-      <div class="col-lg-6" id="SezioneInserimento">
+<!-- Inserimento di un'esperienza -->
+      <div class="col-lg-6" id="SezioneRicerca">
         <div class="dark flex">
           <h3>Inserisci un'esperienza</h3>
           <hr id="SpaziaturaLarga">
           <form method="post">
             <div class="form-row">
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-5">
                 <label for="inputNomeReagente">Nome Insegnante</label>
                 <input type="text" name="nome_insegnante" class="form-control" id="NomeInsegnante" placeholder="Nome Insegnante">
               </div>
-              <div class="form-group col-md-2">
+              <div class="form-group col-md-5">
                 <label for="inputNomeReagente">ID Reagente</label>
                 <input type="text" name="id_reagente" class="form-control" id="IDReagente" placeholder="ID Reagente">
               </div>
@@ -325,10 +325,10 @@
         {
           include "db/connection.php";
 
-          $query = "SELECT esperienza.*, reagente.nome 
-                    FROM esperienza INNER JOIN reagente_esperienza 
-                    ON esperienza.id_esperienza = reagente_esperienza.id_esperienza 
-                    INNER JOIN reagente 
+          $query = "SELECT esperienza.*, reagente.nome
+                    FROM esperienza INNER JOIN reagente_esperienza
+                    ON esperienza.id_esperienza = reagente_esperienza.id_esperienza
+                    INNER JOIN reagente
                     ON reagente_esperienza.id_reagente = reagente.id_reagente ";
 
           $result = mysqli_query($connect, $query);
@@ -369,7 +369,7 @@
 
           $query = "INSERT INTO esperienza(nome_insegnante, testo_esperienza)
                     VALUES ('$nome_insegnante', '$testo_esperienza')";
-          
+
           if(mysqli_query($connect,$query))
           {
             $id_esperienza = mysqli_insert_id($connect);
@@ -423,7 +423,7 @@
           if(mysqli_query($connect,$query))
           {
             $id_scheda_sicurezza = mysqli_insert_id($connect);
-          }  
+          }
 
           $tipo_collocazione = $_POST["tipo_collocazione"];       //Inserimento collocazione
           $stanza = $_POST["stanza"];
@@ -468,7 +468,7 @@
           $frase = $_POST["frase"];
           $data_scadenza = $_POST["data_scadenza"];
           $conservazione = $_POST["conservazione"];
-          
+
           echo "$stato";
 
           if(!empty($_POST['pittogramma']))       // Inserimento dei pittogrammi
@@ -484,7 +484,7 @@
             $id_reagente = mysqli_insert_id($connect);
           }
 
-          $query = "INSERT INTO reagente_esperienza(id_reagente, id_esperienza)  
+          $query = "INSERT INTO reagente_esperienza(id_reagente, id_esperienza)
                     VALUES ('$id_reagente', '$id_esperienza')";     //Inserimento Esperienza + Reagente
 
           if (mysqli_query($connect, $query))
@@ -539,10 +539,10 @@
         {
           include "db/connection.php";
 
-          $query = "SELECT reagente.*,quantita.*,collocazione.*,collocazione_scheda_manuale.*, scheda_sicurezza.* 
-                    FROM reagente INNER JOIN quantita 
-                    ON reagente.id_quantita = quantita.id_quantita 
-                    INNER JOIN collocazione 
+          $query = "SELECT reagente.*,quantita.*,collocazione.*,collocazione_scheda_manuale.*, scheda_sicurezza.*
+                    FROM reagente INNER JOIN quantita
+                    ON reagente.id_quantita = quantita.id_quantita
+                    INNER JOIN collocazione
                     ON reagente.id_collocazione = collocazione.id_collocazione
                     INNER JOIN scheda_sicurezza
                     ON reagente.id_scheda_sicurezza = scheda_sicurezza.id_scheda
@@ -580,7 +580,7 @@
               }
               echo "</p>";
               echo "<p>Frase/i di rischio: $search[frase]</p>";
-              echo "<p>Ditta: $search[ditta]</p>";             
+              echo "<p>Ditta: $search[ditta]</p>";
               echo "<p>Collocazione Reagente: $search[tipo_collocazione], Stanza $search[stanza], Armadio $search[armadio], Ripiano $search[ripiano]</p>";
               echo "<p>Collocazione Scheda di Sicurezza: Stanza $search[stanza_scheda], Armadio $search[armadio_scheda], Ripiano $search[ripiano_scheda]";
               echo "<p>Data di Rilascio Scheda di Sicurezza: $search[data_rilascio]";
@@ -615,11 +615,11 @@
 
           $ricerca = $connect -> real_escape_string($ricerca);
 
-          $query = "SELECT reagente.*,quantita.*,collocazione.*,collocazione_scheda_manuale.*, scheda_sicurezza.*  
-                    FROM reagente 
-                    INNER JOIN quantita 
-                    ON reagente.id_quantita = quantita.id_quantita 
-                    INNER JOIN collocazione 
+          $query = "SELECT reagente.*,quantita.*,collocazione.*,collocazione_scheda_manuale.*, scheda_sicurezza.*
+                    FROM reagente
+                    INNER JOIN quantita
+                    ON reagente.id_quantita = quantita.id_quantita
+                    INNER JOIN collocazione
                     ON reagente.id_collocazione = collocazione.id_collocazione
                     INNER JOIN scheda_sicurezza
                     ON reagente.id_scheda_sicurezza = scheda_sicurezza.id_scheda
@@ -679,7 +679,7 @@
           {
             $message = "Elemento non trovato";
             echo "<script>alert('$message');</script>";
-          } 
+          }
         }
       ?>
     </section>

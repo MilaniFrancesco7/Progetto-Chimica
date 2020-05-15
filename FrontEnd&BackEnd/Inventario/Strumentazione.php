@@ -290,7 +290,7 @@
           {
             $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-            $query = "SELECT strumentazione_apparecchiatura.*, quantita.*, collocazione.* 
+            $query = "SELECT strumentazione_apparecchiatura.*, quantita.*, collocazione.*
                       FROM strumentazione_apparecchiatura
                       INNER JOIN quantita
                       ON strumentazione_apparecchiatura.id_quantita = quantita.id_quantita
@@ -346,10 +346,10 @@
 
             $ricerca = $connect -> real_escape_string($ricerca);
 
-            $query =   "SELECT strumentazione_apparecchiatura.*, quantita.* 
+            $query =   "SELECT strumentazione_apparecchiatura.*, quantita.*
                         FROM strumentazione_apparecchiatura
                         INNER JOIN quantita
-                        ON strumentazione_apparecchiatura.id_quantita = quantita.id_quantita 
+                        ON strumentazione_apparecchiatura.id_quantita = quantita.id_quantita
                         WHERE
                         tipo LIKE '".$ricerca."' OR
                         caratteristiche_tecniche LIKE '".$ricerca."'";
