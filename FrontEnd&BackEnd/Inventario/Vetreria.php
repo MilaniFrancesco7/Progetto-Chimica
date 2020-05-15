@@ -116,7 +116,7 @@
         </div>
 
 <!--Ricerca di un elemento di vetreria-->
-        <div class="col-sm-3" id="SezioneRicerca">
+        <div class="col-lg-4" id="SezioneRicerca">
           <div class="dark flex">
             <h3>Ricerca Vetreria</h3>
             <hr id="SpaziaturaLarga">
@@ -148,7 +148,7 @@
             <div class="form-row">
               <div class="form-group col-md-2">
                 <label>Quantita'</label>
-                <input type="text" class="form-control" name="id_quantita" id="QuantiàVetreria" placeholder="Quantità">
+                <input type="text" class="form-control" name="quantita" id="QuantiàVetreria" placeholder="Quantità">
               </div>
             </div>
             <div class="form-row">
@@ -204,8 +204,22 @@
 
           mysqli_close($connect);
 
+          $quantita = $_POST["quantita"];
+          $data_aggiornamento = date("Y-m-d");
+
+          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+          $query = "INSERT INTO quantita (quantita_totale, data_aggiornamento)
+                    VALUES ('$quantita', '$data_aggiornamento')";
+
+          if (mysqli_query($connect, $query))
+          {
+            $id_quantita = mysqli_insert_id($connect);
+          }
+
+          mysqli_close($connect);
+
           $tipo = $_POST["tipo"];
-          $id_quantita = $_POST["id_quantita"];
 
           $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
@@ -263,7 +277,10 @@
           {
             $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-            $query = "SELECT * FROM vetreria_attrezzatura";
+            $query = "SELECT vetreria_attrezzatura.*, quantita.* 
+                      FROM vetreria_attrezzatura
+                      INNER JOIN quantita
+                      ON vetreria_attrezzatura.id_quantita = quantita.id_quantita";
 
             $result = mysqli_query($connect, $query);
 
@@ -278,7 +295,7 @@
               {
                 echo "<li>";
                 echo "<h3>$search[id_attrezzo] $search[tipo]</h3>";
-                echo "<p>Quantità: $search[id_quantita]</p>";
+                echo "<p>Quantità: $search[quantita_totale]  -  Data Aggiornamento: $search[data_aggiornamento]</p>";
                 echo "<p>Collocazione: $search[id_collocazione]</p>";
                 echo "</li>";
               }
@@ -287,6 +304,11 @@
               echo "</div>";
 
             }
+            else
+            {
+              $message = "Non sono presenti elementi";
+              echo "<script>alert('$message');</script>";
+            }
           }
         ?>
 
@@ -294,7 +316,7 @@
         <?php
           if(array_key_exists('ricercavetreria', $_POST))
           {
-          ricerca();
+            ricerca();
           }
           function ricerca()
           {
@@ -306,17 +328,16 @@
 
               $ricerca = $connect -> real_escape_string($ricerca);
 
-              $query =   "SELECT * FROM vetreria_attrezzatura WHERE
-              id_attrezzo LIKE '".$ricerca."' OR
-              tipo LIKE '".$ricerca."' OR
-              id_quantita LIKE '".$ricerca."'  OR
-              id_collocazione LIKE '".$ricerca."' ";
+              $query =   "SELECT vetreria_attrezzatura.*, quantita.* 
+                          FROM vetreria_attrezzatura 
+                          INNER JOIN quantita
+                          ON vetreria_attrezzatura.id_quantita = quantita.id_quantita
+                          WHERE
+                          tipo LIKE '".$ricerca."'";
 
               $result = mysqli_query($connect, $query);
 
-              $count = mysqli_num_rows($result);
-
-              if($count != 0)
+              if(mysqli_num_rows($result))
               {
                   echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
                   echo "<ul id='services'>";
@@ -325,7 +346,7 @@
                   {
                   echo "<li>";
                   echo "<h3>$search[tipo]</h3>";
-                  echo "<p>Quantità: $search[id_quantita]</p>";
+                  echo "<p>Quantità: $search[quantita_totale]  -  Data Aggiornamento: $search[data_aggiornamento]</p>";
                   echo "<p>Collocazione: $search[id_collocazione]</p>";
                   echo "</li>";
                   }
@@ -333,8 +354,11 @@
                   echo "</ul>";
                   echo "</div>";
               }
-
-              mysqli_free_result($result);
+              else
+              {
+                $message = "Elemento non trovato";
+                echo "<script>alert('$message');</script>";
+              }
               mysqli_close($connect);
           }
         ?>

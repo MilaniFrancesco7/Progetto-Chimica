@@ -7,6 +7,8 @@
     header("location: SignIn.php");
   }
 
+  include "connection.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -163,6 +165,17 @@
                     <option value="Aeriforme">Aeriforme</option>
                   </select>
                 </div>
+                <div class="form-group col-md-3">
+                  <label>Metodologia di conservazione</label>
+                  <select class="custom-select mr-sm-2" name="conservazione" id="inlineFormCustomSelect">
+                    <option selected>Scegli...</option>
+                    <option value="Temperatura Ambiente">Temperatura Ambiente</option>
+                    <option value="Temperatura Refrigerata">Temperatura Refrigerata</option>
+                    <option value="In Congelatore">In Congelatore</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
                 <div class="form-group col-md-2">
                   <label>Quantita' Presente</label>
                   <input type="text" name="quantita_presente" class="form-control" id="QuantitaPresente" placeholder="Quantità Presente">
@@ -221,13 +234,28 @@
               </div>
 
               <div class="form-row">
-                <div class="form-group col-md-2">
-                  <label>Scheda Sicurezza</label>
-                  <input type="file" id="SchedaSicurezza" name="id_scheda_sicurezza" placeholder="Scheda Sicurezza">
-                </div>
                 <div class="form-group col-md-6">
-                  <label>Frase Sicurezza</label>
+                  <label>Frase/i di Rischio</label>
                   <input type="text" class="form-control" name="frase" id="FraseSicurezza" placeholder="Frase Sicurezza">
+                </div>
+              </div>   
+
+              <div class="form-row">
+                <div class="form-group col-md-2">
+                  <label>Stanza Scheda di Sicurezza</label>
+                  <input type="text" id="StanzaScheda" class="form-control" name="stanza_scheda" placeholder="Stanza">
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Armadio Scheda di Sicurezza</label>
+                  <input type="text" id="ArmadioScheda" class="form-control" name="armadio_scheda" placeholder="Armadio">
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Ripiano Scheda di Sicurezza</label>
+                  <input type="text" id="RipianoScheda" class="form-control" name="ripiano_scheda" placeholder="Ripiano">
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Data Rilascio Scheda di Sicurezza</label>
+                  <input type="date" name="data_rilascio" class="form-control" id="DataRilascio" placeholder="Data Rilascio">
                 </div>
               </div>
 
@@ -295,7 +323,7 @@
         }
         function showallexperiences()
         {
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+          include "db/connection.php";
 
           $query = "SELECT esperienza.*, reagente.nome 
                     FROM esperienza INNER JOIN reagente_esperienza 
@@ -333,11 +361,11 @@
         }
         function inserisciesperienza()
         {
+          include "db/connection.php";
+
           $id_reagente = $_POST["id_reagente"];
           $nome_insegnante = $_POST["nome_insegnante"];
           $testo_esperienza = $_POST["testo_esperienza"];
-
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
           $query = "INSERT INTO esperienza(nome_insegnante, testo_esperienza)
                     VALUES ('$nome_insegnante', '$testo_esperienza')";
@@ -363,20 +391,44 @@
         }
       ?>
 
+
 <!-- Funzione per l'inserimento di un reagente -->
       <?php
+
         if(array_key_exists('inserisci', $_POST))
         {
           inserisci();
         }
         function inserisci()
         {
+          include "db/connection.php";
+
+          $stanza_scheda = $_POST["stanza_scheda"];         //Inserimento collocazione della scheda di sicurezza
+          $armadio_scheda = $_POST["armadio_scheda"];
+          $ripiano_scheda = $_POST["ripiano_scheda"];
+
+          $query = "INSERT INTO collocazione_scheda_manuale(armadio_scheda, stanza_scheda, ripiano_scheda)
+                    VALUES ('$armadio_scheda', '$stanza_scheda', '$ripiano_scheda')";
+
+          if(mysqli_query($connect,$query))
+          {
+            $id_collocazione_scheda = mysqli_insert_id($connect);
+          }
+
+          $data_rilascio = $_POST["data_rilascio"];       //Inserimento scheda di sicurezza
+
+          $query = "INSERT INTO scheda_sicurezza(data_rilascio, id_collocazione_scheda)
+                    VALUES ('$data_rilascio','$id_collocazione_scheda')";
+
+          if(mysqli_query($connect,$query))
+          {
+            $id_scheda_sicurezza = mysqli_insert_id($connect);
+          }  
+
           $tipo_collocazione = $_POST["tipo_collocazione"];       //Inserimento collocazione
           $stanza = $_POST["stanza"];
           $armadio = $_POST["armadio"];
           $ripiano = $_POST["ripiano"];
-
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
           $query = "INSERT INTO collocazione(tipo_collocazione, armadio, stanza, ripiano)
                     VALUES ('$tipo_collocazione', '$stanza', '$armadio', '$ripiano')";
@@ -386,12 +438,8 @@
             $id_collocazione = mysqli_insert_id($connect);
           }
 
-          mysqli_close($connect);
-
           $nome_insegnante = $_POST["nome_insegnante"];        //Inserimento esperienza
           $testo_esperienza = $_POST["testo_esperienza"];
-
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
           $query = "INSERT INTO esperienza(nome_insegnante, testo_esperienza)
                     VALUES ('$nome_insegnante', '$testo_esperienza')";
@@ -401,13 +449,9 @@
             $id_esperienza = mysqli_insert_id($connect);
           }
 
-          mysqli_close($connect);
-
           $quantita_presente = $_POST["quantita_presente"];   //Inserimento quantità
           $quantita_totale = $_POST["quantita_totale"];
           $data_aggiornamento = date("Y-m-d");
-
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
           $query = "INSERT INTO quantita(quantita_presente, quantita_totale, data_aggiornamento)
                     VALUES ('$quantita_presente', '$quantita_totale', '$data_aggiornamento')";
@@ -417,15 +461,13 @@
             $id_quantita = mysqli_insert_id($connect);
           }
 
-          mysqli_close($connect);
-
           $nome = $_POST["nome"];             //Inserimento reagente
           $formula = $_POST["formula"];
           $stato = $_POST["stato"];
           $ditta = $_POST["ditta"];
           $frase = $_POST["frase"];
-          $id_scheda_sicurezza = "3";
           $data_scadenza = $_POST["data_scadenza"];
+          $conservazione = $_POST["conservazione"];
           
           echo "$stato";
 
@@ -434,22 +476,16 @@
             $pittogramma = implode(",",$_POST['pittogramma']);
           }
 
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
-
-          $query = "INSERT INTO reagente (nome, formula, stato, ditta, pittogramma, frase, id_scheda_sicurezza, id_quantita, data_scadenza, id_collocazione)
-                    VALUES ('$nome', '$formula', '$stato', '$ditta', '$pittogramma', '$frase', '$id_scheda_sicurezza', '$id_quantita', '$data_scadenza', '$id_collocazione')";
+          $query = "INSERT INTO reagente (nome, formula, stato, ditta, pittogramma, frase, id_scheda_sicurezza, id_quantita, data_scadenza, id_collocazione, conservazione)
+                    VALUES ('$nome', '$formula', '$stato', '$ditta', '$pittogramma', '$frase', '$id_scheda_sicurezza', '$id_quantita', '$data_scadenza', '$id_collocazione', '$conservazione')";
 
           if (mysqli_query($connect, $query))
           {
             $id_reagente = mysqli_insert_id($connect);
           }
 
-          mysqli_close($connect);
-
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");     //Inserimento Esperienza + Reagente
-
-          $query = "INSERT INTO reagente_esperienza(id_reagente, id_esperienza)
-                    VALUES ('$id_reagente', '$id_esperienza')";
+          $query = "INSERT INTO reagente_esperienza(id_reagente, id_esperienza)  
+                    VALUES ('$id_reagente', '$id_esperienza')";     //Inserimento Esperienza + Reagente
 
           if (mysqli_query($connect, $query))
           {
@@ -461,11 +497,8 @@
             $message = "Elemento non inserito";
             echo "<script>alert('$message');</script>";
           }
-
-          mysqli_close($connect);
-
         }
-      ?>
+     ?>
 
 <!-- Funzione per l'eliminazione di un oggetto -->
       <?php
@@ -475,9 +508,9 @@
         }
         function delete()
         {
-          $id_reagente = $_POST["id_reagente"];
+          include "db/connection.php";
 
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+          $id_reagente = $_POST["id_reagente"];
 
           $query1 = "DELETE esperienza.* FROM esperienza INNER JOIN reagente_esperienza ON esperienza.id_esperienza = reagente_esperienza.id_esperienza WHERE id_reagente = $id_reagente";
 
@@ -493,7 +526,6 @@
             $message = "Elemento non eliminato";
             echo "<script>alert('$message');</script>";
           }
-          mysqli_close($connect);
         }
       ?>
 
@@ -505,13 +537,102 @@
         }
         function showall()
         {
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+          include "db/connection.php";
 
-          $query = "SELECT reagente.*,quantita.*,collocazione.* 
+          $query = "SELECT reagente.*,quantita.*,collocazione.*,collocazione_scheda_manuale.*, scheda_sicurezza.* 
                     FROM reagente INNER JOIN quantita 
                     ON reagente.id_quantita = quantita.id_quantita 
                     INNER JOIN collocazione 
-                    ON reagente.id_collocazione = collocazione.id_collocazione ";
+                    ON reagente.id_collocazione = collocazione.id_collocazione
+                    INNER JOIN scheda_sicurezza
+                    ON reagente.id_scheda_sicurezza = scheda_sicurezza.id_scheda
+                    INNER JOIN collocazione_scheda_manuale
+                    ON scheda_sicurezza.id_collocazione_scheda = collocazione_scheda_manuale.id_collocazione_scheda";
+
+          $result = mysqli_query($connect, $query);
+
+          $count = mysqli_num_rows($result);
+
+          if($count != 0)
+          {
+            echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
+            echo "<ul id='services'>";
+
+            while($search = mysqli_fetch_array($result))
+            {
+              echo "<li>";
+              echo "<h3>$search[id_reagente] $search[nome]</h3>";
+              echo "<p>Formula: $search[formula]</p>";
+              echo "<p>Quantità: $search[quantita_presente]  /  $search[quantita_totale]  - Data Aggiornamento: $search[data_aggiornamento]</p>";
+              echo "<p>Data Scadenza: $search[data_scadenza]</p>";
+              echo "<p>Stato: $search[stato]</p>";
+              echo "<p>Conservazione: $search[conservazione]</p>";
+
+              $pittogrammi = explode (",",$search["pittogramma"]);    // Stampa dei pittogrammi
+
+              echo "<p>Pittogramma/i:";
+              foreach($pittogrammi as $pittogramma)
+              {
+                $immagine = $pittogramma;
+                $immagine .=".svg";
+
+                 echo '<img src="./img/'.$immagine.'" alt="..." height="100" width="100">';
+              }
+              echo "</p>";
+              echo "<p>Frase/i di rischio: $search[frase]</p>";
+              echo "<p>Ditta: $search[ditta]</p>";             
+              echo "<p>Collocazione Reagente: $search[tipo_collocazione], Stanza $search[stanza], Armadio $search[armadio], Ripiano $search[ripiano]</p>";
+              echo "<p>Collocazione Scheda di Sicurezza: Stanza $search[stanza_scheda], Armadio $search[armadio_scheda], Ripiano $search[ripiano_scheda]";
+              echo "<p>Data di Rilascio Scheda di Sicurezza: $search[data_rilascio]";
+              echo "</li>";
+            }
+
+            echo "</ul>";
+            echo "</div>";
+
+          }
+          else
+          {
+            $message = "Non sono presenti reagenti";
+            echo "<script>alert('$message');</script>";
+          }
+        }
+      ?>
+
+<!-- Funzione per la ricerca -->
+      <?php
+        if(array_key_exists('ricercareagente', $_POST))
+        {
+          ricerca();
+        }
+        function ricerca()
+        {
+          include "db/connection.php";
+
+          $ricerca = $_POST['ricerca'];
+
+          $ricerca .="%";
+
+          $ricerca = $connect -> real_escape_string($ricerca);
+
+          $query = "SELECT reagente.*,quantita.*,collocazione.*,collocazione_scheda_manuale.*, scheda_sicurezza.*  
+                    FROM reagente 
+                    INNER JOIN quantita 
+                    ON reagente.id_quantita = quantita.id_quantita 
+                    INNER JOIN collocazione 
+                    ON reagente.id_collocazione = collocazione.id_collocazione
+                    INNER JOIN scheda_sicurezza
+                    ON reagente.id_scheda_sicurezza = scheda_sicurezza.id_scheda
+                    INNER JOIN collocazione_scheda_manuale
+                    ON scheda_sicurezza.id_collocazione_scheda = collocazione_scheda_manuale.id_collocazione_scheda
+                    WHERE
+                    nome LIKE '".$ricerca."' OR
+                    formula LIKE '".$ricerca."' OR
+                    stato LIKE '".$ricerca."'  OR
+                    conservazione LIKE '".$ricerca."' OR
+                    pittogramma LIKE '".$ricerca."' OR
+                    ditta LIKE '".$ricerca."'  OR
+                    frase LIKE '".$ricerca."'";
 
           $result = mysqli_query($connect, $query);
 
@@ -529,6 +650,8 @@
               echo "<p>Formula: $search[formula]</p>";
               echo "<p>Quantità: $search[quantita_presente]  /  $search[quantita_totale]</p>";
               echo "<p>Stato: $search[stato]</p>";
+              echo "<p>Data Scadenza: $search[data_scadenza]</p>";
+              echo "<p>Conservazione: $search[conservazione]</p>";
 
               $pittogrammi = explode (",",$search["pittogramma"]);    // Stampa dei pittogrammi
 
@@ -541,87 +664,22 @@
                  echo '<img src="./img/'.$immagine.'" alt="..." height="100" width="100">';
               }
               echo "</p>";
+              echo "<p>Frase/i di rischio: $search[frase]</p>";
               echo "<p>Ditta: $search[ditta]</p>";
-              echo "<p>Frase: $search[frase]</p>";
-              echo "<p>Data Scadenza: $search[data_scadenza]</p>";
-              echo "<p>Collocazione: $search[tipo_collocazione], Stanza $search[stanza], Armadio $search[armadio], Ripiano $search[ripiano]</p>";
+              echo "<p>Collocazione Reagente: $search[tipo_collocazione], Stanza $search[stanza], Armadio $search[armadio], Ripiano $search[ripiano]</p>";
+              echo "<p>Collocazione Scheda di Sicurezza: Stanza $search[stanza_scheda], Armadio $search[armadio_scheda], Ripiano $search[ripiano_scheda]";
+              echo "<p>Data di Rilascio Scheda di Sicurezza: $search[data_rilascio]";
               echo "</li>";
             }
 
             echo "</ul>";
             echo "</div>";
-
           }
-          mysqli_free_result($result);
-          mysqli_close($connect);
-        }
-      ?>
-
-<!-- Funzione per la ricerca -->
-      <?php
-        if(array_key_exists('ricercareagente', $_POST))
-        {
-          ricerca();
-        }
-        function ricerca()
-        {
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
-
-          $ricerca = $_POST['ricerca'];
-
-          $ricerca .="%";
-
-          $ricerca = $connect -> real_escape_string($ricerca);
-
-          $query =  "SELECT * FROM reagente WHERE
-                      nome LIKE '".$ricerca."' OR
-                      formula LIKE '".$ricerca."' OR
-                      stato LIKE '".$ricerca."'  OR
-                      pittogramma LIKE '".$ricerca."' OR
-                      ditta LIKE '".$ricerca."'  OR
-                      frase LIKE '".$ricerca."' ";
-
-          $result = mysqli_query($connect, $query);
-
-          $count = mysqli_num_rows($result);
-
-          if($count != 0)
+          else
           {
-            echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
-            echo "<ul id='services'>";
-
-            while($search = mysqli_fetch_array($result))
-            {
-              echo "<li>";
-              echo "<h3>$search[id_reagente] $search[nome]</h3>";
-              echo "<p>Formula: $search[formula]</p>";
-              echo "<p>Quantità: $search[id_quantita]</p>";
-              echo "<p>Stato: $search[stato]</p>";
-
-              $pittogrammi = explode (",",$search["pittogramma"]);    // Stampa dei pittogrammi
-
-              echo "<p>Pittogramma/i:";
-              foreach($pittogrammi as $pittogramma)
-              {
-                $immagine = $pittogramma;
-                $immagine .=".svg";
-
-                 echo '<img src="./img/'.$immagine.'" alt="..." height="100" width="100">';
-              }
-              echo "</p>";
-              echo "<p>Ditta: $search[ditta]</p>";
-              echo "<p>Frase: $search[frase]</p>";
-              echo "<p>Data Scadenza: $search[data_scadenza]</p>";
-              echo "<p>Collocazione: $search[id_collocazione]</p>";
-              echo "</li>";
-            }
-
-            echo "</ul>";
-            echo "</div>";
+            $message = "Elemento non trovato";
+            echo "<script>alert('$message');</script>";
           } 
-
-          mysqli_free_result($result);
-          mysqli_close($connect);
         }
       ?>
     </section>

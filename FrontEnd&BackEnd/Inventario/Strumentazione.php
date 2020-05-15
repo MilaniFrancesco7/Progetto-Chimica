@@ -96,10 +96,10 @@
       </div>
     </div>
 
-    <!-- Elimina un reagente -->
+    <!-- Elimina uno strumento -->
     <div class="col-lg-3" id="SezioneRicerca">
           <div class="dark flex" id="DivStampaTutto">
-            <h3>Elimina un Reagente</h3>
+            <h3>Elimina uno Strumento</h3>
             <img src="./img/NoStrumentazione.png" alt="" id="LogoStrumentazione">
             <form method="post">
               <div class="form-row" id="EliminaElemento">
@@ -155,9 +155,9 @@
               <label>Numero Inventario</label>
               <input type="text" class="form-control" name="numero_inventario" id="NumeroInventario" placeholder="Numero Inventario">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-2">
               <label>Quantita'</label>
-              <input type="text" class="form-control" name="id_quantita" id="QuantitaStrumentazione" placeholder="Quantità">
+              <input type="text" class="form-control" name="quantita" id="QuantitaStrumentazione" placeholder="Quantità">
             </div>
             <div class="form-group col-md-2">
               <label>Manuale</label>
@@ -169,8 +169,8 @@
               <label>Tipo di collocazione</label>
               <select class="custom-select mr-sm-2" name="tipo_collocazione" id="inlineFormCustomSelect">
                 <option selected>Scegli...</option>
-                <option value="Solido">Consumo</option>
-                <option value="Liquido">Magazzino</option>
+                <option value="Consumo">Consumo</option>
+                <option value="Magazzino">Magazzino</option>
               </select>
              </div>
             <div class="form-group col-md-2">
@@ -180,10 +180,6 @@
             <div class="form-group col-md-2">
               <label>Armadio</label>
               <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Armadio">
-            </div>
-            <div class="form-group col-md-2">
-              <label>Ripiano</label>
-              <input type="text" name="ripiano" class="form-control" id="Ripiano" placeholder="Ripiano">
             </div>
           </div>
           <input type="submit" name="inserisci" class="btn btn-primary" value="Aggiungi Strumentazione">
@@ -204,12 +200,11 @@
               $tipo_collocazione = $_POST["tipo_collocazione"];
               $stanza = $_POST["stanza"];
               $armadio = $_POST["armadio"];
-              $ripiano = $_POST["ripiano"];
 
               $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-              $query = "INSERT INTO collocazione(tipo_collocazione, armadio, stanza, ripiano)
-                        VALUES ('$tipo_collocazione', '$stanza', '$armadio', '$ripiano')";
+              $query = "INSERT INTO collocazione(tipo_collocazione, armadio, stanza)
+                        VALUES ('$tipo_collocazione', '$stanza', '$armadio')";
 
               if(mysqli_query($connect,$query))
               {
@@ -218,12 +213,25 @@
 
               mysqli_close($connect);
 
+              $quantita = $_POST["quantita"];
+              $data_aggiornamento = date("Y-m-d");
+
+              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+
+              $query = "INSERT INTO quantita (quantita_totale, data_aggiornamento)
+                        VALUES ('$quantita', '$data_aggiornamento')";
+
+              if (mysqli_query($connect, $query))
+              {
+                $id_quantita = mysqli_insert_id($connect);
+              }
+
+              mysqli_close($connect);
+
               $tipo = $_POST["tipo"];
               $caratteristiche_tecniche = $_POST["caratteristiche_tecniche"];
               $numero_inventario = $_POST["numero_inventario"];
-              $id_quantita = $_POST["id_quantita"];
               $id_manuale = "1";
-
 
               $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
@@ -282,13 +290,16 @@
           {
             $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
-            $query = "SELECT * FROM strumentazione_apparecchiatura";
+            $query = "SELECT strumentazione_apparecchiatura.*, quantita.*, collocazione.* 
+                      FROM strumentazione_apparecchiatura
+                      INNER JOIN quantita
+                      ON strumentazione_apparecchiatura.id_quantita = quantita.id_quantita
+                      INNER JOIN collocazione
+                      ON strumentazione_apparecchiatura.id_collocazione = collocazione.id_collocazione";
 
             $result = mysqli_query($connect, $query);
 
-            $count = mysqli_num_rows($result);
-
-            if($count != 0)
+            if($count = mysqli_num_rows($result))
             {
               echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
               echo "<ul id='services'>";
@@ -299,15 +310,20 @@
                 echo "<h3>$search[id_strumento] $search[tipo]</h3>";
                 echo "<p>Caratteristiche tecniche: $search[caratteristiche_tecniche]</p>";
                 echo "<p>Numero inventario: $search[numero_inventario]</p>";
-                echo "<p>Quantità: $search[id_quantita]</p>";
+                echo "<p>Quantità: $search[quantita_totale]  -  Data Aggiornamento: $search[data_aggiornamento] </p>";
                 echo "<p>Manuale: $search[id_manuale]</p>";
-                echo "<p>Collocazione: $search[id_collocazione]</p>";
+                echo "<p>Collocazione: Stanza $search[stanza], Armadio $search[armadio]</p>";
                 echo "</li>";
               }
 
               echo "</ul>";
               echo "</div>";
 
+            }
+            else
+            {
+              $message = "Non sono presenti strumenti";
+              echo "<script>alert('$message');</script>";
             }
             mysqli_free_result($result);
             mysqli_close($connect);
@@ -330,14 +346,13 @@
 
             $ricerca = $connect -> real_escape_string($ricerca);
 
-            $query =   "SELECT * FROM strumentazione_apparecchiatura WHERE
-            id_strumento LIKE '".$ricerca."' OR
-            tipo LIKE '".$ricerca."' OR
-            caratteristiche_tecniche LIKE '".$ricerca."'  OR
-            numero_inventario LIKE '".$ricerca."' OR
-            id_quantita LIKE '".$ricerca."'  OR
-            id_manuale LIKE '".$ricerca."'  OR
-            id_collocazione LIKE '".$ricerca."' ";
+            $query =   "SELECT strumentazione_apparecchiatura.*, quantita.* 
+                        FROM strumentazione_apparecchiatura
+                        INNER JOIN quantita
+                        ON strumentazione_apparecchiatura.id_quantita = quantita.id_quantita 
+                        WHERE
+                        tipo LIKE '".$ricerca."' OR
+                        caratteristiche_tecniche LIKE '".$ricerca."'";
 
             $result = mysqli_query($connect, $query);
 
@@ -354,7 +369,7 @@
                 echo "<h3>$search[tipo]</h3>";
                 echo "<p>Caratteristiche tecniche: $search[caratteristiche_tecniche]</p>";
                 echo "<p>Numero inventario: $search[numero_inventario]</p>";
-                echo "<p>Quantità: $search[id_quantita]</p>";
+                echo "<p>Quantità: $search[quantita_totale]  -  Data Aggiornamento: $search[data_aggiornamento] </p>";
                 echo "<p>Manuale: $search[id_manuale]</p>";
                 echo "<p>Collocazione: $search[id_collocazione]</p>";
                 echo "</li>";
@@ -362,6 +377,11 @@
 
               echo "</ul>";
               echo "</div>";
+            }
+            else
+            {
+              $message = "Strumento non trovato";
+              echo "<script>alert('$message');</script>";
             }
             mysqli_free_result($result);
             mysqli_close($connect);
