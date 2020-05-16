@@ -2,10 +2,10 @@
 
 	session_start();
 
+	include "../FrontEnd&BackEnd/Inventario/db/connection.php";
+
     $email = $_POST["email"];
     $password = $_POST["password"];
-
-    $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
     $query = "SELECT * FROM utente WHERE email = '$email' AND password = '$password'";
 

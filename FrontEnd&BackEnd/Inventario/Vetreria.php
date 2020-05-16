@@ -54,6 +54,11 @@
             <li class="nav-item">
               <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
             </li>
+
+            <!-- Link Creazione Utente-->
+            <li class="nav-item">
+              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
+            </li>
           </ul>
 
           <!-- Link Per l'accesso-->
@@ -187,12 +192,12 @@
         }
         function inserisci()
         {
+          include "db/connection.php";
+
           $tipo_collocazione = $_POST["tipo_collocazione"];
           $stanza = $_POST["stanza"];
           $armadio = $_POST["armadio"];
           $ripiano = $_POST["ripiano"];
-
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
           $query = "INSERT INTO collocazione(tipo_collocazione, armadio, stanza, ripiano)
                     VALUES ('$tipo_collocazione', '$stanza', '$armadio', '$ripiano')";
@@ -202,12 +207,8 @@
             $id_collocazione = mysqli_insert_id($connect);
           }
 
-          mysqli_close($connect);
-
           $quantita = $_POST["quantita"];
           $data_aggiornamento = date("Y-m-d");
-
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
           $query = "INSERT INTO quantita (quantita_totale, data_aggiornamento)
                     VALUES ('$quantita', '$data_aggiornamento')";
@@ -217,11 +218,7 @@
             $id_quantita = mysqli_insert_id($connect);
           }
 
-          mysqli_close($connect);
-
           $tipo = $_POST["tipo"];
-
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
           $query = "INSERT INTO vetreria_attrezzatura (tipo, id_quantita, id_collocazione)
                     VALUES ('$tipo', '$id_quantita', '$id_collocazione')";
@@ -247,9 +244,9 @@
         }
         function delete()
         {
-          $id_attrezzo = $_POST["id_attrezzo"];
+          include "db/connection.php";
 
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+          $id_attrezzo = $_POST["id_attrezzo"];
 
           $query = "DELETE FROM vetreria_attrezzatura WHERE vetreria_attrezzatura.id_attrezzo = $id_attrezzo";
 
@@ -263,7 +260,6 @@
             $message = "Elemento non eliminato";
             echo "<script>alert('$message');</script>";
           }
-          mysqli_close($connect);
         }
       ?>
 
@@ -275,7 +271,7 @@
           }
           function showall()
           {
-            $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+            include "db/connection.php";
 
             $query = "SELECT vetreria_attrezzatura.*, quantita.* 
                       FROM vetreria_attrezzatura
@@ -320,46 +316,45 @@
           }
           function ricerca()
           {
-              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+            include "db/connection.php";
 
-              $ricerca = $_POST['ricerca'];
+            $ricerca = $_POST['ricerca'];
 
-              $ricerca .="%";
+            $ricerca .="%";
 
-              $ricerca = $connect -> real_escape_string($ricerca);
+            $ricerca = $connect -> real_escape_string($ricerca);
 
-              $query =   "SELECT vetreria_attrezzatura.*, quantita.* 
-                          FROM vetreria_attrezzatura 
-                          INNER JOIN quantita
-                          ON vetreria_attrezzatura.id_quantita = quantita.id_quantita
-                          WHERE
-                          tipo LIKE '".$ricerca."'";
+            $query =   "SELECT vetreria_attrezzatura.*, quantita.* 
+                        FROM vetreria_attrezzatura 
+                        INNER JOIN quantita
+                        ON vetreria_attrezzatura.id_quantita = quantita.id_quantita
+                        WHERE
+                        tipo LIKE '".$ricerca."'";
 
-              $result = mysqli_query($connect, $query);
+            $result = mysqli_query($connect, $query);
 
-              if(mysqli_num_rows($result))
-              {
-                  echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
-                  echo "<ul id='services'>";
+            if(mysqli_num_rows($result))
+            {
+                echo "<div class='col-sm-6' id='AttrezzaturaMain'>";
+                echo "<ul id='services'>";
 
-                  while($search = mysqli_fetch_array($result))
-                  {
-                  echo "<li>";
-                  echo "<h3>$search[tipo]</h3>";
-                  echo "<p>Quantità: $search[quantita_totale]  -  Data Aggiornamento: $search[data_aggiornamento]</p>";
-                  echo "<p>Collocazione: $search[id_collocazione]</p>";
-                  echo "</li>";
-                  }
+                while($search = mysqli_fetch_array($result))
+                {
+                echo "<li>";
+                echo "<h3>$search[tipo]</h3>";
+                echo "<p>Quantità: $search[quantita_totale]  -  Data Aggiornamento: $search[data_aggiornamento]</p>";
+                echo "<p>Collocazione: $search[id_collocazione]</p>";
+                echo "</li>";
+                }
 
-                  echo "</ul>";
-                  echo "</div>";
-              }
-              else
-              {
-                $message = "Elemento non trovato";
-                echo "<script>alert('$message');</script>";
-              }
-              mysqli_close($connect);
+                echo "</ul>";
+                echo "</div>";
+            }
+            else
+            {
+              $message = "Elemento non trovato";
+              echo "<script>alert('$message');</script>";
+            }
           }
         ?>
       </section>

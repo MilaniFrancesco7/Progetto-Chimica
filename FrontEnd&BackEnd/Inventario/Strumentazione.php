@@ -54,6 +54,11 @@
             <li class="nav-item">
               <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
             </li>
+
+            <!-- Link Creazione Utente-->
+            <li class="nav-item">
+              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
+            </li>
           </ul>
 
           <!-- Link Per l'accesso-->
@@ -160,8 +165,12 @@
               <input type="text" class="form-control" name="quantita" id="QuantitaStrumentazione" placeholder="Quantità">
             </div>
             <div class="form-group col-md-2">
-              <label>Manuale</label>
-              <input type="file" id="pdfManuale" placeholder="pdfManuale">
+              <label>Stanza Manuale</label>
+              <input type="text" name="stanzamanuale" class="form-control" id="Stanza" placeholder="Stanza">
+            </div>
+            <div class="form-group col-md-2">
+              <label>Armadio Manuale</label>
+              <input type="text" name="armadiomanuale" class="form-control" id="Armadio" placeholder="Armadio">
             </div>
           </div>
           <div class="form-row">
@@ -197,11 +206,11 @@
             }
             function inserisci()
             {
-              $tipo_collocazione = $_POST["tipo_collocazione"];
+              include "db/connection.php";
+
+              $tipo_collocazione = $_POST["tipo_collocazione"]; 
               $stanza = $_POST["stanza"];
               $armadio = $_POST["armadio"];
-
-              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
               $query = "INSERT INTO collocazione(tipo_collocazione, armadio, stanza)
                         VALUES ('$tipo_collocazione', '$stanza', '$armadio')";
@@ -211,12 +220,27 @@
                 $id_collocazione = mysqli_insert_id($connect);
               }
 
-              mysqli_close($connect);
+              $stanzamanuale = $_POST["stanzamanuale"];     
+              $armadiomanuale = $_POST["armadiomanuale"];
+
+              $query = "INSERT INTO collocazione_scheda_manuale(armadio_scheda, stanza_scheda)
+                        VALUES ('$stanzamanuale', '$armadiomanuale')";
+
+              if(mysqli_query($connect,$query))
+              {
+                $id_collocazione_manuale = mysqli_insert_id($connect);
+              }
+
+              $query = "INSERT INTO manuale(id_collocazione_manuale)
+                        VALUES ('$id_collocazione_manuale')";
+
+              if(mysqli_query($connect,$query))
+              {
+                $id_manuale = mysqli_insert_id($connect);
+              }
 
               $quantita = $_POST["quantita"];
               $data_aggiornamento = date("Y-m-d");
-
-              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
               $query = "INSERT INTO quantita (quantita_totale, data_aggiornamento)
                         VALUES ('$quantita', '$data_aggiornamento')";
@@ -226,14 +250,9 @@
                 $id_quantita = mysqli_insert_id($connect);
               }
 
-              mysqli_close($connect);
-
               $tipo = $_POST["tipo"];
               $caratteristiche_tecniche = $_POST["caratteristiche_tecniche"];
               $numero_inventario = $_POST["numero_inventario"];
-              $id_manuale = "1";
-
-              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
               $query = "INSERT INTO strumentazione_apparecchiatura (tipo, caratteristiche_tecniche, numero_inventario, id_quantita, id_manuale, id_collocazione)
                         VALUES ('$tipo', '$caratteristiche_tecniche', '$numero_inventario', '$id_quantita', '$id_manuale', '$id_collocazione')";
@@ -248,7 +267,6 @@
                 $message = "Elemento non inserito";
                 echo "<script>alert('$message');</script>";
               }
-              mysqli_close($connect);
             }
         ?>
 
@@ -260,9 +278,9 @@
         }
         function delete()
         {
-          $id_strumento = $_POST["id_strumento"];
+          include "db/connection.php";
 
-          $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+          $id_strumento = $_POST["id_strumento"];
 
           $query = "DELETE FROM strumentazione_apparecchiatura WHERE strumentazione_apparecchiatura.id_strumento = $id_strumento";
 
@@ -276,7 +294,6 @@
             $message = "Elemento non eliminato";
             echo "<script>alert('$message');</script>";
           }
-          mysqli_close($connect);
         }
       ?>
 
@@ -288,14 +305,18 @@
           }
           function showall()
           {
-            $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+            include "db/connection.php";
 
-            $query = "SELECT strumentazione_apparecchiatura.*, quantita.*, collocazione.*
+            $query = "SELECT strumentazione_apparecchiatura.*, quantita.*, collocazione.*, manuale.*, collocazione_scheda_manuale.*
                       FROM strumentazione_apparecchiatura
                       INNER JOIN quantita
                       ON strumentazione_apparecchiatura.id_quantita = quantita.id_quantita
                       INNER JOIN collocazione
-                      ON strumentazione_apparecchiatura.id_collocazione = collocazione.id_collocazione";
+                      ON strumentazione_apparecchiatura.id_collocazione = collocazione.id_collocazione
+                      INNER JOIN manuale
+                      ON strumentazione_apparecchiatura.id_manuale = manuale.id_manuale
+                      INNER JOIN collocazione_scheda_manuale
+                      ON manuale.id_collocazione_manuale = collocazione_scheda_manuale.id_collocazione_scheda";
 
             $result = mysqli_query($connect, $query);
 
@@ -311,7 +332,7 @@
                 echo "<p>Caratteristiche tecniche: $search[caratteristiche_tecniche]</p>";
                 echo "<p>Numero inventario: $search[numero_inventario]</p>";
                 echo "<p>Quantità: $search[quantita_totale]  -  Data Aggiornamento: $search[data_aggiornamento] </p>";
-                echo "<p>Manuale: $search[id_manuale]</p>";
+                echo "<p>Collocazione Manuale: Stanza $search[stanza_scheda], Armadio $search[armadio_scheda]</p>";
                 echo "<p>Collocazione: Stanza $search[stanza], Armadio $search[armadio]</p>";
                 echo "</li>";
               }
@@ -325,8 +346,6 @@
               $message = "Non sono presenti strumenti";
               echo "<script>alert('$message');</script>";
             }
-            mysqli_free_result($result);
-            mysqli_close($connect);
           }
         ?>
 
@@ -338,7 +357,7 @@
           }
           function ricerca()
           {
-            $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+            include "db/connection.php";
 
             $ricerca = $_POST['ricerca'];
 
@@ -383,8 +402,6 @@
               $message = "Strumento non trovato";
               echo "<script>alert('$message');</script>";
             }
-            mysqli_free_result($result);
-            mysqli_close($connect);
           }
         ?>
       </section>

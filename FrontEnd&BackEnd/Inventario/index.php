@@ -48,6 +48,11 @@
             <li class="nav-item">
               <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
             </li>
+
+            <!-- Link Creazione Utente-->
+            <li class="nav-item">
+              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
+            </li>
           </ul>
 
           <hr>
@@ -82,7 +87,7 @@
     <section id="showcase">
       <div class="container">
         <h1>Gestione Dell'Inventario</h1>
-        <p>Benvenuto nel Programma Invenrio, qui potrai gestire e tenere d'occhio ogni tipo di risporsa disponibile nei nostri laboratori di chimica e biologia, inoltre potrai tenere d'occhio le manutenzione e riparazioni di tutti questi oggetti</P>
+        <p>Benvenuto nel Programma Inventario, qui potrai gestire e tenere d'occhio ogni tipo di risporsa disponibile nei nostri laboratori di chimica e biologia, inoltre potrai tenere d'occhio le manutenzione e riparazioni di tutti questi oggetti</P>
       </div>
     </section>
 
@@ -94,19 +99,19 @@
           <div class="col-md-4 ">
             <img src="./img/Reagenti.png" alt="Reagenti" id="ImgReagenti">
             <a href="Reagenti.php"><h3>REAGENTI</h3></a>
-            <p>Sezione dove si potranno vedere tutti i reagenti presenti nei vari laboratori con annessa qualità</p>
+            <p>Sezione in cui si potranno vedere tutti i reagenti presenti nei vari laboratori con annessa qualità</p>
           </div>
           <hr>
           <div class="col-md-4 ">
             <img src="./img/Vetreria.png" alt="Vetreria" id ="ImgVetreria">
             <a href="Vetreria.php"><h3>VETRERIA</h3></a>
-            <p>Sezione Dove potrà essere consultato l'inventario della Vetreria</p>
+            <p>Sezione in cui potrà essere consultato l'inventario della vetreria</p>
           </div>
           <hr>
           <div class="col-md-4  ">
             <img src="./img/Strumentazione.png" alt="Strumentazione" id="ImgStrumentazione">
             <a href="Strumentazione.php"><h3>STRUMENTAZIONE</h3></a>
-            <p>Sezione dove potrà essere consultato l'inventario della Strumentazione</p>
+            <p>Sezione in cui potrà essere consultato l'inventario della strumentazione</p>
           </div>
           <hr>
         </div>

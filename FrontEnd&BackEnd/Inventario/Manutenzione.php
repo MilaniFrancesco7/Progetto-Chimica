@@ -24,7 +24,7 @@
       <div class="container-fluid">
         <img src="./img/MiniIconaNavbar.png" alt="#" id="IconaNavbar">
         <img src="./img/LogoItisBianco.png" alt="#" id="LogoItis">
-        <a class="navbar-brand" href="#" id="BrandTitle">Programma Inventario</a>
+        <a class="navbar-brand" href="#" id="BrandTitle">Manutenzione</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -52,6 +52,11 @@
             <!-- Link Sezione Riparazioni-->
             <li class="nav-item">
               <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
+            </li>
+
+            <!-- Link Creazione Utente-->
+            <li class="nav-item">
+              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
             </li>
           </ul>
 
@@ -184,12 +189,12 @@
             }
             function manutenziona()
             {
+              include "db/connection.php";
+
               $id_strumento = $_POST["id_strumento"];
               $data_manutenzione = $_POST["data_manutenzione"];
               $tipo_manutenzione = $_POST["tipo_manutenzione"];
               $cognome_tecnico = $_POST["cognome_tecnico"];
-
-              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
               $query = "INSERT INTO manutenzione(id_strumento, data_manutenzione, tipo_manutenzione, cognome_tecnico)
                         VALUES ('$id_strumento', '$data_manutenzione', '$tipo_manutenzione', '$cognome_tecnico')";
@@ -204,7 +209,7 @@
                 $message = "Manutenzione non registrata";
                 echo "<script>alert('$message');</script>";
               }
-                }
+            }
           ?>
 
           <?php
@@ -214,9 +219,9 @@
             }
             function ricerca()
             {
-              $id_strumento = $_POST["id_strumento"];
+              include "db/connection.php";
 
-              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+              $id_strumento = $_POST["id_strumento"];
 
               $query = "SELECT id_manutenzione, data_manutenzione, tipo_manutenzione, cognome_tecnico, tipo
                         FROM manutenzione, strumentazione_apparecchiatura
@@ -250,7 +255,6 @@
                 $message ="Non esistono manutenzioni registrate per questo oggetto";
                 echo "<script>alert('$message');</script>";
               }
-
             }
           ?>
 
@@ -262,9 +266,9 @@
             }
             function delete()
             {
-              $id_manutenzione = $_POST["id_manutenzione"];
+              include "db/connection.php";
 
-              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+              $id_manutenzione = $_POST["id_manutenzione"];
 
               $query = "DELETE FROM manutenzione WHERE manutenzione.id_manutenzione = $id_manutenzione";
 
@@ -278,7 +282,6 @@
                 $message = "Manutenzione non eliminata";
                 echo "<script>alert('$message');</script>";
               }
-              mysqli_close($connect);
             }
           ?>
 
@@ -291,7 +294,7 @@
             }
             function showall()
             {
-              $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+              include "db/connection.php";
 
               $query = "SELECT id_manutenzione, data_manutenzione, tipo_manutenzione, cognome_tecnico, tipo
                         FROM manutenzione, strumentazione_apparecchiatura
@@ -320,9 +323,7 @@
                 echo "</div>";
 
               }
-              mysqli_free_result($result);
-              mysqli_close($connect);
-              }
+            }
           ?>
 
 

@@ -7,7 +7,7 @@
     header("location: SignIn.php");
   }
 
-  include "connection.php";
+  include "db/connection.php";
 
 ?>
 <!DOCTYPE html>
@@ -55,6 +55,11 @@
             <!-- Link Sezione Riparazioni-->
             <li class="nav-item">
               <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
+            </li>
+
+            <!-- Link Creazione Utente-->
+            <li class="nav-item">
+              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
             </li>
           </ul>
 
@@ -265,7 +270,11 @@
                   <input type="text" name="testo_esperienza" class="form-control" id="TestoEsperienza" placeholder="Testo Esperienza">
                 </div>
                 <div class="form-group col-md-2">
-                  <label>Nome Insegnante</label>
+                  <label>Docente</label>
+                  <input type="text" name="nome_insegnante" class="form-control" id="NomeInsegnante" placeholder="Nome Insegnante">
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Docente</label>
                   <input type="text" name="nome_insegnante" class="form-control" id="NomeInsegnante" placeholder="Nome Insegnante">
                 </div>
               </div>
@@ -282,12 +291,20 @@
           <form method="post">
             <div class="form-row">
               <div class="form-group col-md-5">
-                <label for="inputNomeReagente">Nome Insegnante</label>
-                <input type="text" name="nome_insegnante" class="form-control" id="NomeInsegnante" placeholder="Nome Insegnante">
+                <label for="inputNomeReagente">Docente</label>
+                <input type="text" name="nome_insegnante" class="form-control" id="Docente" placeholder="Docente">
               </div>
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-2">
+                <label for="inputNomeReagente">Classe</label>
+                <input type="text" name="classe_esperienza" class="form-control" id="classe_esperienza" placeholder="Classe">
+              </div>
+              <div class="form-group col-md-2">
                 <label for="inputNomeReagente">ID Reagente</label>
                 <input type="text" name="id_reagente" class="form-control" id="IDReagente" placeholder="ID Reagente">
+              </div>
+              <div class="form-group col-md-3">
+                  <label for="inputNomeReagente">Data</label>
+                  <input type="date" name="data_esperienza" class="form-control" id="data_esperienza" placeholder="Data">
               </div>
             </div>
             <div class="form-row">
@@ -344,7 +361,9 @@
             {
               echo "<li>";
               echo "<h3>$search[id_esperienza] $search[nome]</h3>";
-              echo "<p>Insegnante: $search[nome_insegnante]</p>";
+              echo "<p>Docente: $search[nome_insegnante]</p>";
+              echo "<p>Classe: $search[classe_esperienza]</p>";
+              echo "<p>Data: $search[data_esperienza]</p>";
               echo "<p>$search[testo_esperienza]</p>";
             }
             echo "</ul>";
@@ -366,9 +385,11 @@
           $id_reagente = $_POST["id_reagente"];
           $nome_insegnante = $_POST["nome_insegnante"];
           $testo_esperienza = $_POST["testo_esperienza"];
+          $data_esperienza = $_POST["data_esperienza"];
+          $classe_esperienza = $_POST["classe_esperienza"];
 
-          $query = "INSERT INTO esperienza(nome_insegnante, testo_esperienza)
-                    VALUES ('$nome_insegnante', '$testo_esperienza')";
+          $query = "INSERT INTO esperienza(nome_insegnante, testo_esperienza, classe_esperienza, data_esperienza)
+                    VALUES ('$nome_insegnante', '$testo_esperienza', '$classe_esperienza', '$data_esperienza')";
 
           if(mysqli_query($connect,$query))
           {

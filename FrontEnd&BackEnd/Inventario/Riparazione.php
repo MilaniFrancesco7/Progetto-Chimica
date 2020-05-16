@@ -56,6 +56,11 @@
             <li class="nav-item">
               <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
             </li>
+
+            <!-- Link Creazione Utente-->
+            <li class="nav-item">
+              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
+            </li>
           </ul>
           <!-- Link Per l'accesso-->
 
@@ -201,7 +206,7 @@
       }
       function showall()
       {
-        $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+        include "db/connection.php";
 
         $query = "SELECT id_riparazione, motivo, data_uscita, data_rientro, ditta_riparatrice, tipo
                   FROM riparazione, strumentazione_apparecchiatura
@@ -246,9 +251,7 @@
           echo "</div>";
 
         }
-        mysqli_free_result($result);
-        mysqli_close($connect);
-        }
+      }
     ?>
 
 <!-- Funzione per l'eliminazione di un oggetto -->
@@ -259,9 +262,9 @@
       }
       function delete()
       {
-        $id_riparazione = $_POST["id_riparazione"];
+        include "db/connection.php";
 
-        $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+        $id_riparazione = $_POST["id_riparazione"];
 
         $query = "DELETE FROM riparazione WHERE riparazione.id_riparazione = $id_riparazione";
 
@@ -275,7 +278,6 @@
           $message = "Riparazione non eliminata";
           echo "<script>alert('$message');</script>";
         }
-        mysqli_close($connect);
       }
     ?>
 <!-- Ricerca una manutenzione -->
@@ -286,9 +288,9 @@
       }
       function ricerca()
       {
-        $id_strumento = $_POST["id_strumento"];
+        include "db/connection.php";
 
-        $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
+        $id_strumento = $_POST["id_strumento"];
 
         $query = "SELECT id_riparazione, data_uscita, data_rientro, tipo, ditta_riparatrice, motivo
                   FROM riparazione, strumentazione_apparecchiatura
@@ -333,7 +335,6 @@
           echo "</ul>";
           echo "</div>";
         }
-        mysqli_close($connect);
       }
     ?>
 
@@ -345,12 +346,12 @@
       }
       function ripara()
       {
+        include "db/connection.php";
+
         $id_strumento = $_POST["id_strumento"];
         $motivo = $_POST["motivo"];
         $data_uscita = $_POST["data_uscita"];
         $ditta_riparatrice = $_POST["ditta_riparatrice"];
-
-        $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
         $query = "INSERT INTO riparazione(id_strumento, motivo, data_uscita, ditta_riparatrice)
                   VALUES ('$id_strumento','$motivo','$data_uscita','$ditta_riparatrice')";
@@ -376,10 +377,10 @@
       }
       function rientra()
       {
+        include "db/connection.php";
+
         $id_strumento = $_POST["id_strumento"];
         $data_rientro = $_POST["data_rientro"];
-
-        $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
         $query = "UPDATE riparazione
                   SET data_rientro = '$data_rientro'
