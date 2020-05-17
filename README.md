@@ -29,7 +29,7 @@ Strumentazione:
 
 Generale:
 
-- Livelli di accesso
+- Livelli di accesso Done
 - Creazione Utente +Done
 - Pagina di connessione al database e rimozione delle connessioni all'interno dei file + Done
 

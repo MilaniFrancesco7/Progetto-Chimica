@@ -9,6 +9,10 @@
 
   include "db/connection.php";
 
+  if(!isset($_SESSION["Ruolo"]))
+  {
+    header("location: SignIn.php");
+  }
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -238,17 +242,16 @@
               <div class='form-row'>
                   <legend style='font-size:12px'>Pittogramma</legend>
                   <br>
-                <!-- AREA PITTOGRAMMI-->
-                <?php
-                  $array_pittogrammi = array('comburente','corrosivo','esplosivo','gas_pressurizzato','infiammabile','irritante','nocivo','tossico');
+                <!-- AREA PITTOGRAMMI-->  ";        
+                $array_pittogrammi = array("comburente","corrosivo","esplosivo","gas_pressurizzato","infiammabile","irritante","nocivo","tossico");
 
-                  foreach($array_pittogrammi as $pittogramma)
-                  {
-                    $immagine = $pittogramma;
-                    $immagine .='.svg';
-                    echo '<div class='col-md-1'><label class='btn btn-primary'><img src='./img/'.$immagine.'' alt='...' class='img-thumbnail img-check'><input type='checkbox' name='pittogramma[]' id='pittogramma' value=''.$pittogramma.'' class='hidden' autocomplete='off'></label></div>';
-                  }
-                ?>
+                foreach($array_pittogrammi as $pittogramma)
+                {
+                  $immagine = $pittogramma;
+                  $immagine .=".svg";
+                  echo '<div class="col-md-1"><label class="btn btn-primary"><img src="./img/'.$immagine.'" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="pittogramma[]" id="pittogramma" value="'.$pittogramma.'" class="hidden" autocomplete="off"></label></div>';
+                }
+            echo "
               </div>
 
               <div class='form-row'>
