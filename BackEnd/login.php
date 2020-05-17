@@ -20,6 +20,10 @@
 	}
 	else
 	{
+		$query = "SELECT ruolo FROM utente WHERE email = '$email' AND password = '$password'";
+		$result = mysqli_query($connect, $query);
+
+		$_SESSION["Ruolo"] = $row['ruolo'];
 		$_SESSION["User"] = "$email";
 		header("location: ../FrontEnd&BackEnd/Inventario/index.php");
 	}

@@ -58,9 +58,14 @@
             </li>
 
             <!-- Link Creazione Utente-->
-            <li class="nav-item">
-              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
-            </li>
+            <?php
+              if ($_SESSION["Ruolo"] > 2)
+              {
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link' href='Crea_Utente.php'>Creazione Utente</a>";
+                echo "</li>";
+              }
+            ?>
           </ul>
 
           <!-- Link per l'accesso -->
@@ -121,202 +126,218 @@
         </div>
 
 <!-- Elimina un reagente -->
-        <div class="col-md-3" id="SezioneRicerca">
-          <div class="dark flex" id="DivStampaTutto">
-            <center>
+    <?php
+      if ($_SESSION['Ruolo'] > 2)
+      {
+        echo "<div class='col-md-3' id='SezioneRicerca'>
+          <div class='dark flex' id='DivStampaTutto'>
+          <center>
             <h3>Elimina un Reagente</h3>
-            <img src="./img/NoReagenti.png" alt="" id="LogoReagenti">
-            <form method="post">
-              <div class="form-row" id="EliminaElemento">
-                <div class="form-group col-lg-8" id="FormEliminazione">
-                  <label for="inputIdReagente">Inserisci Id Reagente</label>
-                  <input type="text" name="id_reagente" class="form-control" id="IdReagente" placeholder="ID Reagente">
+            <img src='./img/NoReagenti.png' alt='' id='LogoReagenti'>
+            <form method='post'>
+              <div class='form-row' id='EliminaElemento'>
+                <div class='form-group col-lg-8' id='FormEliminazione'>
+                  <label for='inputIdReagente'>Inserisci Id Reagente</label>
+                  <input type='text' name='id_reagente' class='form-control' id='IdReagente' placeholder='ID Reagente'>
                 </div>
-                <div class="form-group col-lg-2"id="FormEliminazione">
-                  <br id="SpazioLarghetto">
-                  <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
+                <div class='form-group col-lg-2'id='FormEliminazione'>
+                  <br id='SpazioLarghetto'>
+                  <input type='submit' name='delete' class='btn btn-primary' value='Elimina'>
                 </div>
               </div>
             </form>
           </center>
           </div>
-        </div>
+        </div>";
+      }
+    ?>
 
 
 
 <!-- Inserimento di un nuovo reagente -->
-        <div class="col-lg-10" id="SezioneInserimento">
-          <div class="dark">
+<?php
+      if ($_SESSION['Ruolo'] > 2)
+      {
+        echo "<div class='col-lg-10' id='SezioneInserimento'>
+          <div class='dark'>
             <h3>Inserisci Nuovo Reagente</h3>
             <hr>
-            <form method="post">
-              <div class="form-row">
-                <div class="form-group col-md-6">
+            <form method='post'>
+              <div class='form-row'>
+                <div class='form-group col-md-6'>
                   <label>Nome Reagente</label>
-                  <input type="text" name="nome" class="form-control"  id="NomeReagente" placeholder="Nome Reagente">
+                  <input type='text' name='nome' class='form-control'  id='NomeReagente' placeholder='Nome Reagente'>
                 </div>
-                <div class="form-group col-md-6">
+                <div class='form-group col-md-6'>
                   <label>Formula</label>
-                  <input type="text" name="formula" class="form-control" id="Formula" placeholder="Formula">
+                  <input type='text' name='formula' class='form-control' id='Formula' placeholder='Formula'>
                 </div>
               </div>
-              <div class="form-row">
-                <div class="form-group col-md-4">
+              <div class='form-row'>
+                <div class='form-group col-md-4'>
                   <label>Stato</label>
-                  <select class="custom-select mr-sm-2" name="stato" id="inlineFormCustomSelect">
+                  <select class='custom-select mr-sm-2' name='stato' id='inlineFormCustomSelect'>
                     <option selected>Scegli...</option>
-                    <option value="Solido">Solido</option>
-                    <option value="Liquido">Liquido</option>
-                    <option value="Aeriforme">Aeriforme</option>
+                    <option value='Solido'>Solido</option>
+                    <option value='Liquido'>Liquido</option>
+                    <option value='Aeriforme'>Aeriforme</option>
                   </select>
                 </div>
-                <div class="form-group col-md-4">
+                <div class='form-group col-md-4'>
                   <label>Metodologia di conservazione</label>
-                  <select class="custom-select mr-sm-2" name="conservazione" id="inlineFormCustomSelect">
+                  <select class='custom-select mr-sm-2' name='conservazione' id='inlineFormCustomSelect'>
                     <option selected>Scegli...</option>
-                    <option value="Temperatura Ambiente">Temperatura Ambiente</option>
-                    <option value="Temperatura Refrigerata">Temperatura Refrigerata</option>
-                    <option value="In Congelatore">In Congelatore</option>
+                    <option value='Temperatura Ambiente'>Temperatura Ambiente</option>
+                    <option value='Temperatura Refrigerata'>Temperatura Refrigerata</option>
+                    <option value='In Congelatore'>In Congelatore</option>
                   </select>
                 </div>
               </div>
-              <div class="form-row">
-                <div class="form-group col-md-2">
+              <div class='form-row'>
+                <div class='form-group col-md-2'>
                   <label>Quantita' Presente</label>
-                  <input type="text" name="quantita_presente" class="form-control" id="QuantitaPresente" placeholder="Quantità Presente">
+                  <input type='text' name='quantita_presente' class='form-control' id='QuantitaPresente' placeholder='Quantità Presente'>
                 </div>
-                <div class="form-group col-md-2">
+                <div class='form-group col-md-2'>
                   <label>Quantita' Totale</label>
-                  <input type="text" name="quantita_totale" class="form-control" id="QuantitaTotale" placeholder="Quantità Totale">
+                  <input type='text' name='quantita_totale' class='form-control' id='QuantitaTotale' placeholder='Quantità Totale'>
                 </div>
-                <div class="form-group col-md-2">
+                <div class='form-group col-md-2'>
                   <label>Ditta Produttrice</label>
-                  <input type="text" name="ditta" class="form-control" id="DittaProduttrice" placeholder="Ditta Produttrice">
+                  <input type='text' name='ditta' class='form-control' id='DittaProduttrice' placeholder='Ditta Produttrice'>
                 </div>
-                <div class="form-group col-md-2">
+                <div class='form-group col-md-2'>
                   <label>Data Scadenza</label>
-                  <input type="date" name="data_scadenza" class="form-control" id="DataScadenza" placeholder="Data Scadenza">
+                  <input type='date' name='data_scadenza' class='form-control' id='DataScadenza' placeholder='Data Scadenza'>
                 </div>
               </div>
 
-              <div class="form-row">
-                <div class="form-group col-md-3">
+              <div class='form-row'>
+                <div class='form-group col-md-3'>
                   <label>Tipo di collocazione</label>
-                  <select class="custom-select mr-sm-2" name="tipo_collocazione" id="inlineFormCustomSelect">
+                  <select class='custom-select mr-sm-2' name='tipo_collocazione' id='inlineFormCustomSelect'>
                     <option selected>Scegli...</option>
-                    <option value="Consumo">Consumo</option>
-                    <option value="Magazzino">Magazzino</option>
+                    <option value='Consumo'>Consumo</option>
+                    <option value='Magazzino'>Magazzino</option>
                   </select>
                 </div>
-                <div class="form-group col-md-3">
+                <div class='form-group col-md-3'>
                   <label>Stanza</label>
-                  <input type="text" name="stanza" class="form-control" id="Stanza" placeholder="Stanza">
+                  <input type='text' name='stanza' class='form-control' id='Stanza' placeholder='Stanza'>
                 </div>
-                <div class="form-group col-md-3">
+                <div class='form-group col-md-3'>
                   <label>Armadio</label>
-                  <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Armadio">
+                  <input type='text' name='armadio' class='form-control' id='Armadio' placeholder='Armadio'>
                 </div>
-                <div class="form-group col-md-3">
+                <div class='form-group col-md-3'>
                   <label>Ripiano</label>
-                  <input type="text" name="ripiano" class="form-control" id="Ripiano" placeholder="Ripiano">
+                  <input type='text' name='ripiano' class='form-control' id='Ripiano' placeholder='Ripiano'>
                 </div>
               </div>
 
-              <div class="form-row">
-                  <legend style="font-size:12px">Pittogramma</legend>
+              <div class='form-row'>
+                  <legend style='font-size:12px'>Pittogramma</legend>
                   <br>
                 <!-- AREA PITTOGRAMMI-->
                 <?php
-                  $array_pittogrammi = array("comburente","corrosivo","esplosivo","gas_pressurizzato","infiammabile","irritante","nocivo","tossico");
+                  $array_pittogrammi = array('comburente','corrosivo','esplosivo','gas_pressurizzato','infiammabile','irritante','nocivo','tossico');
 
                   foreach($array_pittogrammi as $pittogramma)
                   {
                     $immagine = $pittogramma;
-                    $immagine .=".svg";
-                    echo '<div class="col-md-1"><label class="btn btn-primary"><img src="./img/'.$immagine.'" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="pittogramma[]" id="pittogramma" value="'.$pittogramma.'" class="hidden" autocomplete="off"></label></div>';
+                    $immagine .='.svg';
+                    echo '<div class='col-md-1'><label class='btn btn-primary'><img src='./img/'.$immagine.'' alt='...' class='img-thumbnail img-check'><input type='checkbox' name='pittogramma[]' id='pittogramma' value=''.$pittogramma.'' class='hidden' autocomplete='off'></label></div>';
                   }
                 ?>
               </div>
 
-              <div class="form-row">
-                <div class="form-group col-md-4">
+              <div class='form-row'>
+                <div class='form-group col-md-4'>
                   <label>Frase/i di Rischio</label>
-                  <input type="text" class="form-control" name="frase" id="FraseSicurezza" placeholder="Frase Sicurezza">
+                  <input type='text' class='form-control' name='frase' id='FraseSicurezza' placeholder='Frase Sicurezza'>
                 </div>
               </div>
 
-              <div class="form-row">
-                <div class="form-group col-md-2">
+              <div class='form-row'>
+                <div class='form-group col-md-2'>
                   <label>Stanza Scheda di Sicurezza</label>
-                  <input type="text" id="StanzaScheda" class="form-control" name="stanza_scheda" placeholder="Stanza">
+                  <input type='text' id='StanzaScheda' class='form-control' name='stanza_scheda' placeholder='Stanza'>
                 </div>
-                <div class="form-group col-md-2">
+                <div class='form-group col-md-2'>
                   <label>Armadio Scheda di Sicurezza</label>
-                  <input type="text" id="ArmadioScheda" class="form-control" name="armadio_scheda" placeholder="Armadio">
+                  <input type='text' id='ArmadioScheda' class='form-control' name='armadio_scheda' placeholder='Armadio'>
                 </div>
-                <div class="form-group col-md-2">
+                <div class='form-group col-md-2'>
                   <label>Ripiano Scheda di Sicurezza</label>
-                  <input type="text" id="RipianoScheda" class="form-control" name="ripiano_scheda" placeholder="Ripiano">
+                  <input type='text' id='RipianoScheda' class='form-control' name='ripiano_scheda' placeholder='Ripiano'>
                 </div>
-                <div class="form-group col-md-2">
+                <div class='form-group col-md-2'>
                   <label>Data Rilascio Scheda di Sicurezza</label>
-                  <input type="date" name="data_rilascio" class="form-control" id="DataRilascio" placeholder="Data Rilascio">
+                  <input type='date' name='data_rilascio' class='form-control' id='DataRilascio' placeholder='Data Rilascio'>
                 </div>
               </div>
 
-              <div class="form-row">
-                <div class="form-group col-md-2">
+              <div class='form-row'>
+                <div class='form-group col-md-2'>
                   <label> Testo Esperienza</label>
-                  <input type="text" name="testo_esperienza" class="form-control" id="TestoEsperienza" placeholder="Testo Esperienza">
+                  <input type='text' name='testo_esperienza' class='form-control' id='TestoEsperienza' placeholder='Testo Esperienza'>
                 </div>
-                <div class="form-group col-md-2">
+                <div class='form-group col-md-2'>
                   <label>Docente</label>
-                  <input type="text" name="nome_insegnante" class="form-control" id="NomeInsegnante" placeholder="Nome Insegnante">
+                  <input type='text' name='nome_insegnante' class='form-control' id='NomeInsegnante' placeholder='Nome Insegnante'>
                 </div>
-                <div class="form-group col-md-2">
+                <div class='form-group col-md-2'>
                   <label>Docente</label>
-                  <input type="text" name="nome_insegnante" class="form-control" id="NomeInsegnante" placeholder="Nome Insegnante">
+                  <input type='text' name='nome_insegnante' class='form-control' id='NomeInsegnante' placeholder='Nome Insegnante'>
                 </div>
               </div>
-              <input type="submit" name="inserisci" class="btn btn-primary" value="Aggiungi Reagente">
+              <input type='submit' name='inserisci' class='btn btn-primary' value='Aggiungi Reagente'>
             </form>
           </div>
-        </div>
+        </div>";
+      }
+    ?>
 
 <!-- Inserimento di un'esperienza -->
-      <div class="col-lg-6" id="SezioneRicerca">
-        <div class="dark flex">
-          <h3>Inserisci un'esperienza</h3>
-          <hr id="SpaziaturaLarga">
-          <form method="post">
-            <div class="form-row">
-              <div class="form-group col-md-5">
-                <label for="inputNomeReagente">Docente</label>
-                <input type="text" name="nome_insegnante" class="form-control" id="Docente" placeholder="Docente">
-              </div>
-              <div class="form-group col-md-2">
-                <label for="inputNomeReagente">Classe</label>
-                <input type="text" name="classe_esperienza" class="form-control" id="classe_esperienza" placeholder="Classe">
-              </div>
-              <div class="form-group col-md-2">
-                <label for="inputNomeReagente">ID Reagente</label>
-                <input type="text" name="id_reagente" class="form-control" id="IDReagente" placeholder="ID Reagente">
-              </div>
-              <div class="form-group col-md-3">
-                  <label for="inputNomeReagente">Data</label>
-                  <input type="date" name="data_esperienza" class="form-control" id="data_esperienza" placeholder="Data">
-              </div>
+<?php
+    if ($_SESSION['Ruolo'] > 1)
+    {
+      echo "<div class='col-lg-6' id='SezioneRicerca'>
+            <div class='dark flex'>
+              <h3>Inserisci un'esperienza</h3>
+              <hr id='SpaziaturaLarga'>
+              <form method='post'>
+                <div class='form-row'>
+                  <div class='form-group col-md-5'>
+                    <label for='inputNomeReagente'>Docente</label>
+                    <input type='text' name='nome_insegnante' class='form-control' id='Docente' placeholder='Docente'>
+                  </div>
+                  <div class='form-group col-md-2'>
+                    <label for='inputNomeReagente'>Classe</label>
+                    <input type='text' name='classe_esperienza' class='form-control' id='classe_esperienza' placeholder='Classe'>
+                  </div>
+                  <div class='form-group col-md-2'>
+                    <label for='inputNomeReagente'>ID Reagente</label>
+                    <input type='text' name='id_reagente' class='form-control' id='IDReagente' placeholder='ID Reagente'>
+                  </div>
+                  <div class='form-group col-md-3'>
+                      <label for='inputNomeReagente'>Data</label>
+                      <input type='date' name='data_esperienza' class='form-control' id='data_esperienza' placeholder='Data'>
+                  </div>
+                </div>
+                <div class='form-row'>
+                  <div class='form-group col-md-10'>
+                    <label for='inputNomeReagente'>Testo Esperienza</label>
+                    <input type='text' name='testo_esperienza' class='form-control' id='TestoEsperienza' placeholder='Testo Esperienza'>
+                  </div>
+                </div>
+                <input type='submit' name='inserisciesperienza' class='btn btn-primary' value='Inserisci esperienza'>
+              </form>
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-10">
-                <label for="inputNomeReagente">Testo Esperienza</label>
-                <input type="text" name="testo_esperienza" class="form-control" id="TestoEsperienza" placeholder="Testo Esperienza">
-              </div>
-            </div>
-            <input type="submit" name="inserisciesperienza" class="btn btn-primary" value="Inserisci esperienza">
-          </form>
-        </div>
-      </div>
+          </div>";
+    }
+  ?>
+
 
 <!-- Stampa di tutti gli oggetti ##-->
 <div class="col-lg-3" id="SezioneRicerca">
@@ -325,7 +346,7 @@
             <hr>
             <img src="./img/Reagenti.png" alt="" id="LogoReagenti">
             <form method="post">
-              <input type="submit" name="showallexperiences" class="btn btn-primary" value="Mostra tutti le Esperienze">
+              <input type="submit" name="showallexperiences" class="btn btn-primary" value="Mostra tutte le Esperienze">
             </form>
           </div>
         </div>

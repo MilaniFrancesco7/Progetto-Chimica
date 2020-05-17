@@ -58,9 +58,14 @@
             </li>
 
             <!-- Link Creazione Utente-->
-            <li class="nav-item">
-              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
-            </li>
+            <?php
+              if ($_SESSION["Ruolo"] > 2)
+              {
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link' href='Crea_Utente.php'>Creazione Utente</a>";
+                echo "</li>";
+              }
+            ?>
           </ul>
           <!-- Link Per l'accesso-->
 
@@ -109,24 +114,29 @@
     </div>
 
     <!-- Elimina un oggetto -->
-    <div class="col-lg-3" id="SezioneRicerca">
-      <div class="dark flex" id="DivStampaTutto">
-        <h3>Elimina una riparazione</h3>
-        <img src="./img/NoCassettaAttrezzi.png" alt="" id="LogoReagenti">
-        <form method="post">
-          <div class="form-row" id="EliminaElemento">
-            <div class="form-group col-md-8" id="FormEliminazione">
-              <label> Inserisci Id Riparazione</label>
-              <input type="text" name="id_riparazione" class="form-control" id="IDRiparazione" placeholder="ID Riparazione">
+<?php
+  if ($_SESSION['Ruolo'] > 2)
+  {
+    echo "<div class='col-lg-3' id='SezioneRicerca'>
+            <div class='dark flex' id='DivStampaTutto'>
+              <h3>Elimina una riparazione</h3>
+              <img src='./img/NoCassettaAttrezzi.png' alt='' id='LogoReagenti'>
+              <form method='post'>
+                <div class='form-row' id='EliminaElemento'>
+                  <div class='form-group col-md-8' id='FormEliminazione'>
+                    <label> Inserisci Id Riparazione</label>
+                    <input type='text' name='id_riparazione' class='form-control' id='IDRiparazione' placeholder='ID Riparazione'>
+                  </div>
+                    <div class='form-group col-md-3' id='FormEliminazione'>
+                      <br id='SpazioLarghetto'>
+                      <input type='submit' name='delete' class='btn btn-primary' value='Elimina'>
+                  </div>
+                </div>
+              </form>
             </div>
-              <div class="form-group col-md-3" id="FormEliminazione">
-                <br id="SpazioLarghetto">
-                <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+          </div>";
+  }
+?>
 
     <!--Ricerca di un oggetto-->
     <div class="col-lg-4" id="SezioneRicerca">
@@ -146,56 +156,66 @@
     </div>
 
 <!--Uscita in riparazione-->
-    <div class="col-md-10" id="SezioneInserimento">
-      <div class="dark">
-        <h3>Registra un'uscita per riparazione</h3>
-        <hr>
-        <form method="post">
-          <div class="form-row">
-            <div class="form-group col-md-2">
-              <label>ID Strumento</label>
-              <input type="text" class="form-control" name="id_strumento" id="IDStrumento" placeholder="ID Strumento">
+<?php
+  if ($_SESSION['Ruolo'] > 2)
+  {
+    echo "<div class='col-md-10' id='SezioneInserimento'>
+            <div class='dark'>
+              <h3>Registra un'uscita per riparazione</h3>
+              <hr>
+              <form method='post'>
+                <div class='form-row'>
+                  <div class='form-group col-md-2'>
+                    <label>ID Strumento</label>
+                    <input type='text' class='form-control' name='id_strumento' id='IDStrumento' placeholder='ID Strumento'>
+                  </div>
+                  <div class='form-group col-md-4'>
+                    <label>Motivo</label>
+                    <input type='text' class='form-control' name='motivo' id='Motivo' placeholder='Motivo'>
+                  </div>
+                </div>
+                <div class='form-row'>
+                  <div class='form-group col-md-2'>
+                    <label>Data Uscita</label>
+                    <input type='date' class='form-control' name='data_uscita' id='DataUscita' placeholder='Data Uscita'>
+                  </div>
+                  <div class='form-group col-md-4'>
+                    <label>Ditta Riparatrice</label>
+                    <input type='text' class='form-control' name='ditta_riparatrice' id='DittaRiparatrice' placeholder='Ditta Riparatrice'>
+                  </div>
+                </div>
+                <input type='submit' name='uscita' class='btn btn-primary' value='Registra l'uscita'>
+              </form>
             </div>
-            <div class="form-group col-md-4">
-              <label>Motivo</label>
-              <input type="text" class="form-control" name="motivo" id="Motivo" placeholder="Motivo">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-2">
-              <label>Data Uscita</label>
-              <input type="date" class="form-control" name="data_uscita" id="DataUscita" placeholder="Data Uscita">
-            </div>
-            <div class="form-group col-md-4">
-              <label>Ditta Riparatrice</label>
-              <input type="text" class="form-control" name="ditta_riparatrice" id="DittaRiparatrice" placeholder="Ditta Riparatrice">
-            </div>
-          </div>
-          <input type="submit" name="uscita" class="btn btn-primary" value="Registra l'uscita">
-        </form>
-      </div>
-    </div>
+          </div>";
+  }
+?>
 
 <!-- Rientro dalla riparazione -->
-    <div class="col-md-10" id="SezioneInserimento">
-      <div class="dark">
-        <h3>Registra un rientro da riparazione</h3>
-        <hr>
-        <form method="post">
-          <div class="form-row">
-            <div class="form-group col-md-2">
-              <label>ID Strumento</label>
-              <input type="text" class="form-control" name="id_strumento" id="IDStrumento" placeholder="ID Strumento">
+<?php
+  if ($_SESSION['Ruolo'] > 2)
+  {
+    echo "<div class='col-md-10' id='SezioneInserimento'>
+            <div class='dark'>
+              <h3>Registra un rientro da riparazione</h3>
+              <hr>
+              <form method='post'>
+                <div class='form-row'>
+                  <div class='form-group col-md-2'>
+                    <label>ID Strumento</label>
+                    <input type='text' class='form-control' name='id_strumento' id='IDStrumento' placeholder='ID Strumento'>
+                  </div>
+                  <div class='form-group col-md-2'>
+                    <label>Data Uscita</label>
+                    <input type='date' class='form-control' name='data_rientro' id='DataRientro' placeholder='Data Rientro'>
+                  </div>
+                </div>
+                <input type='submit' name='rientro' class='btn btn-primary' value='Registra l'uscita'>
+              </form>
             </div>
-            <div class="form-group col-md-2">
-              <label>Data Uscita</label>
-              <input type="date" class="form-control" name="data_rientro" id="DataRientro" placeholder="Data Rientro">
-            </div>
-          </div>
-          <input type="submit" name="rientro" class="btn btn-primary" value="Registra l'uscita">
-        </form>
-      </div>
-    </div>
+          </div>";
+  }
+?>
 
 <!-- Funzione per la stampa di tutti gli oggetti -->
     <?php

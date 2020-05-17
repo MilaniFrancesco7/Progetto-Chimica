@@ -33,6 +33,9 @@
 
             <!--Item dropdown - Menù a tendina-->
             <li class="nav-item dropdown">
+              <a class="nav-link" href="index.php">Menù principale</a>
+            </li>
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Lista Inventario
               </a>
@@ -55,9 +58,14 @@
             </li>
 
             <!-- Link Creazione Utente-->
-            <li class="nav-item">
-              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
-            </li>
+            <?php
+              if ($_SESSION["Ruolo"] > 2)
+              {
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link' href='Crea_Utente.php'>Creazione Utente</a>";
+                echo "</li>";
+              }
+            ?>
           </ul>
 
           <hr>
@@ -125,60 +133,70 @@
           </div>
 
 <!-- Elimina un oggetto -->
-          <div class="col-lg-3" id="SezioneRicerca">
-            <div class="dark flex" id="DivStampaTutto">
-              <h3>Elimina una manutenzione</h3>
-              <img src="./img/NoManutenzione.png" alt="" id="LogoReagenti">
-              <form method="post" id="EliminaElemento">
-                <div class="form-row">
-                  <div class="form-group col-lg-8" id="FormEliminazione">
-                    <label> Inserisci Id manutenzione</label>
-                    <input type="text" name="id_manutenzione" class="form-control" id="IDManutenzione" placeholder="ID Manutenzione">
+      <?php
+        if ($_SESSION['Ruolo'] > 2)
+        {
+          echo "<div class='col-lg-3' id='SezioneRicerca'>
+                  <div class='dark flex' id='DivStampaTutto'>
+                    <h3>Elimina una manutenzione</h3>
+                    <img src='./img/NoManutenzione.png' alt='' id='LogoReagenti'>
+                    <form method='post' id='EliminaElemento'>
+                      <div class='form-row'>
+                        <div class='form-group col-lg-8' id='FormEliminazione'>
+                          <label> Inserisci Id manutenzione</label>
+                          <input type='text' name='id_manutenzione' class='form-control' id='IDManutenzione' placeholder='ID Manutenzione'>
+                        </div>
+                          <div class='form-group col-md-3' id='FormEliminazione'>
+                            <br id='SpazioLarghetto'>
+                            <input type='submit' name='delete' class='btn btn-primary' value='Elimina'>
+                        </div>
+                      </div>
+                    </form>
                   </div>
-                    <div class="form-group col-md-3" id="FormEliminazione">
-                      <br id="SpazioLarghetto">
-                      <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+                </div>";
+        }
+      ?>
 
           <!-- REGISTRAZIONE DI UNA MANUTENZIONE-->
-          <div class="col-lg-10" id="SezioneInserimento">
-          <div class="dark">
-            <h3>Registra la manutenzione di uno strumento</h3>
-              <hr>
-              <form method="post">
-                <div class="form-row">
-                  <div class="form-group col-md-3">
-                    <label>ID Strumento</label>
-                    <input type="text" name="id_strumento" class="form-control" id="IDStrumento" placeholder="ID Strumento">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label>Data Manutenzione</label>
-                    <input type="date" name="data_manutenzione" class="form-control" id="DataManutenzione" placeholder="Data Manutenzione">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label>Tipo di manutenzione</label>
-                    <select class="custom-select mr-sm-3" name="tipo_manutenzione" id="inlineFormCustomSelect">
-                      <option selected>Scegli...</option>
-                      <option value="Ordinaria">Ordinaria</option>
-                      <option value="Straordinaria">Straordinaria</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-5">
-                    <label>Cognome Tecnico</label>
-                    <input type="text" name="cognome_tecnico" class="form-control" id="cognometecnico" placeholder="Cognome Tecnico">
-                  </div>
-                </div>
-                <input type="submit" class="btn btn-primary" name="manutenziona" value="Registra la manutenzione">
-              </form>
-            </div>
-            </div>
-        </div>
+      <?php
+        if ($_SESSION['Ruolo'] > 2)
+        {
+          echo "<div class='col-lg-10' id='SezioneInserimento'>
+                  <div class='dark'>
+                    <h3>Registra la manutenzione di uno strumento</h3>
+                      <hr>
+                      <form method='post'>
+                        <div class='form-row'>
+                          <div class='form-group col-md-3'>
+                            <label>ID Strumento</label>
+                            <input type='text' name='id_strumento' class='form-control' id='IDStrumento' placeholder='ID Strumento'>
+                          </div>
+                          <div class='form-group col-md-4'>
+                            <label>Data Manutenzione</label>
+                            <input type='date' name='data_manutenzione' class='form-control' id='DataManutenzione' placeholder='Data Manutenzione'>
+                          </div>
+                          <div class='form-group col-md-4'>
+                            <label>Tipo di manutenzione</label>
+                            <select class='custom-select mr-sm-3' name='tipo_manutenzione' id='inlineFormCustomSelect'>
+                              <option selected>Scegli...</option>
+                              <option value='Ordinaria'>Ordinaria</option>
+                              <option value='Straordinaria'>Straordinaria</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class='form-row'>
+                          <div class='form-group col-md-5'>
+                            <label>Cognome Tecnico</label>
+                            <input type='text' name='cognome_tecnico' class='form-control' id='cognometecnico' placeholder='Cognome Tecnico'>
+                          </div>
+                        </div>
+                        <input type='submit' class='btn btn-primary' name='manutenziona' value='Registra la manutenzione'>
+                      </form>
+                    </div>
+                    </div>
+                </div>";
+        }
+      ?>
 
 
 <!-- Funzione per la registrazione di una manutenzione -->

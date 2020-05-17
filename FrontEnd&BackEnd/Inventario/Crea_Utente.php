@@ -53,9 +53,14 @@
             </li>
 
             <!-- Link Creazione Utente-->
-            <li class="nav-item">
-              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
-            </li>
+            <?php
+              if ($_SESSION["Ruolo"] > 2)
+              {
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link' href='Crea_Utente.php'>Creazione Utente</a>";
+                echo "</li>";
+              }
+            ?>
           </ul>
 
           <!-- Link Per l'accesso-->

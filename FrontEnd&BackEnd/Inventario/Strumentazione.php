@@ -56,9 +56,14 @@
             </li>
 
             <!-- Link Creazione Utente-->
-            <li class="nav-item">
-              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
-            </li>
+            <?php
+              if ($_SESSION["Ruolo"] > 2)
+              {
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link' href='Crea_Utente.php'>Creazione Utente</a>";
+                echo "</li>";
+              }
+            ?>
           </ul>
 
           <!-- Link Per l'accesso-->
@@ -102,27 +107,31 @@
     </div>
 
     <!-- Elimina uno strumento -->
-    <div class="col-lg-3" id="SezioneRicerca">
-          <div class="dark flex" id="DivStampaTutto">
-            <h3>Elimina uno Strumento</h3>
-            <img src="./img/NoStrumentazione.png" alt="" id="LogoStrumentazione">
-            <form method="post">
-              <div class="form-row" id="EliminaElemento">
-                <div class="form-group col-lg-8" id="FormEliminazione">
-                  <label> Inserisci Id Strumento</label>
-                  <input type="text" name="id_strumento" class="form-control" id="IdStrumento" placeholder="ID Strumento">
+<?php
+  if ($_SESSION['Ruolo'] > 2)
+  {
+    echo "<div class='col-lg-3' id='SezioneRicerca'>
+            <div class='dark flex' id='DivStampaTutto'>
+              <h3>Elimina uno Strumento</h3>
+              <img src='./img/NoStrumentazione.png' alt='' id='LogoStrumentazione'>
+              <form method='post'>
+                <div class='form-row' id='EliminaElemento'>
+                  <div class='form-group col-lg-8' id='FormEliminazione'>
+                    <label> Inserisci Id Strumento</label>
+                    <input type='text' name='id_strumento' class='form-control' id='IdStrumento' placeholder='ID Strumento'>
+                  </div>
+                  <div class='form-group col-lg-2' id='FormEliminazione'>
+                    <br id='SpazioLarghetto'>
+                    <input type='submit' name='delete' class='btn btn-primary' value='Elimina'>
+                  </div>
                 </div>
-                <div class="form-group col-lg-2" id="FormEliminazione">
-                  <br id="SpazioLarghetto">
-                  <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+              </form>
+            </div>
+          </div>";
+  }
+?>
 
 <!-- Ricerca di uno strumento -->
-
     <div class="col-lg-3" id="SezioneRicerca">
       <div class="dark flex">
         <h3>Ricerca Strumentazione</h3>
@@ -140,62 +149,67 @@
     </div>
 
 <!-- Inserimento di nuovi strumenti -->
-    <div class="col-md-10" id="SezioneInserimento">
-      <div class="dark">
-        <h3>Inserisci Nuova Strumentazione</h3>
-        <hr>
-        <form method="post">
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <label>Tipo Strumentazione</label>
-              <input type="text" class="form-control" name="tipo" id="TipoStrumentazione" placeholder="Tipo Strumentazione">
-            </div>
-            <div class="form-group col-md-4">
-              <label>Caratteristiche Tecniche</label>
-              <input type="text" class="form-control" name="caratteristiche_tecniche" id="CaratteristicheTecniche" placeholder="Caratteristiche Tecniche">
+<?php
+  if ($_SESSION['Ruolo'] > 2)
+  {
+    echo "<div class='col-md-10' id='SezioneInserimento'>
+            <div class='dark'>
+              <h3>Inserisci Nuova Strumentazione</h3>
+              <hr>
+              <form method='post'>
+                <div class='form-row'>
+                  <div class='form-group col-md-4'>
+                    <label>Tipo Strumentazione</label>
+                    <input type='text' class='form-control' name='tipo' id='TipoStrumentazione' placeholder='Tipo Strumentazione'>
+                  </div>
+                  <div class='form-group col-md-4'>
+                    <label>Caratteristiche Tecniche</label>
+                    <input type='text' class='form-control' name='caratteristiche_tecniche' id='CaratteristicheTecniche' placeholder='Caratteristiche Tecniche'>
+                  </div>
+                </div>
+                <div class='form-row'>
+                  <div class='form-group col-md-2'>
+                    <label>Numero Inventario</label>
+                    <input type='text' class='form-control' name='numero_inventario' id='NumeroInventario' placeholder='Numero Inventario'>
+                  </div>
+                  <div class='form-group col-md-2'>
+                    <label>Quantita'</label>
+                    <input type='text' class='form-control' name='quantita' id='QuantitaStrumentazione' placeholder='Quantità'>
+                  </div>
+                  <div class='form-group col-md-2'>
+                    <label>Stanza Manuale</label>
+                    <input type='text' name='stanzamanuale' class='form-control' id='Stanza' placeholder='Stanza'>
+                  </div>
+                  <div class='form-group col-md-2'>
+                    <label>Armadio Manuale</label>
+                    <input type='text' name='armadiomanuale' class='form-control' id='Armadio' placeholder='Armadio'>
+                  </div>
+                </div>
+                <div class='form-row'>
+                  <div class='form-group col-md-2'>
+                    <label>Tipo di collocazione</label>
+                    <select class='custom-select mr-sm-2' name='tipo_collocazione' id='inlineFormCustomSelect'>
+                      <option selected>Scegli...</option>
+                      <option value='Consumo'>Consumo</option>
+                      <option value='Magazzino'>Magazzino</option>
+                    </select>
+                  </div>
+                  <div class='form-group col-md-2'>
+                    <label>Stanza</label>
+                    <input type='text' name='stanza' class='form-control' id='Stanza' placeholder='Stanza'>
+                  </div>
+                  <div class='form-group col-md-2'>
+                    <label>Armadio</label>
+                    <input type='text' name='armadio' class='form-control' id='Armadio' placeholder='Armadio'>
+                  </div>
+                </div>
+                <input type='submit' name='inserisci' class='btn btn-primary' value='Aggiungi Strumentazione'>
+              </form>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-2">
-              <label>Numero Inventario</label>
-              <input type="text" class="form-control" name="numero_inventario" id="NumeroInventario" placeholder="Numero Inventario">
-            </div>
-            <div class="form-group col-md-2">
-              <label>Quantita'</label>
-              <input type="text" class="form-control" name="quantita" id="QuantitaStrumentazione" placeholder="Quantità">
-            </div>
-            <div class="form-group col-md-2">
-              <label>Stanza Manuale</label>
-              <input type="text" name="stanzamanuale" class="form-control" id="Stanza" placeholder="Stanza">
-            </div>
-            <div class="form-group col-md-2">
-              <label>Armadio Manuale</label>
-              <input type="text" name="armadiomanuale" class="form-control" id="Armadio" placeholder="Armadio">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-2">
-              <label>Tipo di collocazione</label>
-              <select class="custom-select mr-sm-2" name="tipo_collocazione" id="inlineFormCustomSelect">
-                <option selected>Scegli...</option>
-                <option value="Consumo">Consumo</option>
-                <option value="Magazzino">Magazzino</option>
-              </select>
-             </div>
-            <div class="form-group col-md-2">
-              <label>Stanza</label>
-              <input type="text" name="stanza" class="form-control" id="Stanza" placeholder="Stanza">
-            </div>
-            <div class="form-group col-md-2">
-              <label>Armadio</label>
-              <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Armadio">
-            </div>
-          </div>
-          <input type="submit" name="inserisci" class="btn btn-primary" value="Aggiungi Strumentazione">
-        </form>
-      </div>
-    </div>
-    </div>
+          </div>";
+  }
+?>
 
 <!-- Funzione per l'inserimento di un'apparecchiatura -->
         <?php

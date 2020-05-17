@@ -56,9 +56,14 @@
             </li>
 
             <!-- Link Creazione Utente-->
-            <li class="nav-item">
-              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
-            </li>
+            <?php
+              if ($_SESSION["Ruolo"] > 2)
+              {
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link' href='Crea_Utente.php'>Creazione Utente</a>";
+                echo "</li>";
+              }
+            ?>
           </ul>
 
           <!-- Link Per l'accesso-->
@@ -101,24 +106,29 @@
       </div>
 
 <!-- Elimina un elemento di vetreria -->
-        <div class="col-lg-3" id="SezioneRicerca">
-          <div class="dark flex" id="DivStampaTutto">
-            <h3>Elimina un Attrezzo</h3>
-            <img src="./img/NoVetreria.png" alt="" id="LogoVetreria">
-            <form method="post">
-              <div class="form-row" id="EliminaElemento">
-                <div class="form-group col-lg-8" id="FormEliminazione">
-                  <label>Inserisci ID Attrezzo</label>
-                  <input type="text" name="id_attrezzo" class="form-control" id="IdAttrezzo" placeholder="ID Attrezzo">
+    <?php
+      if ($_SESSION['Ruolo'] > 2)
+      {
+        echo "<div class='col-lg-3' id='SezioneRicerca'>
+                <div class='dark flex' id='DivStampaTutto'>
+                  <h3>Elimina un Attrezzo</h3>
+                  <img src='./img/NoVetreria.png' alt='' id='LogoVetreria'>
+                  <form method='post'>
+                    <div class='form-row' id='EliminaElemento'>
+                      <div class='form-group col-lg-8' id='FormEliminazione'>
+                        <label>Inserisci ID Attrezzo</label>
+                        <input type='text' name='id_attrezzo' class='form-control' id='IdAttrezzo' placeholder='ID Attrezzo'>
+                      </div>
+                        <div class='form-group col-lg-2' id='FormEliminazione'>
+                          <br id='SpazioLarghetto'>
+                          <input type='submit' name='delete' class='btn btn-primary' value='Elimina'>
+                      </div>
+                    </div>
+                  </form>
                 </div>
-                  <div class="form-group col-lg-2" id="FormEliminazione">
-                    <br id="SpazioLarghetto">
-                    <input type="submit" name="delete" class="btn btn-primary" value="Elimina">
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+              </div>";
+      }
+    ?>
 
 <!--Ricerca di un elemento di vetreria-->
         <div class="col-lg-4" id="SezioneRicerca">
@@ -139,50 +149,55 @@
 
 
 <!--Inserimento di nuovi oggetti di vetreria-->
-        <div class="col-md-10" id="SezioneInserimento">
-          <div class="dark">
-            <h3>Inserisci Nuova Vetreria</h3>
-            <hr>
-            <form method="post">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Tipo Vetreria</label>
-                <input type="text" class="form-control" name="tipo" id="TipoVetreria" placeholder="Tipo Vetreria">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-2">
-                <label>Quantita'</label>
-                <input type="text" class="form-control" name="quantita" id="QuantiàVetreria" placeholder="Quantità">
-              </div>
-            </div>
-            <div class="form-row">
-            <div class="form-group col-md-2">
-              <label>Tipo di collocazione</label>
-              <select class="custom-select mr-sm-2" name="tipo_collocazione" id="inlineFormCustomSelect">
-                <option selected>Scegli...</option>
-                <option value="Solido">Consumo</option>
-                <option value="Liquido">Magazzino</option>
-              </select>
-             </div>
-              <div class="form-group col-md-2">
-                <label>Stanza</label>
-                <input type="text" name="stanza" class="form-control" id="Stanza" placeholder="Stanza">
-              </div>
-              <div class="form-group col-md-2">
-                <label>Armadio</label>
-                <input type="text" name="armadio" class="form-control" id="Armadio" placeholder="Armadio">
-              </div>
-              <div class="form-group col-md-2">
-                <label>Ripiano</label>
-                <input type="text" name="ripiano" class="form-control" id="Ripiano" placeholder="Ripiano">
-              </div>
-            </div>
-            <input type="submit" name="inserisci" class="btn btn-primary" value="Aggiungi Vetreria">
-            </form>
-          </div>
-        </div>
-      </div>
+<?php
+      if ($_SESSION['Ruolo'] > 2)
+      {
+        echo "<div class='col-md-10' id='SezioneInserimento'>
+                  <div class='dark'>
+                    <h3>Inserisci Nuova Vetreria</h3>
+                    <hr>
+                    <form method='post'>
+                    <div class='form-row'>
+                      <div class='form-group col-md-6'>
+                        <label>Tipo Vetreria</label>
+                        <input type='text' class='form-control' name='tipo' id='TipoVetreria' placeholder='Tipo Vetreria'>
+                      </div>
+                    </div>
+                    <div class='form-row'>
+                      <div class='form-group col-md-2'>
+                        <label>Quantita'</label>
+                        <input type='text' class='form-control' name='quantita' id='QuantiàVetreria' placeholder='Quantità'>
+                      </div>
+                    </div>
+                    <div class='form-row'>
+                    <div class='form-group col-md-2'>
+                      <label>Tipo di collocazione</label>
+                      <select class='custom-select mr-sm-2' name='tipo_collocazione' id='inlineFormCustomSelect'>
+                        <option selected>Scegli...</option>
+                        <option value='Solido'>Consumo</option>
+                        <option value='Liquido'>Magazzino</option>
+                      </select>
+                    </div>
+                      <div class='form-group col-md-2'>
+                        <label>Stanza</label>
+                        <input type='text' name='stanza' class='form-control' id='Stanza' placeholder='Stanza'>
+                      </div>
+                      <div class='form-group col-md-2'>
+                        <label>Armadio</label>
+                        <input type='text' name='armadio' class='form-control' id='Armadio' placeholder='Armadio'>
+                      </div>
+                      <div class='form-group col-md-2'>
+                        <label>Ripiano</label>
+                        <input type='text' name='ripiano' class='form-control' id='Ripiano' placeholder='Ripiano'>
+                      </div>
+                    </div>
+                    <input type='submit' name='inserisci' class='btn btn-primary' value='Aggiungi Vetreria'>
+                    </form>
+                  </div>
+                </div>
+              </div>";
+      }
+    ?>
 
 <!-- Funzione per l'inserimento di un attrezzo di vetreria -->
       <?php

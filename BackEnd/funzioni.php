@@ -31,9 +31,9 @@
 <?php
   if(array_key_exists('inserisci', $_POST))
   {
-    inserisci();
+    inserisci_reagente();
   }
-  function inserisci()
+  function inserisci_reagente()
   {
     $tipo_collocazione = $_POST["tipo_collocazione"];
     $stanza = $_POST["stanza"];
@@ -85,9 +85,9 @@
 <?php
   if(array_key_exists('inserisci', $_POST))
   {
-    inserisci();
+    inserisci_apparecchiatura();
   }
-  function inserisci()
+  function inserisci_apparecchiatura()
   {
     $tipo = $_POST["tipo"];
     $caratteristiche_tecniche = $_POST["caratteristiche_tecniche"];
@@ -118,9 +118,9 @@
 <?php
   if(array_key_exists('inserisci', $_POST))
   {
-    inserisci();
+    inserisci_vetreria();
   }
-  function inserisci()
+  function inserisci_vetreria()
   {
     $tipo = $_POST["tipo"];
     $id_quantita = $_POST["id_quantita"];
@@ -150,9 +150,9 @@
 <?php
   if(array_key_exists('ricercareagente', $_POST))
   {
-    ricerca();
+    ricerca_reagente();
   }
-  function ricerca()
+  function ricerca_reagente()
   {
     $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
@@ -206,9 +206,9 @@
 <?php
   if(array_key_exists('ricercastrumenti', $_POST))
   {
-    ricerca();
+    ricerca_strumentazione();
   }
-  function ricerca()
+  function ricerca_strumentazione()
   {
     $connect = mysqli_connect("localhost", "root", "", "Progetto_Chimica");
 
@@ -253,7 +253,7 @@
     mysqli_free_result($result);
     mysqli_close($connect);
 
-  }       
+  }
 ?>
 
 <!-- Funzione per la ricerca di vetreria -->

@@ -2,6 +2,11 @@
 
   session_start();
 
+  if(!isset($_SESSION["User"]))
+  {
+    header("location: SignIn.php");
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,9 +55,14 @@
             </li>
 
             <!-- Link Creazione Utente-->
-            <li class="nav-item">
-              <a class="nav-link" href="Crea_Utente.php">Creazione Utente</a>
-            </li>
+            <?php
+              if ($_SESSION["Ruolo"] > 1)
+              {
+                echo "<li class='nav-item'>";
+                echo "<a class='nav-link' href='Crea_Utente.php'>Creazione Utente</a>";
+                echo "</li>";
+              }
+            ?>
           </ul>
 
           <hr>
