@@ -187,35 +187,39 @@
                     <input type='submit' name='inserisci' class='btn btn-primary' value='Aggiungi Vetreria'>
                     </form>
                   </div>
-                </div>
-              </div>";
+                </div>";
+
       }
     ?>
-
+<!-- SEZIONE RELATIVA ALL'AGGIORNAMENTO DI UNA QUANTITA' -->
     <?php
         if ($_SESSION['Ruolo'] > 1)
         {
-          echo "<div class='col-lg-6' id='SezioneRicerca'>
-                <div class='dark flex'>
-                  <h3>Aggiorna una quantità</h3>
-                  <hr id='SpaziaturaLarga'>
-                  <form method='post'>
-                    <div class='form-row'>
-                      <div class='form-group col-md-5'>
-                        <label for='inputNomeReagente'>ID Attrezzo</label>
-                        <input type='text' name='id_attrezzo' class='form-control' id='id_attrezzo' placeholder='ID Attrezzo'>
+          echo "<div class='col-md-6' id='SezioneInserimento'>
+                  <div class='dark flex'>
+                    <h3>Aggiorna una quantità</h3>
+                    <hr id='SpaziaturaLarga'>
+                    <form method='post'>
+                      <div class='form-row'>
+                        <div class='form-group col-md-5'>
+                          <label for='inputNomeReagente'>ID Attrezzo</label>
+                          <input type='text' name='id_attrezzo' class='form-control' id='id_attrezzo' placeholder='ID Attrezzo'>
+                        </div>
+                        <div class='form-group col-md-3'>
+                          <label for='inputNomeReagente'>Quantità</label>
+                          <input type='text' name='quantita_totale' class='form-control' id='quantita_totale' placeholder='Quantita'>
+                        </div>
                       </div>
-                      <div class='form-group col-md-3'>
-                        <label for='inputNomeReagente'>Quantità</label>
-                        <input type='text' name='quantita_totale' class='form-control' id='quantita_totale' placeholder='Quantita'>
-                      </div>
-                    </div>
-                    <input type='submit' name='updatequantita' class='btn btn-primary' value='Aggiorna Quantità'>
-                  </form>
-                </div>
-              </div>";
+                      <input type='submit' name='updatequantita' class='btn btn-primary' value='Aggiorna Quantità'>
+                    </form>
+                  </div>
+                </div>";
         }
       ?>
+    </div>
+
+
+
 <!-- Funzione per l'inserimento di un attrezzo di vetreria -->
 
       <?php
@@ -342,7 +346,7 @@
         ?>
 
 <!-- Funzione per aggiornare la quantità -->
-        <?php 
+        <?php
             if(array_key_exists('updatequantita', $_POST))
             {
               update();
@@ -383,7 +387,7 @@
               {
                 $message = "Quantità non aggiornata";
                 echo "<script>alert('$message');</script>";
-              }   
+              }
             }
         ?>
 

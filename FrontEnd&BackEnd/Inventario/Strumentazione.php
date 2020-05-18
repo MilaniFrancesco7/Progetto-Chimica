@@ -205,7 +205,6 @@
                 <input type='submit' name='inserisci' class='btn btn-primary' value='Aggiungi Strumentazione'>
               </form>
             </div>
-          </div>
           </div>";
   }
 ?>
@@ -234,6 +233,7 @@
           </div>";
     }
   ?>
+</div>  <!-- QUESTO è IL TERMINE DELLA PAGINA-->
 
 <!-- Funzione per l'inserimento di un'apparecchiatura -->
         <?php
@@ -309,7 +309,7 @@
         ?>
 
 <!-- Funzione per aggiornare la quantità -->
-        <?php 
+        <?php
             if(array_key_exists('updatequantita', $_POST))
             {
               update();

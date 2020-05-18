@@ -344,16 +344,15 @@
 
   <!-- Stampa di tutti gli oggetti ##-->
 <div class="col-lg-3" id="SezioneRicerca">
-          <div class="dark flex" id="DivStampaTutto">
-            <h3>Stampa Esperienze</h3>
-            <hr>
-            <img src="./img/Reagenti.png" alt="" id="LogoReagenti">
-            <form method="post">
-              <input type="submit" name="showallexperiences" class="btn btn-primary" value="Mostra tutte le Esperienze">
-            </form>
-          </div>
-        </div>
-      </div>
+  <div class="dark flex" id="DivStampaTutto">
+    <h3>Stampa Esperienze</h3>
+    <hr>
+    <img src="./img/Reagenti.png" alt="" id="LogoReagenti">
+    <form method="post">
+      <input type="submit" name="showallexperiences" class="btn btn-primary" value="Mostra tutte le Esperienze">
+    </form>
+  </div>
+</div>
 
 
   <!-- Aggiornamento di una quantità -->
@@ -385,7 +384,7 @@
           </div>";
     }
   ?>
-
+  </div>
 <!-- Stampa di tutte le esperienze -->
       <?php
         if(array_key_exists('showallexperiences', $_POST))
@@ -576,7 +575,7 @@
      ?>
 
 <!-- Funzione per aggiornare la quantità -->
-     <?php 
+     <?php
         if(array_key_exists('updatequantita', $_POST))
         {
           update();
@@ -589,7 +588,7 @@
           $quantita_presente = $_POST["quantita_presente"];
           $quantita_totale = $_POST["quantita_totale"];
           $data_aggiornamento = date("Y-m-d");
-          
+
           $query = "SELECT * FROM reagente WHERE id_reagente = $id_reagente";
 
           $result = mysqli_query($connect, $query);
