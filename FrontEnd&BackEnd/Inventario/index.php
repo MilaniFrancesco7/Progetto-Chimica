@@ -12,7 +12,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title>Home</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
   </head>
@@ -24,7 +24,7 @@
       <div class="container-fluid">
         <img src="./img/MiniIconaNavbar.png" alt="#" id="IconaNavbar">
         <img src="./img/LogoItisBianco.png" alt="#" id="LogoItis">
-        <a class="navbar-brand" href="#" id="BrandTitle">Programma Inventario</a>
+        <a class="navbar-brand" href="" id="BrandTitle">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -56,7 +56,7 @@
 
             <!-- Link Creazione Utente-->
             <?php
-              if ($_SESSION["Ruolo"] > 1)
+              if ($_SESSION["Ruolo"] > 2)
               {
                 echo "<li class='nav-item'>";
                 echo "<a class='nav-link' href='Crea_Utente.php'>Creazione Utente</a>";

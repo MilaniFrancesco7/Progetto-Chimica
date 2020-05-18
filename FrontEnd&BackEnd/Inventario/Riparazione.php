@@ -24,7 +24,7 @@
       <div class="container-fluid">
         <img src="./img/MiniIconaNavbar.png" alt="#" id="IconaNavbar">
         <img src="./img/LogoItisBianco.png" alt="#" id="LogoItis">
-        <a class="navbar-brand" href="index.php" id="BrandTitle">Riparazione</a>
+        <a class="navbar-brand" href="" id="BrandTitle">Riparazione</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -157,7 +157,7 @@
 
 <!--Uscita in riparazione-->
 <?php
-  if ($_SESSION['Ruolo'] > 2)
+  if ($_SESSION['Ruolo'] > 1)
   {
     echo "<div class='col-md-10' id='SezioneInserimento'>
             <div class='dark'>
@@ -193,7 +193,7 @@
 
 <!-- Rientro dalla riparazione -->
 <?php
-  if ($_SESSION['Ruolo'] > 2)
+  if ($_SESSION['Ruolo'] > 1)
   {
     echo "<div class='col-md-10' id='SezioneInserimento'>
             <div class='dark'>
