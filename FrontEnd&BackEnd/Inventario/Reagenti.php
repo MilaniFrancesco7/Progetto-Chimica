@@ -13,6 +13,7 @@
   {
     header("location: SignIn.php");
   }
+
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -242,7 +243,7 @@
               <div class='form-row'>
                   <legend style='font-size:12px'>Pittogramma</legend>
                   <br>
-                <!-- AREA PITTOGRAMMI-->  ";        
+                <!-- AREA PITTOGRAMMI-->  ";
                 $array_pittogrammi = array("comburente","corrosivo","esplosivo","gas_pressurizzato","infiammabile","irritante","nocivo","tossico");
 
                 foreach($array_pittogrammi as $pittogramma)

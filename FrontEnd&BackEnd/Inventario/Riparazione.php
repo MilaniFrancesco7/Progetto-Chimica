@@ -93,7 +93,7 @@
     </nav>
 
 
-    <!-- Main Body-->
+<!-- Main Body-->
 
     <section id="showcase_man">
       <div class="container">
@@ -102,7 +102,7 @@
     </section>
     <div class="row" id="MainPage">
 
-    <!-- Stampa di tutti gli oggetti -->
+<!-- Stampa di tutti gli oggetti -->
     <div class="col-lg-3" id="SezioneRicerca">
       <div class="dark flex" id="DivStampaTutto">
         <h3>Mostra Storico Generale Riparazioni</h3>
@@ -113,7 +113,8 @@
       </div>
     </div>
 
-    <!-- Elimina un oggetto -->
+<!-- Elimina un oggetto -->
+
 <?php
   if ($_SESSION['Ruolo'] > 2)
   {
@@ -138,7 +139,7 @@
   }
 ?>
 
-    <!--Ricerca di un oggetto-->
+<!--Ricerca di un oggetto-->
     <div class="col-lg-4" id="SezioneRicerca">
       <div class="dark flex">
         <h3>Ricerca Storico Strumento</h3>

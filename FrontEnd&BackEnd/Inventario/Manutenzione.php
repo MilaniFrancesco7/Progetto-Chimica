@@ -51,12 +51,10 @@
             <li class="nav-item">
               <a class="nav-link" href="Manutenzione.php">Sezione Manutenzione</a>
             </li>
-
             <!-- Link Sezione Riparazioni-->
             <li class="nav-item">
               <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
             </li>
-
             <!-- Link Creazione Utente-->
             <?php
               if ($_SESSION["Ruolo"] > 2)
@@ -67,9 +65,7 @@
               }
             ?>
           </ul>
-
           <hr>
-
           <!-- Link Per l'accesso-->
 
           <?php
@@ -87,16 +83,13 @@
               echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Logout</button>";
               echo "</form>";
             }
-
-
           ?>
-
         </div>
       </div>
     </nav>
 
 
-    <!-- Main Body-->
+<!-- Main Body-->
 
     <section id="showcase_man">
       <div class="container">
@@ -157,7 +150,7 @@
         }
       ?>
 
-          <!-- REGISTRAZIONE DI UNA MANUTENZIONE-->
+  <!-- REGISTRAZIONE DI UNA MANUTENZIONE-->
       <?php
         if ($_SESSION['Ruolo'] > 1)
         {

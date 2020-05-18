@@ -297,6 +297,13 @@ aside#sidebar .quote input, aside#sidebar .quote textarea{
   margin-bottom: -0.7rem;
 }
 
+/* Pagina Creautente*/
+
+#DivCreaUtente{
+  margin-top: 30px;
+  text-align: center;
+  padding-left:310px;
+}
 
 /* TESTING DEI PITTOGRAMMI */
 

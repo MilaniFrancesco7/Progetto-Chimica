@@ -84,40 +84,41 @@
         </div>
       </div>
     </nav>
-
+<!--Showcase della scritta pagina-->
     <section id="showcase_man">
       <div class="container">
         <h1>Creazione Utente</h1>
       </div>
     </section>
-    <div class="row" id="MainPage">
 
-<!-- Inserimento di un'esperienza -->
-    <div class="col-lg-6" id="SezioneInserimento">
-        <div class="dark flex">
+<!--Pagina Principale -->
+
+    <div class="container" id="DivCreaUtente">
+      <div class="col-lg-7">
+        <div class="dark">
           <h3>Registra un nuovo utente</h3>
           <hr id="SpaziaturaLarga">
           <form method="post">
             <div class="form-row">
-              <div class="form-group col-md-5">
+              <div class="form-group col-lg-12">
                 <label for="inputNomeReagente">E-mail</label>
                 <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required autofocus>
               </div>
-            </div>  
+            </div>
             <div class="form-row">
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-12">
                 <label for="inputNomeReagente">Password</label>
                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
               </div>
             </div>
             <div class="form-row">
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-12">
                 <label for="inputNomeReagente">Ripeti la Password</label>
                 <input type="password" name="passwordcheck" id="passwordcheck" class="form-control" placeholder="Password" required>
               </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-6">
                   <label>Ruolo</label>
                   <select class="custom-select mr-sm-2" name="ruolo" id="inlineFormCustomSelect">
                     <option selected>Scegli...</option>
@@ -130,6 +131,8 @@
             <input type="submit" name="registrautente" class="btn btn-primary" value="Registra utente">
           </form>
         </div>
+      </div>
+
     </div>
 
 <!-- Registrare un nuovo utente -->
@@ -142,7 +145,7 @@
         {
             $password = $_POST["password"];
             $passwordcheck = $_POST["passwordcheck"];
-            
+
             if($password != $passwordcheck)
             {
                 $message = "Utente non inserito, errore nella password";
@@ -172,7 +175,7 @@
             }
         }
     ?>
-        
+
 
 
 

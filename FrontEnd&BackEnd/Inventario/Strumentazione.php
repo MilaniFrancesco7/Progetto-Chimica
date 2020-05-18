@@ -8,6 +8,7 @@
   }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
   <head>
@@ -65,9 +66,7 @@
               }
             ?>
           </ul>
-
           <!-- Link Per l'accesso-->
-
           <?php
 
             //Se non loggato mostra il comando per entrare
@@ -83,18 +82,18 @@
               echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Logout</button>";
               echo "</form>";
             }
-
-
           ?>
         </div>
       </div>
     </nav>
 
+
 <!-- SEZIONE PRINCIPALE -->
+
 <section id="main">
   <div class="row" id="MainPage">
-
 <!-- Stampa di tutti gli oggetti -->
+
     <div class="col-lg-3" id="SezioneRicerca">
       <div class="dark flex" id="DivStampaTutto">
         <h3>Mostra Strumentazione</h3>
@@ -222,7 +221,7 @@
             {
               include "db/connection.php";
 
-              $tipo_collocazione = $_POST["tipo_collocazione"]; 
+              $tipo_collocazione = $_POST["tipo_collocazione"];
               $stanza = $_POST["stanza"];
               $armadio = $_POST["armadio"];
 
@@ -234,7 +233,7 @@
                 $id_collocazione = mysqli_insert_id($connect);
               }
 
-              $stanzamanuale = $_POST["stanzamanuale"];     
+              $stanzamanuale = $_POST["stanzamanuale"];
               $armadiomanuale = $_POST["armadiomanuale"];
 
               $query = "INSERT INTO collocazione_scheda_manuale(armadio_scheda, stanza_scheda)

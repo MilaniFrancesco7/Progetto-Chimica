@@ -28,7 +28,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto" id="NavbarList">
-
             <!--Item dropdown - Menù a tendina-->
             <li class="nav-item dropdown">
               <a class="nav-link" href="index.php">Menù principale</a>
@@ -49,12 +48,10 @@
             <li class="nav-item">
               <a class="nav-link" href="Manutenzione.php">Sezione Manutenzione</a>
             </li>
-
             <!-- Link Sezione Riparazioni-->
             <li class="nav-item">
               <a class="nav-link" href="Riparazione.php">Sezione Riparazioni</a>
             </li>
-
             <!-- Link Creazione Utente-->
             <?php
               if ($_SESSION["Ruolo"] > 2)
@@ -65,9 +62,7 @@
               }
             ?>
           </ul>
-
           <!-- Link Per l'accesso-->
-
           <?php
 
             //Se non loggato mostra il comando per entrare
@@ -83,18 +78,17 @@
               echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Logout</button>";
               echo "</form>";
             }
-
-
           ?>
         </div>
       </div>
     </nav>
 
 <!-- SEZIONE PRINCIPALE -->
+
     <section id="main">
     <div class="row" id="MainPage">
-
 <!-- Stampa di tutti gli oggetti -->
+
       <div class="col-lg-3" id="SezioneRicerca">
         <div class="dark flex" id="DivStampaTutto">
           <h3>Mostra Vetreria</h3>
@@ -104,8 +98,8 @@
           </form>
         </div>
       </div>
+<!-- ELIMINA ELEMENTO VETRERIA -->
 
-<!-- Elimina un elemento di vetreria -->
     <?php
       if ($_SESSION['Ruolo'] > 2)
       {
@@ -129,8 +123,8 @@
               </div>";
       }
     ?>
-
 <!--Ricerca di un elemento di vetreria-->
+
         <div class="col-lg-4" id="SezioneRicerca">
           <div class="dark flex">
             <h3>Ricerca Vetreria</h3>
@@ -146,9 +140,8 @@
             </form>
           </div>
         </div>
-
-
 <!--Inserimento di nuovi oggetti di vetreria-->
+
 <?php
       if ($_SESSION['Ruolo'] > 2)
       {
@@ -198,8 +191,8 @@
               </div>";
       }
     ?>
-
 <!-- Funzione per l'inserimento di un attrezzo di vetreria -->
+
       <?php
         if(array_key_exists('inserisci', $_POST))
         {
@@ -250,8 +243,8 @@
           }
         }
       ?>
-
 <!-- Funzione per l'eliminazione di un oggetto -->
+
       <?php
         if(array_key_exists('delete', $_POST))
         {
@@ -288,7 +281,7 @@
           {
             include "db/connection.php";
 
-            $query = "SELECT vetreria_attrezzatura.*, quantita.* 
+            $query = "SELECT vetreria_attrezzatura.*, quantita.*
                       FROM vetreria_attrezzatura
                       INNER JOIN quantita
                       ON vetreria_attrezzatura.id_quantita = quantita.id_quantita";
@@ -339,8 +332,8 @@
 
             $ricerca = $connect -> real_escape_string($ricerca);
 
-            $query =   "SELECT vetreria_attrezzatura.*, quantita.* 
-                        FROM vetreria_attrezzatura 
+            $query =   "SELECT vetreria_attrezzatura.*, quantita.*
+                        FROM vetreria_attrezzatura
                         INNER JOIN quantita
                         ON vetreria_attrezzatura.id_quantita = quantita.id_quantita
                         WHERE

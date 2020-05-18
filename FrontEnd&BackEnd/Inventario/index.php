@@ -64,11 +64,8 @@
               }
             ?>
           </ul>
-
           <hr>
-
           <!-- Link Per l'accesso-->
-
           <?php
 
             //Se non loggato mostra il comando per entrare
@@ -84,13 +81,10 @@
               echo "<button class='btn btn-outline-success' type='submit' id='BottoneAccesso'>Logout</button>";
               echo "</form>";
             }
-
-
           ?>
         </div>
       </div>
     </nav>
-
 
     <!-- Main Body-->
 
