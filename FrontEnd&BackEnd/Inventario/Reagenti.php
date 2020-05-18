@@ -342,8 +342,7 @@
     }
   ?>
 
-
-<!-- Stampa di tutti gli oggetti ##-->
+  <!-- Stampa di tutti gli oggetti ##-->
 <div class="col-lg-3" id="SezioneRicerca">
           <div class="dark flex" id="DivStampaTutto">
             <h3>Stampa Esperienze</h3>
@@ -356,6 +355,36 @@
         </div>
       </div>
 
+
+  <!-- Aggiornamento di una quantità -->
+<?php
+    if ($_SESSION['Ruolo'] > 1)
+    {
+      echo "<div class='col-lg-6' id='SezioneRicerca'>
+            <div class='dark flex'>
+              <h3>Aggiorna una quantità</h3>
+              <hr id='SpaziaturaLarga'>
+              <form method='post'>
+                <div class='form-row'>
+                  <div class='form-group col-md-5'>
+                    <label for='inputNomeReagente'>ID Reagente</label>
+                    <input type='text' name='id_reagente' class='form-control' id='id_reagente' placeholder='ID Reagente'>
+                  </div>
+                  <div class='form-group col-md-3'>
+                    <label for='inputNomeReagente'>Quantità Presente</label>
+                    <input type='text' name='quantita_presente' class='form-control' id='quantita_presente' placeholder='Quantita Presente'>
+                  </div>
+                  <div class='form-group col-md-3'>
+                    <label for='inputNomeReagente'>Quantità Totale</label>
+                    <input type='text' name='quantita_totale' class='form-control' id='quantita_totale' placeholder='Quantità Totale'>
+                  </div>
+                </div>
+                <input type='submit' name='updatequantita' class='btn btn-primary' value='Aggiorna Quantità'>
+              </form>
+            </div>
+          </div>";
+    }
+  ?>
 
 <!-- Stampa di tutte le esperienze -->
       <?php
@@ -541,6 +570,52 @@
           else
           {
             $message = "Elemento non inserito";
+            echo "<script>alert('$message');</script>";
+          }
+        }
+     ?>
+
+<!-- Funzione per aggiornare la quantità -->
+     <?php 
+        if(array_key_exists('updatequantita', $_POST))
+        {
+          update();
+        }
+        function update()
+        {
+          include "db/connection.php";
+
+          $id_reagente = $_POST["id_reagente"];
+          $quantita_presente = $_POST["quantita_presente"];
+          $quantita_totale = $_POST["quantita_totale"];
+          $data_aggiornamento = date("Y-m-d");
+          
+          $query = "SELECT * FROM reagente WHERE id_reagente = $id_reagente";
+
+          $result = mysqli_query($connect, $query);
+
+          if(mysqli_num_rows($result) > 0)
+          {
+            $query = "SELECT id_quantita FROM reagente WHERE id_reagente = $id_reagente";
+
+            $result = mysqli_query($connect, $query);
+
+            while($search = mysqli_fetch_array($result))
+            {
+              $id_quantita = $search["id_quantita"];
+            }
+
+            $query = "UPDATE quantita SET quantita_presente = '$quantita_presente', quantita_totale = '$quantita_totale', data_aggiornamento = '$data_aggiornamento' WHERE quantita.id_quantita = '$id_quantita'";
+
+            if($result = mysqli_query($connect, $query))
+            {
+              $message = "Quantità aggiornata correttamente";
+              echo "<script>alert('$message');</script>";
+            }
+          }
+          else
+          {
+            $message = "Quantità non aggiornata";
             echo "<script>alert('$message');</script>";
           }
         }

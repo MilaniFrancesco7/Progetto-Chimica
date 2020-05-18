@@ -9,7 +9,7 @@ Pagina Index:
 Reagenti:
 
 - Modifica di un reagente	+
-- Form per aggiornare la quantità (Update)	+
+- Form per aggiornare la quantità (Update)	+Done
 - Frontend Esperienza Done
 - Scheda di sicurezza (Collocazione, data di rilascio, No scheda digitale) + Done
 - Data di scadenza (default NULL)	+ Done

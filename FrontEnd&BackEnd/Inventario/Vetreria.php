@@ -191,6 +191,31 @@
               </div>";
       }
     ?>
+
+    <?php
+        if ($_SESSION['Ruolo'] > 1)
+        {
+          echo "<div class='col-lg-6' id='SezioneRicerca'>
+                <div class='dark flex'>
+                  <h3>Aggiorna una quantità</h3>
+                  <hr id='SpaziaturaLarga'>
+                  <form method='post'>
+                    <div class='form-row'>
+                      <div class='form-group col-md-5'>
+                        <label for='inputNomeReagente'>ID Attrezzo</label>
+                        <input type='text' name='id_attrezzo' class='form-control' id='id_attrezzo' placeholder='ID Attrezzo'>
+                      </div>
+                      <div class='form-group col-md-3'>
+                        <label for='inputNomeReagente'>Quantità</label>
+                        <input type='text' name='quantita_totale' class='form-control' id='quantita_totale' placeholder='Quantita'>
+                      </div>
+                    </div>
+                    <input type='submit' name='updatequantita' class='btn btn-primary' value='Aggiorna Quantità'>
+                  </form>
+                </div>
+              </div>";
+        }
+      ?>
 <!-- Funzione per l'inserimento di un attrezzo di vetreria -->
 
       <?php
@@ -314,6 +339,52 @@
               echo "<script>alert('$message');</script>";
             }
           }
+        ?>
+
+<!-- Funzione per aggiornare la quantità -->
+        <?php 
+            if(array_key_exists('updatequantita', $_POST))
+            {
+              update();
+            }
+            function update()
+            {
+              include "db/connection.php";
+
+              $id_attrezzo = $_POST["id_attrezzo"];
+              $quantita_totale = $_POST["quantita_totale"];
+              $data_aggiornamento = date("Y-m-d");
+
+              $query = "SELECT * FROM vetreria_attrezzatura WHERE id_attrezzo = $id_attrezzo";
+
+              $result = mysqli_query($connect, $query);
+
+              if(mysqli_num_rows($result) > 0)
+              {
+
+                $query = "SELECT id_quantita FROM vetreria_attrezzatura WHERE id_attrezzo = $id_attrezzo";
+
+                $result = mysqli_query($connect, $query);
+
+                while($search = mysqli_fetch_array($result))
+                {
+                  $id_quantita = $search["id_quantita"];
+                }
+
+                $query = "UPDATE quantita SET quantita_totale = '$quantita_totale', data_aggiornamento = '$data_aggiornamento' WHERE quantita.id_quantita = '$id_quantita'";
+
+                if(mysqli_query($connect, $query))
+                {
+                  $message = "Quantità aggiornata correttamente";
+                  echo "<script>alert('$message');</script>";
+                }
+              }
+              else
+              {
+                $message = "Quantità non aggiornata";
+                echo "<script>alert('$message');</script>";
+              }   
+            }
         ?>
 
 <!-- Funzione per la ricerca -->
