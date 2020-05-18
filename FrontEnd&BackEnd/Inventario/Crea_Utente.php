@@ -157,21 +157,31 @@
 
                 $email = $_POST["email"];
 
-                $ruolo = $_POST["ruolo"];
+                $query = "SELECT * FROM utente WHERE email='$email'";   //Controllo della mail se già presente
 
-                $query = "INSERT INTO utente(email, password_utente, ruolo)
-                    VALUES ('$email','$passwordcheck', '$ruolo')";
+                if (mysqli_query($connect, $query)) 
+                {
+                  $message = "Utente già presente nel database";
+                  echo "<script>alert('$message');</script>";       
+                } 
+                else 
+                {                
+                  $ruolo = $_POST["ruolo"];
 
-                if (mysqli_query($connect, $query))
-                {
-                    $message = "Utente inserito con successo!";
-                    echo "<script>alert('$message');</script>";
-                }
-                else
-                {
-                    $message = "Utente non inserito";
-                    echo "<script>alert('$message');</script>";
-                }
+                  $query = "INSERT INTO utente(email, password_utente, ruolo)
+                      VALUES ('$email','$passwordcheck', '$ruolo')";
+
+                  if (mysqli_query($connect, $query))
+                  {
+                      $message = "Utente inserito con successo!";
+                      echo "<script>alert('$message');</script>";
+                  }
+                  else
+                  {
+                      $message = "Utente non inserito";
+                      echo "<script>alert('$message');</script>";
+                  }  
+                }    
             }
         }
     ?>
