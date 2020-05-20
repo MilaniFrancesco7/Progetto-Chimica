@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 17, 2020 alle 22:07
+-- Creato il: Mag 20, 2020 alle 13:03
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.4
 
@@ -49,8 +49,7 @@ INSERT INTO `collocazione` (`id_collocazione`, `tipo_collocazione`, `armadio`, `
 (7, 'Magazzino', '2', '5', '9'),
 (8, 'Magazzino', '6', '2', '8'),
 (9, 'Consumo', '3', '3', '2'),
-(10, 'Magazzino', '1', '4', '5'),
-(59, 'Consumo', '1', '3', NULL);
+(10, 'Magazzino', '1', '4', '5');
 
 -- --------------------------------------------------------
 
@@ -81,8 +80,7 @@ INSERT INTO `collocazione_scheda_manuale` (`id_collocazione_scheda`, `armadio_sc
 (8, '6', '2', '9'),
 (9, '3', '3', '2'),
 (10, '1', '4', '7'),
-(11, '1', '4', '4'),
-(56, '2', '4', NULL);
+(11, '1', '4', '4');
 
 -- --------------------------------------------------------
 
@@ -106,8 +104,7 @@ INSERT INTO `esperienza` (`id_esperienza`, `nome_insegnante`, `testo_esperienza`
 (1, 'Milani', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie vulputate sapien, in venenatis tellus pretium a. Nunc rutrum lacinia tincidunt. Donec vulputate fermentum ante, lobortis mattis magna consectetur aliquet. Morbi dapibus libero rhoncus, sodales odio semper, feugiat ligula.', '5 AI', '2020-05-21'),
 (2, 'Zen', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie vulputate sapien, in venenatis tellus pretium a. Nunc rutrum lacinia tincidunt. Donec vulputate fermentum ante, lobortis mattis magna consectetur aliquet. Morbi dapibus libero rhoncus, sodales odio semper, feugiat ligula.', '5 AI', '2020-05-21'),
 (3, 'Rigoni', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie vulputate sapien, in venenatis tellus pretium a. Nunc rutrum lacinia tincidunt. Donec vulputate fermentum ante, lobortis mattis magna consectetur aliquet. Morbi dapibus libero rhoncus, sodales odio semper, feugiat ligula.', '5 AI', '2020-05-21'),
-(4, 'De Nadai', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie vulputate sapien, in venenatis tellus pretium a. Nunc rutrum lacinia tincidunt. Donec vulputate fermentum ante, lobortis mattis magna consectetur aliquet. Morbi dapibus libero rhoncus, sodales odio semper, feugiat ligula.', '5 AI', '2020-05-21'),
-(31, 'Milani', 'aaaaa', '4 BI', '2020-05-21');
+(4, 'De Nadai', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie vulputate sapien, in venenatis tellus pretium a. Nunc rutrum lacinia tincidunt. Donec vulputate fermentum ante, lobortis mattis magna consectetur aliquet. Morbi dapibus libero rhoncus, sodales odio semper, feugiat ligula.', '5 AI', '2020-05-21');
 
 -- --------------------------------------------------------
 
@@ -127,8 +124,7 @@ CREATE TABLE `manuale` (
 INSERT INTO `manuale` (`id_manuale`, `id_collocazione_manuale`) VALUES
 (1, 1),
 (2, 2),
-(3, 3),
-(4, 56);
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -170,16 +166,15 @@ CREATE TABLE `quantita` (
 --
 
 INSERT INTO `quantita` (`id_quantita`, `quantita_presente`, `quantita_totale`, `data_aggiornamento`) VALUES
-(1, 10, 10, '2020-01-10'),
+(1, 10, 1, '2020-05-18'),
 (2, 20, 30, '2019-05-09'),
 (3, 10, 40, '2020-02-04'),
 (4, 29, 70, '2020-01-10'),
-(5, 26, 70, '2020-05-21'),
-(6, 25, 70, '2020-03-21'),
-(7, 24, 70, '2020-04-25'),
+(5, 26, 34, '2020-05-18'),
+(6, 20, 70, '2020-05-18'),
+(7, 19, 60, '2020-05-18'),
 (8, 20, 70, '2020-05-22'),
-(9, 35, 90, '2020-03-08'),
-(20, NULL, 12, '2020-05-17');
+(9, 35, 90, '2020-03-08');
 
 -- --------------------------------------------------------
 
@@ -227,7 +222,6 @@ CREATE TABLE `reagente_esperienza` (
 
 INSERT INTO `reagente_esperienza` (`id_reagente`, `id_esperienza`) VALUES
 (1, 1),
-(1, 31),
 (2, 2);
 
 -- --------------------------------------------------------
@@ -322,8 +316,7 @@ CREATE TABLE `strumentazione_apparecchiatura` (
 
 INSERT INTO `strumentazione_apparecchiatura` (`id_strumento`, `tipo`, `caratteristiche_tecniche`, `numero_inventario`, `id_quantita`, `id_manuale`, `id_collocazione`) VALUES
 (1, 'Cilindro graduato', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 1, 5, 1, 5),
-(2, 'Cuvetta', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 2, 6, 2, 6),
-(10, 'Ciao', 'Chedo', 2, 20, 4, 59);
+(2, 'Cuvetta', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 2, 6, 2, 6);
 
 -- --------------------------------------------------------
 
@@ -343,7 +336,7 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`id`, `email`, `password_utente`, `ruolo`) VALUES
-(1, 'milaniwork@gmail.com', 'francescomilani', 3),
+(1, 'milaniwork@gmail.com', 'francescomilani', 2),
 (2, 'marcozen00@gmail.com', 'marcozen', 1),
 (3, 'superfrancy@gmail.com', 'francescorigoni', 3);
 
@@ -540,7 +533,7 @@ ALTER TABLE `strumentazione_apparecchiatura`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT per la tabella `vetreria_attrezzatura`
