@@ -113,8 +113,24 @@
       </div>
     </div>
 
-<!-- Elimina un oggetto -->
+<!--Ricerca di un oggetto-->
+<div class="col-lg-4" id="SezioneRicerca">
+      <div class="dark flex">
+        <h3>Ricerca Storico Strumento</h3>
+        <hr id="SpaziaturaLarga">
+        <form method="post">
+          <div class="form-group">
+            <br>
+            <label for="inputNomeStrumentazione">Inserisci Parola Chiave</label>
+            <input type="text" name="id_strumento" class="form-control" id="IDStrumento" placeholder="ID Strumento">
+          </div>
+          <hr>
+          <input type="submit" name="ricercariparazione" class="btn btn-primary" value="Cerca Storico">
+        </form>
+      </div>
+    </div>
 
+<!-- Elimina un oggetto -->
 <?php
   if ($_SESSION['Ruolo'] > 2)
   {
@@ -130,7 +146,7 @@
                   </div>
                     <div class='form-group col-md-3' id='FormEliminazione'>
                       <br id='SpazioLarghetto'>
-                      <input type='submit' name='delete' class='btn btn-primary' value='Elimina'>
+                      <input type='submit' name='delete' class='btn btn-primary' id='margin' value='Elimina'>
                   </div>
                 </div>
               </form>
@@ -138,23 +154,6 @@
           </div>";
   }
 ?>
-
-<!--Ricerca di un oggetto-->
-    <div class="col-lg-4" id="SezioneRicerca">
-      <div class="dark flex">
-        <h3>Ricerca Storico Strumento</h3>
-        <hr id="SpaziaturaLarga">
-        <form method="post">
-          <div class="form-group">
-            <br>
-            <label for="inputNomeStrumentazione">Inserisci Parola Chiave</label>
-            <input type="text" name="id_strumento" class="form-control" id="IDStrumento" placeholder="ID Strumento">
-          </div>
-          <hr>
-          <input type="submit" name="ricercariparazione" class="btn btn-primary" value="Cerca Storico">
-        </form>
-      </div>
-    </div>
 
 <!--Uscita in riparazione-->
 <?php
@@ -185,7 +184,7 @@
                     <input type='text' class='form-control' name='ditta_riparatrice' id='DittaRiparatrice' placeholder='Ditta Riparatrice'>
                   </div>
                 </div>
-                <input type='submit' name='uscita' class='btn btn-primary' value='Registra l'uscita'>
+                <input type='submit' name='uscita' class='btn btn-primary' value='Registra'uscita'>
               </form>
             </div>
           </div>";
@@ -211,7 +210,7 @@
                     <input type='date' class='form-control' name='data_rientro' id='DataRientro' placeholder='Data Rientro'>
                   </div>
                 </div>
-                <input type='submit' name='rientro' class='btn btn-primary' value='Registra l'uscita'>
+                <input type='submit' name='rientro' class='btn btn-primary' value='Registra'uscita'>
               </form>
             </div>
           </div>";

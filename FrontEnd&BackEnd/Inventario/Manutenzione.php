@@ -116,6 +116,7 @@
               <hr id="SpaziaturaLarga">
               <form method="post">
                 <div class="form-group">
+                  <br>
                   <label for="inputStrumento">Inserisci ID Strumento</label>
                   <input type="text" name="id_strumento" class="form-control" id="IDStrumento" placeholder="ID Strumento">
                 </div>
@@ -141,7 +142,7 @@
                         </div>
                           <div class='form-group col-md-3' id='FormEliminazione'>
                             <br id='SpazioLarghetto'>
-                            <input type='submit' name='delete' class='btn btn-primary' value='Elimina'>
+                            <input type='submit' name='delete' class='btn btn-primary' id='margin' value='Elimina'>
                         </div>
                       </div>
                     </form>

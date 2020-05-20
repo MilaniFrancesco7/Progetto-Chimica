@@ -5,7 +5,9 @@
 	include "../FrontEnd&BackEnd/Inventario/db/connection.php";
 
     $email = $_POST["email"];
-    $password = $_POST["password"];
+	$password = $_POST["password"];
+	
+	$password = md5($password);
 
     $query = "SELECT * FROM utente WHERE email = '$email' AND password_utente = '$password'";
 

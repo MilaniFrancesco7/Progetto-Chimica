@@ -1,7 +1,6 @@
 body{
   padding-top: 70px;
   font: 20px/1.5 Arial, Helvetica,sans-serif;
-  ali
 }
 
 img{
@@ -218,6 +217,8 @@ aside#sidebar .quote input, aside#sidebar .quote textarea{
 
 #bodyLogin{
   background: url('../img/wallpaper1.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 #loginmaindiv{
@@ -289,6 +290,10 @@ aside#sidebar .quote input, aside#sidebar .quote textarea{
   margin-top: 8px;
 }
 
+#margin{
+  margin-top: 8px
+}
+
 #EliminaElemento{
   margin-bottom: -1rem;
 }
@@ -302,7 +307,7 @@ aside#sidebar .quote input, aside#sidebar .quote textarea{
 #DivCreaUtente{
   margin-top: 30px;
   text-align: center;
-  padding-left:310px;
+  padding-left: 310px;
 }
 
 /* TESTING DEI PITTOGRAMMI */
@@ -355,7 +360,4 @@ aside#sidebar .quote input, aside#sidebar .quote textarea{
     color: #fff;
     background-color: #25b1d8;
     border-color: #25b1d8;
-}
-
-.row{
 }

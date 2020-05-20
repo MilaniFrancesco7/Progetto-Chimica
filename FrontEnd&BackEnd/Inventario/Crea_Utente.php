@@ -92,7 +92,7 @@
     </section>
 
 <!--Pagina Principale -->
-
+  <center>
     <div class="container" id="DivCreaUtente">
       <div class="col-lg-7">
         <div class="dark">
@@ -118,7 +118,7 @@
               </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                   <label>Ruolo</label>
                   <select class="custom-select mr-sm-2" name="ruolo" id="inlineFormCustomSelect">
                     <option selected>Scegli...</option>
@@ -134,6 +134,7 @@
       </div>
 
     </div>
+  </center>
 
 <!-- Registrare un nuovo utente -->
     <?php
@@ -159,13 +160,19 @@
 
                 $query = "SELECT * FROM utente WHERE email='$email'";   //Controllo della mail se già presente
 
-                if (mysqli_query($connect, $query)) 
+                $result = mysqli_query($connect, $query);
+
+                $count = mysqli_num_rows($result);
+
+                if ($count > 0) 
                 {
                   $message = "Utente già presente nel database";
                   echo "<script>alert('$message');</script>";       
                 } 
                 else 
-                {                
+                {
+                  $passwordcheck = md5($passwordcheck);
+
                   $ruolo = $_POST["ruolo"];
 
                   $query = "INSERT INTO utente(email, password_utente, ruolo)
