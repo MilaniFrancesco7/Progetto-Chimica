@@ -2,6 +2,6 @@
   // Dati per accedere al database
   $server = "localhost"; // host del database
   $username = "root"; // utente che accede al db
-  $password = "Marco0424";
+  $password = "";
   $database = "Progetto_Chimica"; // nome del database
 ?>
